@@ -1,3 +1,10 @@
+fbset (2.1-16) unstable; urgency=low
+
+  * Remove suppored Linux kernel version list from package description.
+    (Closes: #286338)
+
+ -- Guillem Jover <guillem@debian.org>  Thu, 23 Dec 2004 22:22:35 +0100
+
 fbset (2.1-15) unstable; urgency=low
 
   * Fix typo in fbset(8) manpage s/-g/-t/.
