@@ -74,12 +74,12 @@
 +
 +--
 +Brad Douglas <brad@neruo.com>
---- fbset-2.1.orig/kernel-doc/clgenfb.txt
-+++ fbset-2.1/kernel-doc/clgenfb.txt
+--- fbset-2.1.orig/kernel-doc/cirrusfb.txt
++++ fbset-2.1/kernel-doc/cirrusfb.txt
 @@ -0,0 +1,97 @@
 +
 +		Framebuffer driver for Cirrus Logic chipsets
-+		Copyright 1999 Jeff Garzik <jgarzik@mandrakesoft.com>
++		Copyright 1999 Jeff Garzik <jgarzik@pobox.com>
 +
 +
 +
@@ -522,14 +522,290 @@
 +provided by Frank Neumann.
 +
 +The frame buffer device abstraction was designed by Martin Schaller.
+--- fbset-2.1.orig/kernel-doc/intel810.txt
++++ fbset-2.1/kernel-doc/intel810.txt
+@@ -0,0 +1,272 @@
++Intel 810/815 Framebuffer driver
++ 	Tony Daplas <adaplas@pol.net>
++	http://i810fb.sourceforge.net
++
++	March 17, 2002
++
++	First Released: July 2001
++================================================================
++
++A. Introduction
++	This is a framebuffer driver for various Intel 810/815 compatible
++graphics devices.  These would include:
++
++	Intel 810
++	Intel 810E
++	Intel 810-DC100
++	Intel 815 Internal graphics only, 100Mhz FSB
++	Intel 815 Internal graphics only
++	Intel 815 Internal graphics and AGP
++
++B.  Features
++
++        - Choice of using Discrete Video Timings, VESA Generalized Timing
++	  Formula, or a framebuffer specific database to set the video mode
++
++	- Supports a variable range of horizontal and vertical resolution, and
++	  vertical refresh rates if the VESA Generalized Timing Formula is 
++	  enabled.
++
++        - Supports color depths of 8, 16, 24 and 32 bits per pixel
++
++	- Supports pseudocolor, directcolor, or truecolor visuals
++
++        - Full and optimized hardware acceleration at 8, 16 and 24 bpp
++
++	- Robust video state save and restore
++
++        - MTRR support 
++
++	- Utilizes user-entered monitor specifications to automatically
++	  calculate required video mode parameters.
++
++	- Can concurrently run with xfree86 running with native i810 drivers 
++
++	- Hardware Cursor Support
++ 
++C.  List of available options
++	
++   a. "video=i810fb"  
++	enables the i810 driver
++
++	Recommendation: required
++ 
++   b. "xres:<value>"  
++	select horizontal resolution in pixels
++
++	Recommendation: user preference 
++	(default = 640)
++
++   c. "yres:<value>"
++	select vertical resolution in scanlines. If Discrete Video Timings
++	is enabled, this will be ignored and computed as 3*xres/4.  
++
++	Recommendation: user preference
++	(default = 480)
++		
++   d. "vyres:<value>" 
++	select virtual vertical resolution in scanlines. If (0) or none
++	is specified, this will be computed against maximum available memory. 
++
++	Recommendation: do not set
++	(default = 480)
++
++   e. "vram:<value>"
++	select amount of system RAM in MB to allocate for the video memory 
++
++	Recommendation: 1 - 4 MB.
++	(default = 4)
++
++   f. "bpp:<value>"   
++	select desired pixel depth 
++
++	Recommendation: 8
++	(default = 8)
++
++   g. "hsync1/hsync2:<value>" 
++	select the minimum and maximum Horizontal Sync Frequency of the 
++	monitor in KHz.  If a using a fixed frequency monitor, hsync1 must 
++	be equal to hsync2. 
++
++	Recommendation: check monitor manual for correct values
++	default (29/30)
++
++   h. "vsync1/vsync2:<value>" 
++	select the minimum and maximum Vertical Sync Frequency of the monitor
++	in Hz. You can also use this option to lock your monitor's refresh 
++	rate.
++
++	Recommendation: check monitor manual for correct values
++	(default = 60/60)
++
++	IMPORTANT:  If you need to clamp your timings, try to give some 
++	leeway for computational errors (over/underflows).  Example: if 
++	using vsync1/vsync2 = 60/60, make sure hsync1/hsync2 has at least
++	a 1 unit difference, and vice versa.
++
++   i. "voffset:<value>"	
++        select at what offset in MB of the logical memory to allocate the 
++	framebuffer memory.  The intent is to avoid the memory blocks
++	used by standard graphics applications (XFree86).  The default
++        offset (16 MB for a 64MB aperture, 8 MB for a 32MB aperture) will
++        avoid XFree86's usage and allows up to 7MB/15MB of framebuffer
++        memory.  Depending on your usage, adjust the value up or down, 
++	(0 for maximum usage, 31/63 MB for the least amount).  Note, an 
++	arbitrary setting may conflict with XFree86.
++
++	Recommendation: do not set
++	(default = 8 or 16 MB)
++      
++   j. "accel" 
++	enable text acceleration.  This can be enabled/reenabled anytime 
++	by using 'fbset -accel true/false'. 
++
++	Recommendation: enable
++	(default = not set) 
++
++   k. "mtrr" 
++	enable MTRR.  This allows data transfers to the framebuffer memory
++	to occur in bursts which can significantly increase performance.
++	Not very helpful with the i810/i815 because of 'shared memory'. 
++
++	Recommendation: do not set
++	(default = not set) 
++
++   l. "extvga"
++	if specified, secondary/external VGA output will always be enabled.
++	Useful if the BIOS turns off the VGA port when no monitor is attached.
++	The external VGA monitor can then be attached without rebooting. 
++
++	Recommendation: do not set
++	(default = not set)
++	
++   m. "sync" 
++	Forces the hardware engine to do a "sync" or wait for the hardware
++	to finish before starting another instruction. This will produce a 
++	more stable setup, but will be slower.
++
++	Recommendation: do not set
++	(default = not set)
++
++   n. "dcolor"
++        Use directcolor visual instead of truecolor for pixel depths greater
++	than 8 bpp.  Useful for color tuning, such as gamma control.
++
++	Recommendation: do not set
++	(default = not set)
++			
++D. Kernel booting
++
++Separate each option/option-pair by commas (,) and the option from its value
++with a colon (:) as in the following:
++
++video=i810fb:option1,option2:value2
++
++Sample Usage
++------------
++
++In /etc/lilo.conf, add the line:
++
++append="video=i810fb:vram:2,xres:1024,yres:768,bpp:8,hsync1:30,hsync2:55, \
++        vsync1:50,vsync2:85,accel,mtrr"
++
++This will initialize the framebuffer to 1024x768 at 8bpp.  The framebuffer
++will use 2 MB of System RAM. MTRR support will be enabled. The refresh rate 
++will be computed based on the hsync1/hsync2 and vsync1/vsync2 values.  
++
++IMPORTANT:
++You must include hsync1, hsync2, vsync1 and vsync2 to enable video modes
++better than 640x480 at 60Hz.
++
++E.  Module options
++	
++	The module parameters are essentially similar to the kernel 
++parameters. The main difference is that you need to include a Boolean value 
++(1 for TRUE, and 0 for FALSE) for those options which don't need a value. 
++
++Example, to enable MTRR, include "mtrr=1".
++
++Sample Usage
++------------
++
++Using the same setup as described above, load the module like this:
++
++	modprobe i810fb vram=2 xres=1024 bpp=8 hsync1=30 hsync2=55 vsync1=50 \
++	         vsync2=85 accel=1 mtrr=1
++
++Or just add the following to /etc/modules.conf
++
++	options i810fb vram=2 xres=1024 bpp=16 hsync1=30 hsync2=55 vsync1=50 \
++	vsync2=85 accel=1 mtrr=1
++
++and just do a 
++
++	modprobe i810fb
++
++
++F.  Setup
++
++	a. Do your usual method of configuring the kernel. 
++	
++	make menuconfig/xconfig/config
++
++	b. Under "Code Maturity Options", enable "Prompt for experimental/
++	   incomplete code/drivers".
++
++ 	c. Enable agpgart support for the Intel 810/815 on-board graphics.
++	   This is required.  The option is under "Character Devices"
++
++	d. Under "Graphics Support", select "Intel 810/815" either statically
++	   or as a module.  Choose "use VESA GTF for video timings"  if you 
++	   need to maximize the capability of your display.  To be on the 
++	   safe side, you can leave this unselected.  
++  
++        e. If you want a framebuffer console, enable it under "Console 
++	   Drivers"
++
++	f. Compile your kernel. 
++	  	
++	g. Load the driver as described in section D and E.
++	
++	Optional:	
++	h.  If you are going to run XFree86 with its native drivers, the 
++	    standard XFree86 4.1.0 and 4.2.0 drivers should work as is.
++            However, there's a bug in the XFree86 i810 drivers.  It attempts 
++	    to use XAA even when switched to the console. This will crash
++	    your server. I have a fix at this site:  
++	    
++	    http://i810fb.sourceforge.net.  
++
++	    You can either use the patch, or just replace 
++	    
++            /usr/X11R6/lib/modules/drivers/i810_drv.o
++
++	    with the one provided at the website. 	
++
++	i.  Try the DirectFB (http://www.directfb.org) + the i810 gfxdriver
++	    patch to see the chipset in action (or inaction :-).
++
++G.  Acknowledgment:
++	
++	1.  Geert Uytterhoeven - his excellent howto and the virtual
++                                 framebuffer driver code made this possible.
++
++	2.  Jeff Hartmann for his agpgart code.  
++
++	3.  The X developers.  Insights were provided just by reading the
++	    XFree86 source code.
++
++	4.  Intel(c).  For this value-oriented chipset driver and for
++            providing documentation.
++
++	5. Matt Sottek.  His inputs and ideas  helped in making some
++	optimizations possible.
++
++H.  Home Page:
++
++	A more complete, and probably updated information is provided at
++http://i810fb.sourceforge.net.
++
++###########################
++Tony
++
 --- fbset-2.1.orig/kernel-doc/internals.txt
 +++ fbset-2.1/kernel-doc/internals.txt
-@@ -0,0 +1,85 @@
+@@ -0,0 +1,82 @@
 +
 +This is a first start for some documentation about frame buffer device
 +internals.
 +
 +Geert Uytterhoeven <geert@linux-m68k.org>, 21 July 1998
++James Simmons <jsimmons@user.sf.net>, Nov 26 2002
 +
 +--------------------------------------------------------------------------------
 +
@@ -570,10 +846,6 @@
 +
 +    Device dependent information that uniquely defines the video mode for this
 +    particular piece of hardware.
-+
-+  - struct display
-+
-+    Interface between the frame buffer device and the console driver.
 +
 +
 +--------------------------------------------------------------------------------
@@ -637,11 +909,11 @@
 +How to use it?
 +==============
 +
-+Switching modes is done using the video=matrox:vesa:... boot parameter
++Switching modes is done using the video=matroxfb:vesa:... boot parameter
 +or using `fbset' program.
 +
 +If you want, for example, enable a resolution of 1280x1024x24bpp you should
-+pass to the kernel this command line: "video=matrox:vesa:0x1BB".
++pass to the kernel this command line: "video=matroxfb:vesa:0x1BB".
 +
 +You should compile in both vgacon (to boot if you remove you Matrox from
 +box) and matroxfb (for graphics mode). You should not compile-in vesafb
@@ -688,7 +960,7 @@
 +with your old number passed to vesafb.
 +
 +Non-listed number can be achieved by more complicated command-line, for
-+example 1600x1200x32bpp can be specified by `video=matrox:vesa:0x11C,depth:32'.
++example 1600x1200x32bpp can be specified by `video=matroxfb:vesa:0x11C,depth:32'.
 +
 +
 +X11
@@ -721,7 +993,7 @@
 +=============
 +
 +You can pass kernel command line options to matroxfb with
-+`video=matrox:option1,option2:value2,option3' (multiple options should be 
++`video=matroxfb:option1,option2:value2,option3' (multiple options should be 
 +separated by comma, values are separated from options by `:'). 
 +Accepted options:
 +
@@ -731,7 +1003,7 @@
 +	   memory usable for on-screen display (i.e. max. 8 MB).
 +disabled - do not load driver; you can use also `off', but `disabled'
 +           is here too.
-+enabled  - load driver, if you have `video=matrox:disabled' in LILO
++enabled  - load driver, if you have `video=matroxfb:disabled' in LILO
 +           configuration, you can override it by this (you cannot override
 +	   `off'). It is default.
 +noaccel  - do not use acceleration engine. It does not work on Alphas.
@@ -995,7 +1267,7 @@
 +   XFree when secondary head used to use acceleration.
 + + secondary head always powerups in 640x480@60-32 videomode. You have to use
 +   fbset to change this mode.
-+ + secondary head always powerups in monitor mode. You have to use matroxset
++ + secondary head always powerups in monitor mode. You have to use fbmatroxset
 +   to change it to TV mode. Also, you must select at least 525 lines for
 +   NTSC output and 625 lines for PAL output.
 + + kernel is not fully multihead ready. So some things are impossible to do.
@@ -1111,7 +1383,7 @@
 +=============
 +
 +You can pass kernel command line options to pvr2fb with
-+`video=pvr2:option1,option2:value2,option3' (multiple options should be
++`video=pvr2fb:option1,option2:value2,option3' (multiple options should be
 +separated by comma, values are separated from options by `:').
 +Accepted options:
 +
@@ -1148,8 +1420,50 @@
 +--
 +Paul Mundt <lethal@linuxdc.org>
 +
---- fbset-2.1.orig/kernel-doc/README-sstfb.txt
-+++ fbset-2.1/kernel-doc/README-sstfb.txt
+--- fbset-2.1.orig/kernel-doc/sa1100fb.txt
++++ fbset-2.1/kernel-doc/sa1100fb.txt
+@@ -0,0 +1,39 @@
++[This file is cloned from VesaFB/matroxfb]
++
++What is sa1100fb?
++=================
++
++This is a driver for a graphic framebuffer for the SA-1100 LCD
++controller.
++
++Configuration
++==============
++
++For most common passive displays, giving the option
++
++video=sa1100fb:bpp:<value>,lccr0:<value>,lccr1:<value>,lccr2:<value>,lccr3:<value>
++
++on the kernel command line should be enough to configure the
++controller. The bits per pixel (bpp) value should be 4, 8, 12, or
++16. LCCR values are display-specific and should be computed as
++documented in the SA-1100 Developer's Manual, Section 11.7. Dual-panel
++displays are supported as long as the SDS bit is set in LCCR0; GPIO<9:2>
++are used for the lower panel.
++
++For active displays or displays requiring additional configuration
++(controlling backlights, powering on the LCD, etc.), the command line
++options may not be enough to configure the display. Adding sections to
++sa1100fb_init_fbinfo(), sa1100fb_activate_var(),
++sa1100fb_disable_lcd_controller(), and sa1100fb_enable_lcd_controller()
++will probably be necessary.
++
++Accepted options:
++
++bpp:<value>	Configure for <value> bits per pixel
++lccr0:<value>	Configure LCD control register 0 (11.7.3)
++lccr1:<value>	Configure LCD control register 1 (11.7.4)
++lccr2:<value>	Configure LCD control register 2 (11.7.5)
++lccr3:<value>	Configure LCD control register 3 (11.7.6)
++
++--
++Mark Huang <mhuang@livetoy.com>
+--- fbset-2.1.orig/kernel-doc/sstfb.txt
++++ fbset-2.1/kernel-doc/sstfb.txt
 @@ -0,0 +1,174 @@
 +
 +Introduction
@@ -1162,7 +1476,7 @@
 +	combinations and it seems that it works.
 +	  The main page is located at <http://sstfb.sourceforge.net>, and if
 +	you want the latest version, check out the CVS, as the driver is a work
-+	in progress, I feel incomfortable with releasing tarballs of something
++	in progress, I feel uncomfortable with releasing tarballs of something
 +	not completely working...Don't worry, it's still more than useable
 +	(I eat my own dog food)
 +
@@ -1291,7 +1605,7 @@
 +	- The driver is not your_favorite_toy-safe. this includes SMP...
 +          [Actually from inspection it seems to be safe - Alan]
 +	- when using XFree86 FBdev (X over fbdev) you may see strange color
-+	patterns at the border of your windows (the pixels loose the lowest
++	patterns at the border of your windows (the pixels lose the lowest
 +	byte -> basicaly the blue component nd some of the green) . I'm unable
 +	to reproduce this with XFree86-3.3, but one of the testers has this
 +	problem with XFree86-4. apparently recent Xfree86-4.x solve this
@@ -1325,48 +1639,6 @@
 +
 +$Date: 2002/05/09 20:11:45 $
 +http://sstfb.sourceforge.net/README
---- fbset-2.1.orig/kernel-doc/sa1100fb.txt
-+++ fbset-2.1/kernel-doc/sa1100fb.txt
-@@ -0,0 +1,39 @@
-+[This file is cloned from VesaFB/matroxfb]
-+
-+What is sa1100fb?
-+=================
-+
-+This is a driver for a graphic framebuffer for the SA-1100 LCD
-+controller.
-+
-+Configuration
-+==============
-+
-+For most common passive displays, giving the option
-+
-+video=sa1100:bpp:<value>,lccr0:<value>,lccr1:<value>,lccr2:<value>,lccr3:<value>
-+
-+on the kernel command line should be enough to configure the
-+controller. The bits per pixel (bpp) value should be 4, 8, 12, or
-+16. LCCR values are display-specific and should be computed as
-+documented in the SA-1100 Developer's Manual, Section 11.7. Dual-panel
-+displays are supported as long as the SDS bit is set in LCCR0; GPIO<9:2>
-+are used for the lower panel.
-+
-+For active displays or displays requiring additional configuration
-+(controlling backlights, powering on the LCD, etc.), the command line
-+options may not be enough to configure the display. Adding sections to
-+sa1100fb_init_fbinfo(), sa1100fb_activate_var(),
-+sa1100fb_disable_lcd_controller(), and sa1100fb_enable_lcd_controller()
-+will probably be necessary.
-+
-+Accepted options:
-+
-+bpp:<value>	Configure for <value> bits per pixel
-+lccr0:<value>	Configure LCD control register 0 (11.7.3)
-+lccr1:<value>	Configure LCD control register 1 (11.7.4)
-+lccr2:<value>	Configure LCD control register 2 (11.7.5)
-+lccr3:<value>	Configure LCD control register 3 (11.7.6)
-+
-+--
-+Mark Huang <mhuang@livetoy.com>
 --- fbset-2.1.orig/kernel-doc/tgafb.txt
 +++ fbset-2.1/kernel-doc/tgafb.txt
 @@ -0,0 +1,69 @@
@@ -1408,7 +1680,7 @@
 +=============
 +
 +You can pass kernel command line options to tgafb with
-+`video=tga:option1,option2:value2,option3' (multiple options should be
++`video=tgafb:option1,option2:value2,option3' (multiple options should be
 +separated by comma, values are separated from options by `:').
 +Accepted options:
 +
@@ -1441,7 +1713,7 @@
 +Martin Lucina <mato@kotelna.sk>
 --- fbset-2.1.orig/kernel-doc/tridentfb.txt
 +++ fbset-2.1/kernel-doc/tridentfb.txt
-@@ -0,0 +1,55 @@
+@@ -0,0 +1,49 @@
 +Tridentfb is a framebuffer driver for some Trident chip based cards.
 +
 +The following list of chips is thought to be supported although not all are
@@ -1486,17 +1758,11 @@
 +bpp  - bits per pixel (8,16 or 32)
 +mode - a mode name like 800x600 (as described in Documentation/fb/modedb.txt)
 +
-+Example:
-+video=trident:memsize=2048,800x600
-+
 +Using insane values for the above parameters will probably result in driver
 +misbehaviour so take care(for instance memsize=12345678 or memdiff=23784 or
 +nativex=93)
 +
-+If you have trouble with the driver you could check http://sf.net/projects/tridentfb
-+to see if there's a newer version available.
-+
-+Contact: jani@iv.ro
++Contact: jani@astechnix.ro
 --- fbset-2.1.orig/kernel-doc/vesafb.txt
 +++ fbset-2.1/kernel-doc/vesafb.txt
 @@ -0,0 +1,158 @@
@@ -1614,9 +1880,9 @@
 +seems not to work with some BIOS versions, but there are options
 +to turn it on.
 +
-+You can pass options to vesafb using "video=vesa:option" on
++You can pass options to vesafb using "video=vesafb:option" on
 +the kernel command line.  Multiple options should be separated
-+by comma, like this: "video=vesa:ypan,invers"
++by comma, like this: "video=vesafb:ypan,invers"
 +
 +Accepted options:
 +

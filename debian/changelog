@@ -2,6 +2,7 @@ fbset (2.1-12) #unreleased#; urgency=low
 
   * Split diff into patches.
   * Use debian/patch.mk.
+  * Syncronize 00_kernel_doc.patch with linux 2.6.0-test9.
 
  -- Guillem Jover <guillem@debian.org>  Tue, 11 Nov 2003 10:33:28 +0100
 
