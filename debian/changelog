@@ -2,6 +2,9 @@ fbset (2.1-13) unstable; urgency=low
 
   * debian/changelog: Converted encoding to UTF-8.
   * debian/control: Lower case first letter from package descriptions.
+  * Templates:
+    - Japanese (Closes: #227813)
+      Thanks to Hideki Yamane <henrich@samba.gr.jp>.
 
  -- Guillem Jover <guillem@debian.org>  Thu, 15 Jan 2004 08:18:11 +0100
 
