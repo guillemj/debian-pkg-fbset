@@ -1,6 +1,6 @@
 fbset (2.1-15) unstable; urgency=low
 
-  * Fix typo in manpage s/-g/-t/.
+  * Fix typo in fbset(8) manpage s/-g/-t/.
     Thanks to Benoit-Pierre Demaine <benoit@demaine.info>.
   * Fix fb.modes(5) section in manpage header.
   * debian/copyright:
