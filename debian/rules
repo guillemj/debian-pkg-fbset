@@ -25,7 +25,7 @@ debian/po/templates.pot: debian/fbset.templates
 	@debconf-updatepo
 
 build: build-stamp
-build-stamp: pre-build debian/po/templates.pot
+build-stamp: patch debian/po/templates.pot
 	dh_testdir
 
 	rm -f build-stamp*
@@ -35,7 +35,7 @@ build-stamp: pre-build debian/po/templates.pot
 	touch $@
 
 build-udeb: build-stamp-udeb
-build-stamp-udeb: pre-build
+build-stamp-udeb: patch
 	dh_testdir
 
 	rm -f build-stamp*

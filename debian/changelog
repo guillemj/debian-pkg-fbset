@@ -6,6 +6,9 @@ fbset (2.1-16) UNRELEASED; urgency=low
     Thanks to A Costa <agcosta@gis.net>.
   * Honour noopt DEB_BUILD_OPTIONS for udebs.
   * Fix Subversion repository address.
+  * Provide a patch target instead of pre-build.
+    - debian/patch.mk: Likewise.
+    - debian/rules: Fix accordingly.
 
  -- Guillem Jover <guillem@debian.org>  Thu, 23 Dec 2004 22:22:35 +0100
 

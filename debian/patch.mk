@@ -5,6 +5,7 @@
 #  Standalone system
 #  Honour DPATCHLEVEL
 #  Exit when trying to revert patches but no stamp-patch exists
+#  Provide a patch target
 #
 # Description: A sample patch system which uses separate files in debian/patches
 #  Patch names must end in .patch, currently.
@@ -28,7 +29,7 @@ DEB_SRCDIR ?= .
 DEB_PATCHDIRS = debian/patches
 DEB_PATCHES = $(foreach dir,$(DEB_PATCHDIRS),$(shell LC_COLLATE=C echo $(wildcard $(dir)/*.patch) $(wildcard $(dir)/*.diff)))
 
-pre-build:: apply-patches
+patch:: apply-patches
 
 clean:: reverse-patches
 	rm -f debian/stamp-patch*
@@ -89,4 +90,6 @@ debian/stamp-patched reverse-patches:
 	  fi; \
 	done
 	if [ "$@" = "debian/stamp-patched" ]; then touch debian/stamp-patched; fi
+
+.PHONY: patch clean apply-patches reverse-patches
 
