@@ -1,8 +1,7 @@
-#DPATCHLEVEL=1
 diff -Naur fbset-2.1.orig/fbset.c fbset-2.1/fbset.c
---- fbset-2.1.orig/fbset.c	2003-11-11 10:21:57.000000000 +0100
-+++ fbset-2.1/fbset.c	2003-11-11 10:24:01.000000000 +0100
-@@ -854,7 +854,8 @@
+--- fbset-2.1.orig/fbset.c	2003-11-18 12:45:24.000000000 +0100
++++ fbset-2.1/fbset.c	2003-11-18 12:45:38.000000000 +0100
+@@ -833,7 +833,8 @@
  static void Usage(void)
  {
      puts(VERSION);
@@ -12,7 +11,7 @@ diff -Naur fbset-2.1.orig/fbset.c fbset-2.1/fbset.c
  	"Valid options:\n"
  	"  General options:\n"
  	"    -h, --help         : display this usage information\n"
-@@ -909,6 +910,7 @@
+@@ -888,6 +889,7 @@
  	"    -step <value>      : step increment (in pixels or pixel lines)\n"
  	"                         (default is 8 horizontal, 2 vertical)\n",
  	ProgramName);

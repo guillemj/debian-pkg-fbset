@@ -1,7 +1,7 @@
-#DPATCHLEVEL=1
---- fbset-2.1.orig/fbset.c
-+++ fbset-2.1/fbset.c
-@@ -199,6 +200,27 @@
+diff -Naur fbset-2.1.orig/fbset.c fbset-2.1/fbset.c
+--- fbset-2.1.orig/fbset.c	2003-11-18 12:48:28.000000000 +0100
++++ fbset-2.1/fbset.c	2003-11-18 12:48:38.000000000 +0100
+@@ -200,6 +200,27 @@
      { FB_ACCEL_SUN_CGTHREE, "Sun cg3" },
      { FB_ACCEL_SUN_TCX, "Sun tcx" },
      { FB_ACCEL_MATROX_MGAG400, "Matrox G400" },
