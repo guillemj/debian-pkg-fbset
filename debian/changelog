@@ -1,3 +1,9 @@
+fbset (2.1-13) unstable; urgency=low
+
+  * debian/changelog: Converted encoding to UTF-8.
+
+ -- Guillem Jover <guillem@debian.org>  Thu, 15 Jan 2004 08:18:11 +0100
+
 fbset (2.1-12) unstable; urgency=low
 
   * Split diff into patches.
@@ -57,7 +63,7 @@ fbset (2.1-8) unstable; urgency=low
 
   * Templates:
     - Brazilian portuguese (Closes: #183313)
-      Thanks to Andre Luis Lopes <andrelop@ig.com.br>.
+      Thanks to André Luís Lopes <andrelop@ig.com.br>.
     - French (Closes: #184432)
       Thanks to Philippe Batailler <philippe.batailler@free.fr>.
     - Spanish: Removed the fuzzy tag (forgot to do that on last version).
@@ -100,11 +106,11 @@ fbset (2.1-7) unstable; urgency=low
   * Don't ask framebuffer device creation anymore per policy 11.6.
   * Templates:
     - Brazilian portuguese (Closes: #108541)
-      Thanks to Andre Luis Lopes <andrelop@ig.com.br>.
+      Thanks to André Luís Lopes <andrelop@ig.com.br>.
     - Russian (Closes: #136921)
       Thanks to Ilgiz Kalmetev <ilgiz@bashtelecom.ru>.
     - Spanish (Closes: #107159)
-      Thanks to Carlos Valdivia Yague <valyag@teleline.es>.
+      Thanks to Carlos Valdivia Yagüe <valyag@teleline.es>.
     - Catalan (Closes: #139742)
       Thanks to Antoni Bella <bella5@teleline.es>.
     - German (Closes: #106892)
@@ -138,7 +144,7 @@ fbset (2.1-6.1) unstable; urgency=medium
   * Changed two places in fb.modes manpage to refer to section 5, not 8.
   * Bumped Standards-Version to 3.5.5.0
 
- -- Andr� Dahlqvist <andre@debian.org>  Wed, 25 Jul 2001 14:35:29 +0200
+ -- André Dahlqvist <andre@debian.org>  Wed, 25 Jul 2001 14:35:29 +0200
 
 fbset (2.1-6) unstable; urgency=low
 
