@@ -3,6 +3,7 @@ fbset (2.1-16) UNRELEASED; urgency=low
   * Remove suppored Linux kernel version list from package description.
     (Closes: #286338)
   * Honour noopt DEB_BUILD_OPTIONS for udebs.
+  * Fix Subversion repository address.
 
  -- Guillem Jover <guillem@debian.org>  Thu, 23 Dec 2004 22:22:35 +0100
 
