@@ -1,0 +1,225 @@
+fbset (2.1-12) #unreleased#; urgency=low
+
+  * Split diff into patches.
+  * Use debian/patch.mk.
+
+ -- Guillem Jover <guillem@debian.org>  Tue, 11 Nov 2003 10:33:28 +0100
+
+fbset (2.1-11) unstable; urgency=low
+
+  * Templates:
+    - Dutch (Closes: #204918)
+      Thanks to Bart Cornelis <cobaco@linux.be>.
+  * Changed udeb priority to extra.
+
+ -- Guillem Jover <guillem@debian.org>  Mon, 11 Aug 2003 20:21:07 +0200
+
+fbset (2.1-10) unstable; urgency=low
+
+  * Update templates.pot automatically.
+  * Reference the FAQ in the manpage, and added an entry to the FAQ
+    about switching modes with vesafb (Closes: #191266).
+  * Documentation update:
+    - Added an entry to the FAQ about setting up 80x25 text mode on
+      a Sun framebuffer.
+    - Added two mode file examples.
+    - Added a missing entry in the FAQ TOC.
+    (Closes: #193726).
+    Thanks to Baurjan Ismagulov <ibr@ata.cs.hun.edu.tr>.
+  * Standarized .TH format on manpages.
+  * Use stdout for --help command (Closes: #204399).
+  * Now using Standards-Version 3.6.0.
+
+ -- Guillem Jover <guillem@debian.org>  Thu,  7 Aug 2003 04:51:22 +0200
+
+fbset (2.1-9) unstable; urgency=low
+
+  * Created an udeb for debian-installer.
+  * Substituted '?' character from package long description.
+  * Moved DH_COMPAT to compat file.
+
+ -- Guillem Jover <guillem@debian.org>  Sun, 23 Mar 2003 21:22:03 +0100
+
+fbset (2.1-8) unstable; urgency=low
+
+  * Templates:
+    - Brazilian portuguese (Closes: #183313)
+      Thanks to Andre Luis Lopes <andrelop@ig.com.br>.
+    - French (Closes: #184432)
+      Thanks to Philippe Batailler <philippe.batailler@free.fr>.
+    - Spanish: Removed the fuzzy tag (forgot to do that on last version).
+    - Catalan: Likewise.
+  * Added changelog typo fix from last sponsored upload by
+    David Martinez <ender@debian.org>.
+  * Added a debian/watch file.
+  * Sync Section and Priority with override file.
+  * Move the shebang "-e" flag from maintainer scripts to an independent
+    set command, as suggested by linda.
+  * Now using Standards-Version 3.5.9.0.
+
+ -- Guillem Jover <guillem@debian.org>  Thu, 13 Mar 2003 07:33:21 +0100
+
+fbset (2.1-7) unstable; urgency=low
+
+  * New Maintainer (Closes: #176933).
+    - Acknowledge NMU fixed bugs (Closes: #55667, #87145, #105619, #106232).
+
+  * Updated to kernel 2.4.20:
+    - Updated kernel-doc directory.
+    - Updated kernel framebuffer header and corrected compile warnings.
+    - Added new accelerator descriptions.
+  * Fixed a typo in fb.modes.ATI (Closes: #142841, #151402).
+  * Added devfs devices support to:
+    - fbset (Closes: #132061)
+      Thanks to Bas Zoetekouw <bas@debian.org>.
+    - con2fbmap.
+  * Recognise framebuffer database rgba option properly (Closes: #42568).
+  * Manpages:
+    - Updated fbset manpage (Closes: #150724)
+      Thanks to Osamu Aoki <debian@aokiconsulting.com>.
+    - Added all missing options to fb.modes and fbset manpages.
+
+  * Removed emacs cruft from debian/changelog.
+  * debian/copyright:
+    - Updated upstream source location.
+    - Added what GPL version the source obey (Closes: #133496).
+  * Switched to debhelper compatibility level 4.
+  * Don't ask framebuffer device creation anymore per policy 11.6.
+  * Templates:
+    - Brazilian portuguese (Closes: #108541)
+      Thanks to Andre Luis Lopes <andrelop@ig.com.br>.
+    - Russian (Closes: #136921)
+      Thanks to Ilgiz Kalmetev <ilgiz@bashtelecom.ru>.
+    - Spanish (Closes: #107159)
+      Thanks to Carlos Valdivia Yague <valyag@teleline.es>.
+    - Catalan (Closes: #139742)
+      Thanks to Antoni Bella <bella5@teleline.es>.
+    - German (Closes: #106892)
+      Thanks to Sebastian Feltel <sebastian@feltel.de>.
+    - Switched to po-debconf.
+    - Update template file as per policy 11.6 change. Spanish and Catalan
+      translations synced, all others are outdated.
+  * debian/control:
+    - Removed trailing dot from short package description.
+    - Improved long description.
+    - Depend on devfsd (Closes: #152149).
+    - Depend on debhelper >= 4.1.16 as needed by po-debconf.
+    - Use substvar misc:Depends instead of explicit debconf.
+  * Updated DEB_BUILD_OPTIONS behaviour as per policy 11.1.
+  * Now using Standards-Version 3.5.8.0.
+  * Now Lintian/Linda clean.
+
+ -- Guillem Jover <guillem.jover@menta.net>  Wed, 22 Jan 2003 13:12:52 +0100
+
+fbset (2.1-6.1) unstable; urgency=medium
+
+  * NMU with permission of maintainer.
+  * Use debhelper v3.
+  * Ask user if we should create framebuffer devices. (Closes: #106232)
+    + Add dependency on debconf as a result of this question.
+    + Do not ask this question if devfs is used.
+  * Kevin Kreamer contributed a manpage for modeline2fb. (Closes: #87145)
+  * Use /sbin/MAKEDEV, not /dev/MAKEDEV, in postinst. (Closes: #55667)
+  * Depend on makedev >= 2.3.1-24 as recommended in #55667.
+  * Describe -a and -accel in the manpage for fbset. (Closes: #105619)
+  * Changed two places in fb.modes manpage to refer to section 5, not 8.
+  * Bumped Standards-Version to 3.5.5.0
+
+ -- André Dahlqvist <andre@debian.org>  Wed, 25 Jul 2001 14:35:29 +0200
+
+fbset (2.1-6) unstable; urgency=low
+
+  * added mode "768x576-75" to the /etc/fb.modes database file
+    reported by: Gabor Fleischer <flocsy@mtesz.hu>
+
+ -- Hartmut Koptein <koptein@debian.org>  Tue,  4 Jan 2000 20:48:20 +0100 
+
+
+fbset (2.1-5) unstable; urgency=low
+
+  * cleanup install of con2fbmap
+  * added Build-Depends
+  * install configfile in /etc/fb.modes
+
+ -- Hartmut Koptein <koptein@debian.org>  Fri, 17 Dec 1999 16:42:56 +0100
+
+
+fbset (2.1-4) unstable; urgency=low
+
+  * added #!/bin/sh to prerm   closes: #48471
+
+ -- Hartmut Koptein <koptein@debian.org>  Thu, 28 Oct 1999 16:10:05 +0200
+
+
+fbset (2.1-3) unstable; urgency=low
+
+  * fixed the usr/doc /usr/share sym-link
+
+ -- Hartmut Koptein <koptein@debian.org>  Thu, 21 Oct 1999 13:13:23 +0200
+
+
+fbset (2.1-2) unstable; urgency=low
+
+  * Updated Standards-Version to 3.0.1.1
+
+ -- Hartmut Koptein <koptein@debian.org>  Tue,  7 Sep 1999 02:01:52 +0200
+
+
+fbset (2.1-1) unstable; urgency=low
+
+  * new upstream version
+  * added kernel-doc directory with the docs from the kernel source
+  * make modeline2fb available in /usr/sbin
+  * added a very first incomplete FAQ
+
+ -- Hartmut Koptein <koptein@debian.org>  Wed, 23 Jun 1999 19:10:36 +0200
+
+
+fbset (2.0.1-1) unstable; urgency=low
+
+  * new upstream version
+
+ -- Hartmut Koptein <koptein@et-inf.fho-emden.de>  Tue,  9 Feb 1999 20:07:55 +0100
+
+
+fbset (2.0-2) frozen unstable; urgency=low
+
+  * added generation of /dev/fb? to postinst if this devices doesn't exist
+    fixes: #30810
+
+ -- Hartmut Koptein <koptein@et-inf.fho-emden.de>  Thu, 17 Dec 1998 20:44:53 +0000
+
+ 
+fbset (2.0-1) frozen unstable; urgency=low
+  
+  * Changed the name from fbset2 to fbset
+  * This package replace the old fbset and fbset2 fixes: Bug#29276
+  * New maintainer
+  * New upstream version
+  * Lintian clean
+
+ -- Hartmut Koptein <koptein@et-inf.fho-emden.de>  Fri, 11 Dec 1998 13:09:17 +0000
+
+
+fbset2 (1998.07.13-1) unstable; urgency=low
+
+  * Sort of a new package, and sort of a new upstream release.
+
+ -- Hartmut Koptein <koptein@et-inf.fho-emden.de>  Fri, 23 Oct 1998 18:07:35 +0200
+
+
+fbset (1.0-2) unstable; urgency=low
+
+  * Adapted for libc6
+  * Changed a pretty stupid bug in postinst which noone discovered so far.
+    (it never actually created any fb0* nodes in /dev)
+
+ -- Frank Neumann <Frank.Neumann@Informatik.Uni-Oldenburg.DE>  Tue, 21 Oct 1997 19:38:56 +0200
+
+
+fbset (1.0-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Frank Neumann <Frank.Neumann@Informatik.Uni-Oldenburg.DE>  Wed, 16 Apr 1997 18:47:56 +0200
+

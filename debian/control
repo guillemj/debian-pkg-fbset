@@ -1,0 +1,34 @@
+Source: fbset
+Section: base
+Priority: optional
+Maintainer: Guillem Jover <guillem@debian.org>
+Standards-Version: 3.6.0
+Build-Depends: flex, bison, debhelper (>= 4.1.16)
+
+Package: fbset
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, makedev (>= 2.3.1-24) | devfsd
+Description: Framebuffer device maintenance program
+ Program to modify settings for the framebuffer devices (/dev/fb[0-9]*
+ or /dev/fb/[0-9]*) on Linux, like depth, virtual resolution, timing
+ parameters etc.
+ .
+ This program is useful for all Linux/m68k kernel versions, and
+ for late 2.1 kernels and above on most other architectures.
+
+Package: fbset-udeb
+Section: debian-installer
+Priority: extra
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: Framebuffer device maintenance program
+ Program to modify settings for the framebuffer devices (/dev/fb[0-9]*
+ or /dev/fb/[0-9]*) on Linux, like depth, virtual resolution, timing
+ parameters etc.
+ .
+ This program is useful for all Linux/m68k kernel versions, and
+ for late 2.1 kernels and above on most other architectures.
+ .
+ This contains the udeb, which is used for the debian-installer
+ installation system. It won't work well on a normal debian system.
+

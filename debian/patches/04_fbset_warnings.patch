@@ -1,0 +1,21 @@
+#DPATCHLEVEL=1
+--- fbset-2.1.orig/fbset.c
++++ fbset-2.1/fbset.c
+@@ -710,7 +732,7 @@
+ 
+     puts("Frame buffer device information:");
+     printf("    Name        : %s\n", fix->id);
+-    printf("    Address     : %p\n", fix->smem_start);
++    printf("    Address     : %#0lx\n", fix->smem_start);
+     printf("    Size        : %d\n", fix->smem_len);
+     printf("    Type        : ");
+     switch (fix->type) {
+@@ -780,7 +802,7 @@
+     printf("    YWrapStep   : %d\n", fix->ywrapstep);
+     printf("    LineLength  : %d\n", fix->line_length);
+     if (fix->mmio_len) {
+-	printf("    MMIO Address: %p\n", fix->mmio_start);
++	printf("    MMIO Address: %#0lx\n", fix->mmio_start);
+ 	printf("    MMIO Size   : %d\n", fix->mmio_len);
+     }
+     printf("    Accelerator : ");

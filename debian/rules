@@ -1,0 +1,124 @@
+#!/usr/bin/make -f
+# Sample debian/rules that uses debhelper.
+# This file is public domain software, originally written by Joey Hess. 
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+CFLAGS = -Wall -g
+UDEB_CFLAGS = -Wall -g -Os -fomit-frame-pointer
+
+ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+	CFLAGS += -O0
+else
+	CFLAGS += -O2
+endif
+
+PACKAGE = fbset
+VERSION = $(shell dpkg-parsechangelog | grep ^Version: | cut -d ' ' -f 2)
+ARCH = $(shell dpkg-architecture -qDEB_HOST_ARCH)
+UDEB_PACKAGE  = $(PACKAGE)-udeb
+UDEB_PRIORITY = extra
+UDEB_FILENAME = $(UDEB_PACKAGE)_$(VERSION)_$(ARCH).udeb
+
+include debian/patch.mk
+
+debian/po/templates.pot: debian/fbset.templates
+	@debconf-updatepo
+
+build: build-stamp
+build-stamp: pre-build debian/po/templates.pot
+	dh_testdir
+
+	rm -f build-stamp*
+	$(MAKE) clean
+	$(MAKE) CFLAGS="$(CFLAGS)"
+
+	touch $@
+
+build-udeb: build-stamp-udeb
+build-stamp-udeb: pre-build
+	dh_testdir
+
+	rm -f build-stamp*
+	$(MAKE) clean
+	$(MAKE) CFLAGS="$(UDEB_CFLAGS)"
+
+	touch $@
+
+clean::
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp*
+
+	-$(MAKE) clean
+
+	dh_clean
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs
+
+	-$(MAKE) install DESTDIR=$(CURDIR)/debian/$(PACKAGE)
+
+install-udeb: build-udeb
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs
+
+	-$(MAKE) install DESTDIR=$(CURDIR)/debian/$(UDEB_PACKAGE)
+	rm -rf $(CURDIR)/debian/$(UDEB_PACKAGE)/usr/share
+
+# Build architecture-independent files here.
+binary-indep: build install
+# Nothing to do.
+
+# Build architecture-dependent files here.
+binary-arch: fbset fbset-udeb
+
+fbset: install
+	dh_testdir
+	dh_testroot
+	dh_installdebconf	-p$@
+	dh_installdocs		-p$@
+	dh_installexamples	-p$@
+#	dh_installpam
+#	dh_installmime
+#	dh_installinit
+#	dh_installcron
+	dh_installman		-p$@
+#	dh_installinfo
+	dh_installchangelogs	-p$@
+	dh_link			-p$@
+	dh_strip		-p$@
+	dh_compress		-p$@
+	dh_fixperms		-p$@
+#	dh_makeshlibs
+	dh_installdeb		-p$@
+#	dh_perl
+	dh_shlibdeps		-p$@
+	dh_gencontrol		-p$@
+	dh_md5sums		-p$@
+	dh_builddeb		-p$@
+
+fbset-udeb: install-udeb
+	dh_testdir
+	dh_testroot
+	dh_installdirs		-p$@
+	dh_strip		-p$@
+	dh_compress		-p$@
+	dh_fixperms		-p$@
+	dh_installdeb		-p$@
+	dh_shlibdeps		-p$@
+	# Don't write your stupid guesses to debian/files.
+	dh_gencontrol		-p$@ -- -fdebian/files~
+	# Register file manually.
+	dpkg-distaddfile $(UDEB_FILENAME) debian-installer $(UDEB_PRIORITY)
+#	dh_md5sums		-p$@
+	dh_builddeb		-p$@ --filename=$(UDEB_FILENAME)
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install

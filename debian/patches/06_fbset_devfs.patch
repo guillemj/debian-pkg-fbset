@@ -1,0 +1,35 @@
+#DPATCHLEVEL=1
+--- fbset-2.1.orig/fbset.c	2003-11-11 10:22:24.000000000 +0100
++++ fbset-2.1/fbset.c	2003-11-11 10:21:57.000000000 +0100
+@@ -42,6 +42,7 @@
+      */
+ 
+ #define DEFAULT_FRAMEBUFFER	"/dev/fb0"
++#define DEFAULT_FRAMEBUFFER_DEVFS	"/dev/fb/0"
+ 
+ 
+     /*
+@@ -867,7 +868,7 @@
+ 	"    -a, --all          : change all virtual consoles on this device\n"
+ 	"  Frame buffer special device nodes:\n"
+ 	"    -fb <device>       : processed frame buffer device\n"
+-	"                         (default is " DEFAULT_FRAMEBUFFER ")\n"
++	"                         (default is " DEFAULT_FRAMEBUFFER "; " DEFAULT_FRAMEBUFFER_DEVFS " when using devfs)\n"
+ 	"  Video mode database:\n"
+ 	"    -db <file>         : video mode database file\n"
+ 	"                         (default is " DEFAULT_MODEDBFILE ")\n"
+@@ -998,8 +999,12 @@
+     if (Opt_version || Opt_verbose)
+ 	puts(VERSION);
+ 
+-    if (!Opt_fb)
+-	Opt_fb = DEFAULT_FRAMEBUFFER;
++    if (!Opt_fb) {
++        if (access("/dev/.devfsd",F_OK)==0)  /* devfs detected */
++	    Opt_fb = DEFAULT_FRAMEBUFFER_DEVFS;
++	else 
++	    Opt_fb = DEFAULT_FRAMEBUFFER;
++    }
+ 
+     /*
+      *  Open the Frame Buffer Device

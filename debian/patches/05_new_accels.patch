@@ -1,0 +1,31 @@
+#DPATCHLEVEL=1
+--- fbset-2.1.orig/fbset.c
++++ fbset-2.1/fbset.c
+@@ -199,6 +200,27 @@
+     { FB_ACCEL_SUN_CGTHREE, "Sun cg3" },
+     { FB_ACCEL_SUN_TCX, "Sun tcx" },
+     { FB_ACCEL_MATROX_MGAG400, "Matrox G400" },
++    { FB_ACCEL_NV3, "nVidia RIVA 128" },
++    { FB_ACCEL_NV4, "nVidia RIVA TNT" },
++    { FB_ACCEL_NV5, "nVidia RIVA TNT2" },
++    { FB_ACCEL_CT_6555x, "C&T 6555x" },
++    { FB_ACCEL_3DFX_BANSHEE, "3Dfx Banshee" },
++    { FB_ACCEL_ATI_RAGE128, "ATI Rage128 family" },
++    { FB_ACCEL_IGS_CYBER2000, "CyberPro 2000" },
++    { FB_ACCEL_IGS_CYBER2010, "CyberPro 2010" },
++    { FB_ACCEL_IGS_CYBER5000, "CyberPro 5000" },
++    { FB_ACCEL_SIS_GLAMOUR, "SiS 300/630/540" },
++    { FB_ACCEL_3DLABS_PERMEDIA3, "3Dlabs Permedia 3" },
++    { FB_ACCEL_ATI_RADEON, "ATI Radeon family" },
++    { FB_ACCEL_NEOMAGIC_NM2070, "NeoMagic NM2070" },
++    { FB_ACCEL_NEOMAGIC_NM2090, "NeoMagic NM2090" },
++    { FB_ACCEL_NEOMAGIC_NM2093, "NeoMagic NM2093" },
++    { FB_ACCEL_NEOMAGIC_NM2097, "NeoMagic NM2097" },
++    { FB_ACCEL_NEOMAGIC_NM2160, "NeoMagic NM2160" },
++    { FB_ACCEL_NEOMAGIC_NM2200, "NeoMagic NM2200" },
++    { FB_ACCEL_NEOMAGIC_NM2230, "NeoMagic NM2230" },
++    { FB_ACCEL_NEOMAGIC_NM2360, "NeoMagic NM2360" },
++    { FB_ACCEL_NEOMAGIC_NM2380, "NeoMagic NM2380" },
+ };
+ 
+ 

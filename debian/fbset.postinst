@@ -1,0 +1,25 @@
+#!/bin/sh
+#
+# Post-Installation script
+
+set -e
+
+# Source debconf library.
+. /usr/share/debconf/confmodule
+
+db_version 2.0
+
+# Create framebuffer devices if they don't exist.
+# Don't create them if devfs is used.
+
+if [ ! -c /dev/.devfsd ] ; then
+  if [ ! -c /dev/fb0 ] ; then
+    cd /dev
+    /sbin/MAKEDEV fb
+  fi
+fi
+
+#DEBHELPER#
+
+exit 0
+
