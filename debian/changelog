@@ -11,6 +11,7 @@ fbset (2.1-12) unstable; urgency=low
       Thanks to Ilgiz Kalmetev <ilgiz@bashtelecom.ru>.
     - German (Closes: #223126)
       Thanks to Patrick Willam <patrick@patrick-willam.de>.
+    - Catalan: Fixed a typo.
 
  -- Guillem Jover <guillem@debian.org>  Tue, 18 Nov 2003 13:06:42 +0100
 
