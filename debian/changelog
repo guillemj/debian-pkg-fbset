@@ -1,4 +1,4 @@
-fbset (2.1-16) UNRELEASED; urgency=low
+fbset (2.1-16) unstable; urgency=low
 
   * Remove suppored Linux kernel version list from package description.
     (Closes: #286338)
@@ -14,7 +14,7 @@ fbset (2.1-16) UNRELEASED; urgency=low
     - debian/patches/01_kernel_fb.h.patch: Likewise.
     - debian/patches/07_new_accels.patch: Add more accelerated cards.
 
- -- Guillem Jover <guillem@debian.org>  Thu, 23 Dec 2004 22:22:35 +0100
+ -- Guillem Jover <guillem@debian.org>  Tue,  1 Feb 2005 07:28:26 +0100
 
 fbset (2.1-15) unstable; urgency=low
 
