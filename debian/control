@@ -3,7 +3,7 @@ Section: base
 Priority: optional
 Maintainer: Guillem Jover <guillem@debian.org>
 Standards-Version: 3.6.1
-Build-Depends: flex, bison, debhelper (>= 4.1.16)
+Build-Depends: flex, bison, debhelper (>= 4.2)
 
 Package: fbset
 Architecture: any
@@ -17,6 +17,7 @@ Description: framebuffer device maintenance program
  for late 2.1 kernels and above on most other architectures.
 
 Package: fbset-udeb
+XC-Package-Type: udeb
 Section: debian-installer
 Priority: extra
 Architecture: any

@@ -6,6 +6,7 @@ fbset (2.1-15) unstable; urgency=low
   * debian/copyright:
     - Added the location of the Subversion repo used for the packages.
     - Use "License:" instead of "Copyright:".
+  * Updated to debhelper >= 4.2 and use its udeb support.
   * Updated to linux kernel 2.6.9:
     - debian/doc/kernel-doc/
   * Templates:

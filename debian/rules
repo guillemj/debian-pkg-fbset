@@ -15,11 +15,7 @@ else
 endif
 
 PACKAGE = fbset
-VERSION = $(shell dpkg-parsechangelog | grep ^Version: | cut -d ' ' -f 2)
-ARCH = $(shell dpkg-architecture -qDEB_HOST_ARCH)
-UDEB_PACKAGE  = $(PACKAGE)-udeb
-UDEB_PRIORITY = extra
-UDEB_FILENAME = $(UDEB_PACKAGE)_$(VERSION)_$(ARCH).udeb
+UDEB_PACKAGE = $(PACKAGE)-udeb
 
 include debian/patch.mk
 
@@ -113,12 +109,8 @@ fbset-udeb: install-udeb
 	dh_fixperms		-p$@
 	dh_installdeb		-p$@
 	dh_shlibdeps		-p$@
-	# Don't write your stupid guesses to debian/files.
-	dh_gencontrol		-p$@ -- -fdebian/files~
-	# Register file manually.
-	dpkg-distaddfile $(UDEB_FILENAME) debian-installer $(UDEB_PRIORITY)
-#	dh_md5sums		-p$@
-	dh_builddeb		-p$@ --filename=$(UDEB_FILENAME)
+	dh_gencontrol		-p$@
+	dh_builddeb		-p$@
 
 binary: binary-indep binary-arch
 .PHONY: build clean binary-indep binary-arch binary install
