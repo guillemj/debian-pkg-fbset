@@ -1,3 +1,2 @@
-FAQ
-kernel-doc
+debian/doc/*
 GetVideoMode.c
