@@ -2,7 +2,7 @@ Source: fbset
 Section: base
 Priority: optional
 Maintainer: Guillem Jover <guillem@debian.org>
-Standards-Version: 3.6.0
+Standards-Version: 3.6.1
 Build-Depends: flex, bison, debhelper (>= 4.1.16)
 
 Package: fbset

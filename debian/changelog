@@ -13,6 +13,7 @@ fbset (2.1-12) unstable; urgency=low
     - German (Closes: #223126)
       Thanks to Patrick Willam <patrick@patrick-willam.de>.
     - Catalan: Fixed a typo.
+  * Now using Standards-Version 3.6.1.
 
  -- Guillem Jover <guillem@debian.org>  Tue, 18 Nov 2003 13:06:42 +0100
 
