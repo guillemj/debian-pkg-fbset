@@ -7,7 +7,7 @@ fbset (2.1-12) unstable; urgency=low
     - 01_kernel_fb.h.patch.
     - 07_new_accels.patch.
 
- -- Guillem Jover <guillem@debian.org>  Tue, 11 Nov 2003 10:33:28 +0100
+ -- Guillem Jover <guillem@debian.org>  Tue, 18 Nov 2003 13:06:42 +0100
 
 fbset (2.1-11) unstable; urgency=low
 
