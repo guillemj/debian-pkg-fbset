@@ -2,6 +2,8 @@ fbset (2.1-13) unstable; urgency=low
 
   * debian/changelog: Converted encoding to UTF-8.
   * debian/control: Lower case first letter from package descriptions.
+  * Updated to linux kernel 2.6.1:
+    - debian/doc/kernel-doc/
   * Templates:
     - Japanese (Closes: #227813)
       Thanks to Hideki Yamane <henrich@samba.gr.jp>.
