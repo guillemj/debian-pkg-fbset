@@ -15,6 +15,7 @@ please let me know.
 1.2.	How to do this with other graphic cards?
 1.3.	How to switch modes with vesafb?
 1.4.	Is fbset usable with the linux kernel 2.6?
+1.5.	What are the driver names on the different linux kernel versions?
 
 2.1.	I have an valid XF86Config file, but no /etc/fb.modes file. Any hints?
 2.2.	The XF86Config-4 file doesn't have any ModeLine lines. What to do?
@@ -75,6 +76,22 @@ please let me know.
 
   {GJ} Yes, you will need the apropriate FB devices drivers for your
   hardware as well as the fbcon support (CONFIG_FRAMEBUFFER_CONSOLE).
+
+
+1.5.	What are the driver names on the different linux kernel versions?
+
+
+  {GJ} Some framebuffer driver names used on the linux kernel argument
+  "video=" have changed. All new driver names on linux kernel 2.6 have
+  the string "fb" appended. Old ones that don't have that postfix on
+  linux kernel 2.4 are:
+
+    retz3, cyber, cyber2000, clgen, matrox, neo, virge, riva, radeon,
+    s3trio, trident, sst, vesa, tdfx, sgivw, acorn, hga, apollo, tga,
+    g364, sa1100, sun3, tx3912, pvr2, vga16
+
+  So when reading /usr/share/doc/fbset/FAQ, take this into account and
+  use the apropriate driver name depending on your running kernel.
 
 
 2.1.	I have an valid XF86Config file, but no /etc/fb.modes file. Any hints?
