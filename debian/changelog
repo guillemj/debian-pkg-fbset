@@ -1,4 +1,4 @@
-fbset (2.1-16) unstable; urgency=low
+fbset (2.1-16) UNRELEASED; urgency=low
 
   * Remove suppored Linux kernel version list from package description.
     (Closes: #286338)
