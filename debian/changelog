@@ -2,6 +2,7 @@ fbset (2.1-15) unstable; urgency=low
 
   * Fix typo in manpage s/-g/-t/.
     Thanks to Benoit-Pierre Demaine <benoit@demaine.info>.
+  * Fix fb.modes(5) section in manpage header.
   * debian/copyright:
     - Added the location of the Subversion repo used for the packages.
     - Use "License:" instead of "Copyright:".
