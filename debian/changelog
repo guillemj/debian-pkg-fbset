@@ -7,6 +7,7 @@ fbset (2.1-13) unstable; urgency=low
   * Templates:
     - Japanese (Closes: #227813)
       Thanks to Hideki Yamane <henrich@samba.gr.jp>.
+    - Initial Danish template (da.po) by Claus Hindsgaul
 
  -- Guillem Jover <guillem@debian.org>  Thu, 15 Jan 2004 08:18:11 +0100
 
