@@ -155,7 +155,15 @@
  .BR \-\-geometry ",\ " \-g "\ ..."
  set all geometry parameters at once in the order
  .RI < xres >
-@@ -161,6 +174,9 @@
+@@ -154,13 +167,16 @@
+ .RI < hslen >
+ .RI < vslen >,
+ e.g.
+-.B \-g
++.B \-t
+ .I 35242 64 96 35 12 112 2
+ .RE
+ .PP
  Display flags:
  .RS
  .TP
