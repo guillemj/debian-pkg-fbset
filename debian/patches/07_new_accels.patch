@@ -1,3 +1,4 @@
+#DPATCHLEVEL=1
 diff -Naur fbset-2.1.orig/fbset.c fbset-2.1/fbset.c
 --- fbset-2.1.orig/fbset.c	2003-11-18 12:55:17.000000000 +0100
 +++ fbset-2.1/fbset.c	2003-11-18 13:00:50.000000000 +0100

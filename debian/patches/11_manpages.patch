@@ -1,3 +1,4 @@
+#DPATCHLEVEL=1
 --- fbset-2.1.orig/fb.modes.5
 +++ fbset-2.1/fb.modes.5
 @@ -1,4 +1,4 @@
