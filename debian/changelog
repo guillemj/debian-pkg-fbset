@@ -1,3 +1,12 @@
+fbset (2.1-14) unstable; urgency=low
+
+  * Templates:
+    - Danish (da.po): Initial translation by Claus Hindsgaul.
+  * Updated to linux kernel 2.6.4:
+    - debian/doc/kernel-doc/
+
+ -- Guillem Jover <guillem@debian.org>  Sun, 21 Mar 2004 20:40:15 +0100
+
 fbset (2.1-13) unstable; urgency=low
 
   * debian/changelog: Converted encoding to UTF-8.
@@ -7,7 +16,6 @@ fbset (2.1-13) unstable; urgency=low
   * Templates:
     - Japanese (Closes: #227813)
       Thanks to Hideki Yamane <henrich@samba.gr.jp>.
-    - Initial Danish template (da.po) by Claus Hindsgaul
 
  -- Guillem Jover <guillem@debian.org>  Thu, 15 Jan 2004 08:18:11 +0100
 
