@@ -8,6 +8,10 @@ Currently maintained by Guillem Jover <guillem@debian.org>.
 
 It was downloaded from <http://home.tvd.be/cr26864/Linux/fbdev/>
 
+The debian packages are maintained through Subversion on:
+
+   <http://svn.debian.org/viewcvs/pkg-fbset/>
+
 Upstream Author:
 
    Copyright (C) 1995-1998 Geert Uytterhoeven <geert@linux-m68k.org>
