@@ -1,0 +1,32 @@
+# Italian fbset translation.
+# Copyright (C) 2004 Free Software Foundation, Inc.
+#
+# Stefano Melchior <stefano.melchior@openlabs.it>, 2004.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: fbset 2.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-08-12 09:42+0200\n"
+"PO-Revision-Date: 2004-10-31 00:40+0100\n"
+"Last-Translator: Stefano Melchior <stefano.melchior@openlabs.it>\n"
+"Language-Team: Italian Team <debian-l10n-italian@lists.debian.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Description
+#: ../fbset.templates:3
+msgid "Created framebuffer devices"
+msgstr "Creati i device framebuffer"
+
+#. Description
+#: ../fbset.templates:3
+msgid ""
+"fbset needs framebuffer devices in order to function correctly. These have "
+"been created as /dev/fb[0-7], with the appropriate permissions."
+msgstr ""
+"fbset necessita di device framebuffer per funzionare correttamente. "
+"Questi sono stati creati come /dev/fb[0-7], con gli appropriati "
+"permessi."
+

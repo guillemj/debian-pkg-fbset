@@ -5,6 +5,9 @@ fbset (2.1-15) UNRELEASED; urgency=low
   * Fix typo in manpage s/-g/-t/.
     Thanks to DEMAINE Benoit-Pierre <benoit@demaine.info>.
   * Use "License:" instead of "Copyright:" in debian/copyright.
+  * Templates:
+    - Italian (Closes: #279013)
+      Thanks to Stefano Melchior <stefano.melchior@openlabs.it>.
 
  -- Guillem Jover <guillem@debian.org>  Thu, 12 Aug 2004 00:27:51 +0200
 
