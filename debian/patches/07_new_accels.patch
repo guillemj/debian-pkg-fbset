@@ -1,8 +1,8 @@
 #DPATCHLEVEL=1
 diff -Naur fbset-2.1.orig/fbset.c fbset-2.1/fbset.c
---- fbset-2.1.orig/fbset.c	2003-11-18 12:55:17.000000000 +0100
-+++ fbset-2.1/fbset.c	2003-11-18 13:00:50.000000000 +0100
-@@ -200,6 +200,30 @@
+--- fbset-2.1.orig/fbset.c	1999-06-23 16:11:46.000000000 +0200
++++ fbset-2.1/fbset.c	2005-02-01 07:22:07.000000000 +0100
+@@ -200,6 +200,46 @@
      { FB_ACCEL_SUN_CGTHREE, "Sun cg3" },
      { FB_ACCEL_SUN_TCX, "Sun tcx" },
      { FB_ACCEL_MATROX_MGAG400, "Matrox G400" },
@@ -21,6 +21,7 @@ diff -Naur fbset-2.1.orig/fbset.c fbset-2.1/fbset.c
 +    { FB_ACCEL_SIS_XABRE, "SiS 330 (Xabre)" },
 +    { FB_ACCEL_3DLABS_PERMEDIA3, "3Dlabs Permedia 3" },
 +    { FB_ACCEL_I810, "Intel 810/815" },
++    { FB_ACCEL_I830, "Intel 830M/845G/85x/865G" },
 +    { FB_ACCEL_NEOMAGIC_NM2070, "NeoMagic NM2070" },
 +    { FB_ACCEL_NEOMAGIC_NM2090, "NeoMagic NM2090" },
 +    { FB_ACCEL_NEOMAGIC_NM2093, "NeoMagic NM2093" },
@@ -30,6 +31,21 @@ diff -Naur fbset-2.1.orig/fbset.c fbset-2.1/fbset.c
 +    { FB_ACCEL_NEOMAGIC_NM2230, "NeoMagic NM2230" },
 +    { FB_ACCEL_NEOMAGIC_NM2360, "NeoMagic NM2360" },
 +    { FB_ACCEL_NEOMAGIC_NM2380, "NeoMagic NM2380" },
++    { FB_ACCEL_SAVAGE4, "S3 Savage4" },
++    { FB_ACCEL_SAVAGE3D, "S3 Savage3D" },
++    { FB_ACCEL_SAVAGE3D_MV, "S3 Savage3D-MV" },
++    { FB_ACCEL_SAVAGE2000, "S3 Savage2000" },
++    { FB_ACCEL_SAVAGE_MX_MV, "S3 Savage/MX-MV" },
++    { FB_ACCEL_SAVAGE_MX, "S3 Savage/MX" },
++    { FB_ACCEL_SAVAGE_IX_MV, "S3 Savage/IX-MV" },
++    { FB_ACCEL_SAVAGE_IX, "S3 Savage/IX" },
++    { FB_ACCEL_PROSAVAGE_PM, "S3 ProSavage PM133" },
++    { FB_ACCEL_PROSAVAGE_KM, "S3 ProSavage KM133" },
++    { FB_ACCEL_S3TWISTER_P, "S3 Twister" },
++    { FB_ACCEL_S3TWISTER_K, "S3 TwisterK" },
++    { FB_ACCEL_SUPERSAVAGE, "S3 Supersavage" },
++    { FB_ACCEL_PROSAVAGE_DDR, "S3 ProSavage DDR" },
++    { FB_ACCEL_PROSAVAGE_DDRK, "S3 ProSavage DDR-K" },
  };
  
  
