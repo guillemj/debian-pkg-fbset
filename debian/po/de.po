@@ -11,32 +11,24 @@
 #
 #    Developers do not need to manually edit POT or PO files.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-08-12 09:42+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Project-Id-Version: fbset\n"
+"POT-Creation-Date: 2003-03-23 21:39+0100\n"
+"PO-Revision-Date: 2003-12-06 19:20+0100\n"
+"Last-Translator: Patrick Willam <patrick@patrick-willam.de>\n"
+"Language-Team: skolelinux-germany <devel@skolelinux.no>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-15\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #. Description
 #: ../fbset.templates:3
-#, fuzzy
 msgid "Created framebuffer devices"
-msgstr "Sollen die Framebuffer-Geräte erstellt werden?"
+msgstr "Erstellte Framebuffer-Geräte"
 
 #. Description
 #: ../fbset.templates:3
-#, fuzzy
-msgid ""
-"fbset needs framebuffer devices in order to function correctly. These have "
-"been created as /dev/fb[0-7], with the appropriate permissions."
-msgstr ""
-"Fbset benötigt Framebuffer-Gerätedateien um korrekt zu funktionieren. Es "
-"werden die Dateien /dev/fb[0-7] mit den entsprechenden Rechten erstellt. "
-"Sollen diese Geräte jetzt erstellt werden?"
+msgid "fbset needs framebuffer devices in order to function correctly. These have been created as /dev/fb[0-7], with the appropriate permissions."
+msgstr "fbset braucht Framebuffer-Geräte um korrekt zu funktionieren. Diese wurden als /dev/fb[0-7] -- mit den entsprechenden Rechten -- erstellt."
+
