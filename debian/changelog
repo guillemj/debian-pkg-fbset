@@ -6,6 +6,9 @@ fbset (2.1-12) unstable; urgency=low
     - 00_kernel_doc.patch.
     - 01_kernel_fb.h.patch.
     - 07_new_accels.patch.
+  * Templates:
+    - Russian (Closes: #221440)
+      Thanks to Ilgiz Kalmetev <ilgiz@bashtelecom.ru>.
 
  -- Guillem Jover <guillem@debian.org>  Tue, 18 Nov 2003 13:06:42 +0100
 

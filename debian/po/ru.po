@@ -11,32 +11,29 @@
 #
 #    Developers do not need to manually edit POT or PO files.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: fbset 2.1-11\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2003-08-12 09:42+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2003-11-18 12:00+0500\n"
+"Last-Translator: Ilgiz Kalmetev <translator@ilgiz.pp.ru>\n"
+"Language-Team: russian <debian-russian@lists.debian.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=KOI8-R\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #. Description
 #: ../fbset.templates:3
-#, fuzzy
 msgid "Created framebuffer devices"
-msgstr "Хотите создать утсройство framebuffer?"
+msgstr "Устройства framebuffer созданы"
 
 #. Description
 #: ../fbset.templates:3
-#, fuzzy
 msgid ""
 "fbset needs framebuffer devices in order to function correctly. These have "
 "been created as /dev/fb[0-7], with the appropriate permissions."
 msgstr ""
-"Для   fbset  необходимы  устройства  framebuffer,  чтобы  эта  функция "
-"работала  корректно.  Будут  созданы  /dev/fb[0-7]  с соответствующими "
-"правами доступа. Можно создать эти символьные устройства?"
+"fbset необходимы устройства framebuffer, чтобы эта функция "
+"работала корректно. Они будут созданы в виде файлов устройств "
+"/dev/fb[0-7] с соответствующими правами доступа."
