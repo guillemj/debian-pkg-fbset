@@ -5,6 +5,7 @@ fbset (2.1-12) unstable; urgency=low
   * Updated to linux kernel 2.6.0-test9:
     - debian/doc/kernel-doc/
     - debian/doc/FAQ: Added question about fbset working under 2.6.
+      Added a question about driver name change.
     - 01_kernel_fb.h.patch
     - 07_new_accels.patch
   * Templates:
