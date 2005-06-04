@@ -27,30 +27,30 @@ debian/po/templates.pot: debian/fbset.templates
 build: build-stamp
 build-stamp: patch debian/po/templates.pot
 	dh_testdir
-
+	
 	rm -f build-stamp*
 	$(MAKE) clean
 	$(MAKE) CFLAGS="$(CFLAGS)"
-
+	
 	touch $@
 
 build-udeb: build-stamp-udeb
 build-stamp-udeb: patch
 	dh_testdir
-
+	
 	rm -f build-stamp*
 	$(MAKE) clean
 	$(MAKE) CFLAGS="$(UDEB_CFLAGS)"
-
+	
 	touch $@
 
 clean::
 	dh_testdir
 	dh_testroot
 	rm -f build-stamp*
-
+	
 	-$(MAKE) clean
-
+	
 	dh_clean
 
 install: build
@@ -58,7 +58,7 @@ install: build
 	dh_testroot
 	dh_clean -k
 	dh_installdirs
-
+	
 	-$(MAKE) install DESTDIR=$(CURDIR)/debian/$(PACKAGE)
 
 install-udeb: build-udeb
@@ -66,7 +66,7 @@ install-udeb: build-udeb
 	dh_testroot
 	dh_clean -k
 	dh_installdirs
-
+	
 	-$(MAKE) install DESTDIR=$(CURDIR)/debian/$(UDEB_PACKAGE)
 	rm -rf $(CURDIR)/debian/$(UDEB_PACKAGE)/usr/share
 
@@ -83,10 +83,7 @@ fbset: install
 	dh_installdebconf	-p$@
 	dh_installdocs		-p$@
 	dh_installexamples	-p$@
-#	dh_installpam
-#	dh_installmime
 #	dh_installinit
-#	dh_installcron
 	dh_installman		-p$@
 #	dh_installinfo
 	dh_installchangelogs	-p$@
@@ -96,7 +93,6 @@ fbset: install
 	dh_fixperms		-p$@
 #	dh_makeshlibs
 	dh_installdeb		-p$@
-#	dh_perl
 	dh_shlibdeps		-p$@
 	dh_gencontrol		-p$@
 	dh_md5sums		-p$@
@@ -115,4 +111,6 @@ fbset-udeb: install-udeb
 	dh_builddeb		-p$@
 
 binary: binary-indep binary-arch
+
 .PHONY: build clean binary-indep binary-arch binary install
+
