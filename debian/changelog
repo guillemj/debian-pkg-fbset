@@ -1,6 +1,7 @@
 fbset (2.1-17) UNRELEASED; urgency=low
 
   * Templates:
+    - Update pot and po files.
     - Czech. (Closes: #308054)
     Thanks to Miroslav Kure <kurem@upcase.inf.upol.cz>.
     - Vietnamese. (Closes: #313599)

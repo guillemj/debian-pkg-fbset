@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fbset 2.1-12\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-08-12 09:42+0200\n"
+"POT-Creation-Date: 2005-06-18 04:24+0300\n"
 "PO-Revision-Date: 2004-01-04 06:08+0900\n"
 "Last-Translator: Hideki Yamane <henrich@samba.gr.jp>\n"
 "Language-Team: Japanese <debian-japanese@lists.debian.org>\n"
@@ -23,15 +23,18 @@ msgstr ""
 "Content-Type: text/plain; charset=EUC-JP\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#. Type: note
 #. Description
 #: ../fbset.templates:3
 msgid "Created framebuffer devices"
 msgstr "フレームバッファデバイスが作成されます"
 
+#. Type: note
 #. Description
 #: ../fbset.templates:3
 msgid ""
 "fbset needs framebuffer devices in order to function correctly. These have "
 "been created as /dev/fb[0-7], with the appropriate permissions."
-msgstr "fbset が正しく動作する為にはフレームバッファデバイスが必要です。"
-"これは /dev/fb[0-7] として適切なパーミッションにて作成されます。"
+msgstr ""
+"fbset が正しく動作する為にはフレームバッファデバイスが必要です。これは /dev/"
+"fb[0-7] として適切なパーミッションにて作成されます。"

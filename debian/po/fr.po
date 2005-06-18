@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fbset 2.1-7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-08-12 09:42+0200\n"
+"POT-Creation-Date: 2005-06-18 04:24+0300\n"
 "PO-Revision-Date: 2003-03-12 11:00+0100\n"
 "Last-Translator: Philippe Batailler <philippe.batailler@free.fr>\n"
 "Language-Team: French <debian-l10n-french@lists.debian.org>\n"
@@ -23,11 +23,13 @@ msgstr ""
 "Content-Type: text/plain; charset=iso-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#. Type: note
 #. Description
 #: ../fbset.templates:3
 msgid "Created framebuffer devices"
 msgstr "Création des périphériques de type tampon vidéo (« framebuffer »)."
 
+#. Type: note
 #. Description
 #: ../fbset.templates:3
 msgid ""
