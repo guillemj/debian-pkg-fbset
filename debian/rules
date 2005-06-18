@@ -56,7 +56,7 @@ clean::
 install: build
 	dh_testdir
 	dh_testroot
-	dh_clean -k
+	dh_clean -k -p$(PACKAGE)
 	dh_installdirs
 	
 	-$(MAKE) install DESTDIR=$(CURDIR)/debian/$(PACKAGE)
@@ -64,53 +64,37 @@ install: build
 install-udeb: build-udeb
 	dh_testdir
 	dh_testroot
-	dh_clean -k
+	dh_clean -k -p$(UDEB_PACKAGE)
 	dh_installdirs
 	
 	-$(MAKE) install DESTDIR=$(CURDIR)/debian/$(UDEB_PACKAGE)
 	rm -rf $(CURDIR)/debian/$(UDEB_PACKAGE)/usr/share
 
-# Build architecture-independent files here.
-binary-indep: build install
+binary-indep:
 # Nothing to do.
 
-# Build architecture-dependent files here.
-binary-arch: fbset fbset-udeb
-
-fbset: install
+binary-arch: install install-udeb
 	dh_testdir
 	dh_testroot
-	dh_installdebconf	-p$@
-	dh_installdocs		-p$@
-	dh_installexamples	-p$@
+	dh_installdebconf -a
+	dh_installdocs -a
+	dh_installexamples -a
 #	dh_installinit
-	dh_installman		-p$@
+	dh_installman -a
 #	dh_installinfo
-	dh_installchangelogs	-p$@
-	dh_link			-p$@
-	dh_strip		-p$@
-	dh_compress		-p$@
-	dh_fixperms		-p$@
+	dh_installchangelogs -a
+	dh_link -a
+	dh_strip -a
+	dh_compress -a
+	dh_fixperms -a
 #	dh_makeshlibs
-	dh_installdeb		-p$@
-	dh_shlibdeps		-p$@
-	dh_gencontrol		-p$@
-	dh_md5sums		-p$@
-	dh_builddeb		-p$@
-
-fbset-udeb: install-udeb
-	dh_testdir
-	dh_testroot
-	dh_installdirs		-p$@
-	dh_strip		-p$@
-	dh_compress		-p$@
-	dh_fixperms		-p$@
-	dh_installdeb		-p$@
-	dh_shlibdeps		-p$@
-	dh_gencontrol		-p$@
-	dh_builddeb		-p$@
+	dh_installdeb -a
+	dh_shlibdeps -a
+	dh_gencontrol -a
+	dh_md5sums -a
+	dh_builddeb -a
 
 binary: binary-indep binary-arch
 
-.PHONY: build clean binary-indep binary-arch binary install
+.PHONY: build build-udeb clean binary-indep binary-arch binary install
 

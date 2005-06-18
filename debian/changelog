@@ -6,6 +6,9 @@ fbset (2.1-17) UNRELEASED; urgency=low
     Thanks to Miroslav Kure <kurem@upcase.inf.upol.cz>.
     - Vietnamese. (Closes: #313599)
     Thanks to Clytie Siddall <clytie@riverland.net.au>.
+  * Merge fbset and fbset-udeb into binary-arch, and on install targets
+    clean only its own package directory.
+    - debian/rules.
 
  -- Guillem Jover <guillem@debian.org>  Sat,  4 Jun 2005 06:41:40 +0300
 
