@@ -1,4 +1,4 @@
-fbset (2.1-17) UNRELEASED; urgency=low
+fbset (2.1-17) unstable; urgency=low
 
   * Templates:
     - Update pot and po files.
@@ -10,7 +10,7 @@ fbset (2.1-17) UNRELEASED; urgency=low
     clean only its own package directory.
     - debian/rules.
 
- -- Guillem Jover <guillem@debian.org>  Sat,  4 Jun 2005 06:41:40 +0300
+ -- Guillem Jover <guillem@debian.org>  Sat, 18 Jun 2005 05:03:36 +0300
 
 fbset (2.1-16) unstable; urgency=low
 
