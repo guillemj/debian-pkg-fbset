@@ -1,0 +1,32 @@
+# Vietnamese translation for fbset.
+# Copyright © 2005 Free Software Foundation, Inc.
+# Clytie Siddall <clytie@riverland.net.au>, 2005.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: fbset 2.1-16\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-06-18 04:24+0300\n"
+"PO-Revision-Date: 2005-06-14 23:20+0930\n"
+"Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
+"Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+#. Type: note
+#. Description
+#: ../fbset.templates:3
+msgid "Created framebuffer devices"
+msgstr "Tạo thiết bị bộ đệm khung rồi."
+
+#. Type: note
+#. Description
+#: ../fbset.templates:3
+msgid ""
+"fbset needs framebuffer devices in order to function correctly. These have "
+"been created as /dev/fb[0-7], with the appropriate permissions."
+msgstr ""
+"Trình fbset cần một số thiết bị bộ đệm khung để hoạt động cho đúng. Đã tạo "
+"chúng là «/dev/fb[0-7]», cũng với quyền truy cập thích hợp."
