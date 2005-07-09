@@ -1,3 +1,9 @@
+fbset (2.1-18) UNRELEASED; urgency=low
+
+  * Update watch file to version 3 (no changes needed).
+
+ -- Guillem Jover <guillem@debian.org>  Sat,  9 Jul 2005 05:30:23 +0300
+
 fbset (2.1-17) unstable; urgency=low
 
   * Templates:
