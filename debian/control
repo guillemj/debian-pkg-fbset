@@ -3,7 +3,7 @@ Section: base
 Priority: optional
 Maintainer: Guillem Jover <guillem@debian.org>
 Standards-Version: 3.6.2
-Build-Depends: flex, bison, debhelper (>= 4.2)
+Build-Depends: debhelper (>= 5), flex, bison
 
 Package: fbset
 Architecture: any

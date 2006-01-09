@@ -2,6 +2,7 @@ fbset (2.1-18) UNRELEASED; urgency=low
 
   * Update watch file to version 3 (no changes needed).
   * Now using Standards-Version 3.6.2 (no changes needed).
+  * Upgrade to debhelper compat level 5.
 
  -- Guillem Jover <guillem@debian.org>  Sat,  9 Jul 2005 05:30:23 +0300
 
