@@ -1,8 +1,8 @@
 #DPATCHLEVEL=1
 diff -Naur fbset-2.1.orig/fbset.c fbset-2.1/fbset.c
---- fbset-2.1.orig/fbset.c	1999-06-23 16:11:46.000000000 +0200
-+++ fbset-2.1/fbset.c	2005-02-01 07:22:07.000000000 +0100
-@@ -200,6 +200,46 @@
+--- fbset-2.1.orig/fbset.c	2006-01-18 01:14:26.000000000 +0200
++++ fbset-2.1/fbset.c	2006-01-18 01:16:52.000000000 +0200
+@@ -200,6 +200,52 @@
      { FB_ACCEL_SUN_CGTHREE, "Sun cg3" },
      { FB_ACCEL_SUN_TCX, "Sun tcx" },
      { FB_ACCEL_MATROX_MGAG400, "Matrox G400" },
@@ -46,6 +46,12 @@ diff -Naur fbset-2.1.orig/fbset.c fbset-2.1/fbset.c
 +    { FB_ACCEL_SUPERSAVAGE, "S3 Supersavage" },
 +    { FB_ACCEL_PROSAVAGE_DDR, "S3 ProSavage DDR" },
 +    { FB_ACCEL_PROSAVAGE_DDRK, "S3 ProSavage DDR-K" },
++    { FB_ACCEL_NV_10, "nVidia Arch 10" },
++    { FB_ACCEL_NV_20, "nVidia Arch 20" },
++    { FB_ACCEL_NV_30, "nVidia Arch 30" },
++    { FB_ACCEL_NV_40, "nVidia Arch 40" },
++    { FB_ACCEL_XGI_VOLARI_V, "XGI Volari V3XT, V5, V8" },
++    { FB_ACCEL_XGI_VOLARI_Z, "XGI Volari Z7" },
  };
  
  
