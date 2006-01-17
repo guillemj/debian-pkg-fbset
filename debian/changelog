@@ -15,6 +15,8 @@ fbset (2.1-18) UNRELEASED; urgency=low
   * Templates:
     - Portuguese. (Closes: #338728)
       Thanks to Miguel Figueiredo <elmig@debianpt.org>.
+    - Swedish. (Closes: #331471)
+      Thanks to Daniel Nylander <yeager@lidkoping.net>.
 
  -- Guillem Jover <guillem@debian.org>  Sat,  9 Jul 2005 05:30:23 +0300
 
