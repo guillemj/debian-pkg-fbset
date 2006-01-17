@@ -6,6 +6,8 @@ fbset (2.1-18) UNRELEASED; urgency=low
   * Put framebuffer modes as full files:
     - debian/patches/02_fb_modes.patch: Move full files to ...
     - debian/modes/: ... here.
+  * Updated to linux kernel 2.6.15:
+    - debian/doc/kernel-doc/: Sync.
 
  -- Guillem Jover <guillem@debian.org>  Sat,  9 Jul 2005 05:30:23 +0300
 
