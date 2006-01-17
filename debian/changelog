@@ -5,7 +5,7 @@ fbset (2.1-18) UNRELEASED; urgency=low
   * Upgrade to debhelper compat level 5.
   * Put framebuffer modes as full files:
     - debian/patches/02_fb_modes.patch: Move full files to ...
-    - debian/modes/.
+    - debian/modes/: ... here.
 
  -- Guillem Jover <guillem@debian.org>  Sat,  9 Jul 2005 05:30:23 +0300
 
