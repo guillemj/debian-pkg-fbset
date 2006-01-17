@@ -12,6 +12,9 @@ fbset (2.1-18) UNRELEASED; urgency=low
     - debian/patches/01_kernel_fb.h.patch: Likewise.
     - debian/patches/07_new_accels.patch: Add more accelerated cards.
   * Move fbset, modeline2fb and con2fbmap to /bin. (Closes: #256972, #320574)
+  * Templates:
+    - Portuguese. (Closes: #338728)
+      Thanks to Miguel Figueiredo <elmig@debianpt.org>.
 
  -- Guillem Jover <guillem@debian.org>  Sat,  9 Jul 2005 05:30:23 +0300
 
