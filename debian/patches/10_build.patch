@@ -62,15 +62,15 @@
 -		if [ ! -c /dev/fb6 ]; then mknod /dev/fb6 c 29 192; fi
 -		if [ ! -c /dev/fb7 ]; then mknod /dev/fb7 c 29 224; fi
 +install: fbset
-+	$(INSTALL) -d $(DESTDIR)/{etc,usr/{sbin,share/man/man{5,8}}}
++	$(INSTALL) -d $(DESTDIR)/{etc,bin,usr/{share/man/man{1,5}}}
 +	$(INSTALL_DATA) etc/fb.modes.ATI $(DESTDIR)/etc/fb.modes
 +	$(INSTALL_DATA) fb.modes.5 $(DESTDIR)/usr/share/man/man5
-+	$(INSTALL_PROGRAM) fbset $(DESTDIR)/usr/sbin
-+	$(INSTALL_DATA) fbset.8 $(DESTDIR)/usr/share/man/man8
-+	$(INSTALL_PROGRAM) modeline2fb $(DESTDIR)/usr/sbin
-+	$(INSTALL_DATA) modeline2fb.8 $(DESTDIR)/usr/share/man/man8
-+	$(INSTALL_PROGRAM) con2fbmap $(DESTDIR)/usr/sbin
-+	$(INSTALL_DATA) con2fbmap.8 $(DESTDIR)/usr/share/man/man8
++	$(INSTALL_PROGRAM) fbset $(DESTDIR)/bin
++	$(INSTALL_DATA) fbset.8 $(DESTDIR)/usr/share/man/man1/fbset.1
++	$(INSTALL_PROGRAM) modeline2fb $(DESTDIR)/bin
++	$(INSTALL_DATA) modeline2fb.1 $(DESTDIR)/usr/share/man/man1
++	$(INSTALL_PROGRAM) con2fbmap $(DESTDIR)/bin
++	$(INSTALL_DATA) con2fbmap.1 $(DESTDIR)/usr/share/man/man1
 +
 +install-devices:
 +	if [ ! -c /dev/fb0 ]; then mknod $(DESTDIR)/dev/fb0 c 29 0; fi

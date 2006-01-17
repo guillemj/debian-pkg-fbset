@@ -1,4 +1,4 @@
 etc
-usr/sbin
+bin
+usr/share/man/man1
 usr/share/man/man5
-usr/share/man/man8

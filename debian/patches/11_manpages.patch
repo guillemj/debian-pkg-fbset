@@ -75,7 +75,7 @@
 +++ fbset-2.1/fbset.8
 @@ -1,4 +1,4 @@
 -.TH fbset 8 "July 1998" local "Linux frame buffer utils"
-+.TH fbset 8 2003-08-07 2.1 "Linux frame buffer utils"
++.TH fbset 1 2006-01-18 2.1 "Linux frame buffer utils"
  .SH NAME
  fbset \- show and modify frame buffer device settings
  .SH SYNOPSIS
@@ -192,10 +192,10 @@
  .SH AUTHORS
  .TP
  Geert Uytterhoeven <Geert.Uytterhoeven@cs.kuleuven.ac.be>
---- fbset-2.1.orig/modeline2fb.8
-+++ fbset-2.1/modeline2fb.8
+--- fbset-2.1.orig/modeline2fb.1
++++ fbset-2.1/modeline2fb.1
 @@ -0,0 +1,40 @@
-+.TH modeline2fb 8 2003-08-07 2.1 "Linux frame buffer utils"
++.TH modeline2fb 1 2006-01-18 2.1 "Linux frame buffer utils"
 +.SH NAME
 +modeline2fb \- simple modeline to fb.modes translator
 +.SH SYNOPSIS
@@ -228,7 +228,7 @@
 +this program reads from standard in.  This program will also write to
 +standard out.
 +.SH EXAMPLE 
-+/usr/sbin/modeline2fb \-d 16 /etc/X11/XF86Config
++modeline2fb \-d 16 /etc/X11/XF86Config
 +.SH "SEE ALSO"
 +.BR fb.modes(5), 
 +.BR XF86Config(5)

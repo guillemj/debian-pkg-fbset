@@ -98,7 +98,7 @@ please let me know.
 
   {HK} Sure. :-)
   With an available and correct /etc/X11/XF86Config file (an old setup) you
-  can use the /usr/sbin/modeline2fb to convert the modelines into
+  can use the modeline2fb to convert the modelines into
   /etc/fb.modes to to use it with fbset.
 
   Or you put the fb.modes.ATI (/usr/share/doc/fbset/examples) into /etc/ as
@@ -116,7 +116,7 @@ please let me know.
   Some examples:
 
   echo ModeLine \"640x400\" 31.5 640 672 736 832 400 401 404 445 \
-	-hsync +vsync | /usr/sbin/modeline2fb
+	-hsync +vsync | modeline2fb
 
   ./cvtmode.m 31.5 640 672 736 832 400 401 404 445
 

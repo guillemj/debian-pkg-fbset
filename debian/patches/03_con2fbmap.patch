@@ -1,8 +1,8 @@
 #DPATCHLEVEL=1
---- fbset-2.1.orig/con2fbmap.8
-+++ fbset-2.1/con2fbmap.8
+--- fbset-2.1.orig/con2fbmap.1
++++ fbset-2.1/con2fbmap.1
 @@ -0,0 +1,29 @@
-+.TH con2fbmap 8 2005-02-01 2.1 "Linux frame buffer utils"
++.TH con2fbmap 1 2006-01-18 2.1 "Linux frame buffer utils"
 +.SH NAME
 +con2fbmap \- shows and sets mapping between consoles and framebuffer devices.
 +.SH SYNOPSIS
