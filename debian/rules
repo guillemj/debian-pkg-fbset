@@ -68,7 +68,7 @@ install-udeb: build-udeb
 	dh_installdirs
 	
 	-$(MAKE) install DESTDIR=$(CURDIR)/debian/$(UDEB_PACKAGE)
-	rm -rf $(CURDIR)/debian/$(UDEB_PACKAGE)/usr/share
+	rm -rf $(CURDIR)/debian/$(UDEB_PACKAGE)/usr
 
 binary-indep:
 # Nothing to do.
