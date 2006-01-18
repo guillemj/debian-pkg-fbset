@@ -1,4 +1,4 @@
-fbset (2.1-18) UNRELEASED; urgency=low
+fbset (2.1-18) unstable; urgency=low
 
   * Update watch file to version 3 (no changes needed).
   * Now using Standards-Version 3.6.2 (no changes needed).
@@ -19,7 +19,7 @@ fbset (2.1-18) UNRELEASED; urgency=low
       Thanks to Daniel Nylander <yeager@lidkoping.net>.
   * Depend on udev as a Second Class Citizen alternative to makedev.
 
- -- Guillem Jover <guillem@debian.org>  Sat,  9 Jul 2005 05:30:23 +0300
+ -- Guillem Jover <guillem@debian.org>  Wed, 18 Jan 2006 02:13:39 +0200
 
 fbset (2.1-17) unstable; urgency=low
 
