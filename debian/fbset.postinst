@@ -15,7 +15,7 @@ db_version 2.0
 if [ ! -c /dev/.devfsd ] ; then
   if [ ! -c /dev/fb0 ] ; then
     cd /dev
-    /sbin/MAKEDEV fb
+    /dev/MAKEDEV fb
   fi
 fi
 
