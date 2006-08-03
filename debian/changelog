@@ -6,6 +6,7 @@ fbset (2.1-19) UNRELEASED; urgency=low
   * Updated to linux kernel 2.6.17.4:
     - debian/doc/kernel-doc/: Sync.
     - debian/modes/fb.modes.CyBla: Likewise.
+  * Indent debian/copyright to 4 spaces.
   * Templates:
     - Catalan: Changed encoding to UTF-8.
 
