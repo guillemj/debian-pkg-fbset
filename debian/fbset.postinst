@@ -9,13 +9,13 @@ set -e
 
 db_version 2.0
 
-# Create framebuffer devices if they don't exist.
-# Don't create them if devfs is used.
+# Create framebuffer devices if they don't exist,
+# and we are not using stuff like udev.
 
-if [ ! -c /dev/.devfsd ] ; then
-  if [ ! -c /dev/fb0 ] ; then
+if [ ! -c /dev/fb0 ] ; then
+  if [ -e /dev/MAKEDEV ] ; then
     cd /dev
-    /dev/MAKEDEV fb
+    ./MAKEDEV fb
   fi
 fi
 
