@@ -1,4 +1,4 @@
-fbset (2.1-19) UNRELEASED; urgency=low
+fbset (2.1-19) unstable; urgency=low
 
   * Now using Standards-Version 3.7.2 (no changes needed).
   * Fix Upstream URL in the debian/watch file.
@@ -16,7 +16,7 @@ fbset (2.1-19) UNRELEASED; urgency=low
   * Templates:
     - Catalan: Changed encoding to UTF-8.
 
- -- Guillem Jover <guillem@debian.org>  Thu,  3 Aug 2006 04:47:52 +0300
+ -- Guillem Jover <guillem@debian.org>  Thu,  3 Aug 2006 05:33:32 +0300
 
 fbset (2.1-18) unstable; urgency=low
 
