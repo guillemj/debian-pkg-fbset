@@ -7,6 +7,11 @@ fbset (2.1-19) UNRELEASED; urgency=low
     - debian/doc/kernel-doc/: Sync.
     - debian/modes/fb.modes.CyBla: Likewise.
   * Indent debian/copyright to 4 spaces.
+  * Clean up debian/patch.mk:
+    - Rename clean to unpatch.
+    - Switch patch and unpatch to single-colon targets.
+  * Clean up debian/rules:
+    - Switch clean to single-colon target, make it depend on unpatch.
   * Templates:
     - Catalan: Changed encoding to UTF-8.
 
