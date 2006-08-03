@@ -1,5 +1,6 @@
 fbset (2.1-19) UNRELEASED; urgency=low
 
+  * Now using Standards-Version 3.7.2 (no changes needed).
   * Fix Upstream URL in the debian/watch file.
   * Change section from base to admin, to match ftp-master override.
   * Run /dev/MAKEDEV in debian/fbset.postinst only if present. (Closes: #362794)
