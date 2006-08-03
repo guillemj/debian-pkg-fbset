@@ -3,6 +3,9 @@ fbset (2.1-19) UNRELEASED; urgency=low
   * Fix Upstream URL in the debian/watch file.
   * Change section from base to admin, to match ftp-master override.
   * Run /dev/MAKEDEV in debian/fbset.postinst only if present. (Closes: #362794)
+  * Updated to linux kernel 2.6.17.4:
+    - debian/doc/kernel-doc/: Sync.
+    - debian/modes/fb.modes.CyBla: Likewise.
   * Templates:
     - Catalan: Changed encoding to UTF-8.
 
