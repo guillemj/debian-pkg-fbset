@@ -1,6 +1,7 @@
 fbset (2.1-19) UNRELEASED; urgency=low
 
   * Fix Upstream URL in the debian/watch file.
+  * Change section from base to admin, to match ftp-master override.
 
  -- Guillem Jover <guillem@debian.org>  Thu,  3 Aug 2006 04:47:52 +0300
 

@@ -1,5 +1,5 @@
 Source: fbset
-Section: base
+Section: admin
 Priority: optional
 Maintainer: Guillem Jover <guillem@debian.org>
 Standards-Version: 3.6.2
