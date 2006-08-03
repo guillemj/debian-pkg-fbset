@@ -1,3 +1,2 @@
-# Site		Directory		Pattern			Version	Script
 version=3
-http://home.tvd.be/cr26864/Linux/fbdev/ fbset-(.*)\.tar\.gz	debian	uupdate
+http://users.telenet.be/geertu/Linux/fbdev/ fbset-(.*)\.tar\.gz debian uupdate
