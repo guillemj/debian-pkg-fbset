@@ -3,6 +3,8 @@ fbset (2.1-19) UNRELEASED; urgency=low
   * Fix Upstream URL in the debian/watch file.
   * Change section from base to admin, to match ftp-master override.
   * Run /dev/MAKEDEV in debian/fbset.postinst only if present. (Closes: #362794)
+  * Templates:
+    - Catalan: Changed encoding to UTF-8.
 
  -- Guillem Jover <guillem@debian.org>  Thu,  3 Aug 2006 04:47:52 +0300
 
