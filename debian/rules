@@ -19,7 +19,7 @@ endif
 PACKAGE = fbset
 UDEB_PACKAGE = $(PACKAGE)-udeb
 
-include debian/patch.mk
+include /usr/share/quilt/quilt.make
 
 debian/po/templates.pot: debian/fbset.templates
 	@debconf-updatepo

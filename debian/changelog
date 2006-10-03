@@ -1,3 +1,13 @@
+fbset (2.1-20) UNRELEASED; urgency=low
+
+  * Switched to quilt:
+    - Add new debian/patches/series file.
+    - Add Build-Depends on 'quilt (>= 0.40)'.
+    - Include quilt.make from debian/rules.
+    - Remove now unused debian/patch.mk.
+
+ -- Guillem Jover <guillem@debian.org>  Tue,  3 Oct 2006 05:33:24 +0300
+
 fbset (2.1-19) unstable; urgency=low
 
   * Now using Standards-Version 3.7.2 (no changes needed).

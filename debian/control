@@ -3,7 +3,7 @@ Section: admin
 Priority: optional
 Maintainer: Guillem Jover <guillem@debian.org>
 Standards-Version: 3.7.2
-Build-Depends: debhelper (>= 5), flex, bison
+Build-Depends: debhelper (>= 5), quilt (>= 0.40), flex, bison
 
 Package: fbset
 Architecture: any
