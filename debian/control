@@ -3,6 +3,7 @@ Section: admin
 Priority: optional
 Maintainer: Guillem Jover <guillem@debian.org>
 Standards-Version: 3.7.2
+Homepage: http://users.telenet.be/geertu/Linux/fbdev/
 Build-Depends: debhelper (>= 5), quilt (>= 0.40), flex, bison
 
 Package: fbset
