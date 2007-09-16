@@ -22,7 +22,7 @@ UDEB_PACKAGE = $(PACKAGE)-udeb
 include /usr/share/quilt/quilt.make
 
 build: build-stamp
-build-stamp: patch debian/po/templates.pot
+build-stamp: patch
 	dh_testdir
 	
 	rm -f build-stamp*
