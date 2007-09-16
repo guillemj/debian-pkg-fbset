@@ -3,9 +3,9 @@ Status: sent-upstream
 
 Index: b/Makefile
 ===================================================================
---- a/Makefile	2007-09-16 19:05:33.000000000 +0300
-+++ b/Makefile	2007-09-16 19:06:24.000000000 +0300
-@@ -2,40 +2,53 @@
+--- a/Makefile	1999-01-17 21:15:46.000000000 +0200
++++ b/Makefile	2007-09-16 19:24:49.000000000 +0300
+@@ -2,40 +2,56 @@
  # Linux Frame Buffer Device Configuration
  #
  
@@ -66,7 +66,10 @@ Index: b/Makefile
 -		if [ ! -c /dev/fb6 ]; then mknod /dev/fb6 c 29 192; fi
 -		if [ ! -c /dev/fb7 ]; then mknod /dev/fb7 c 29 224; fi
 +install: fbset
-+	$(INSTALL) -d $(DESTDIR)/{etc,bin,usr/{share/man/man{1,5}}}
++	$(INSTALL) -d $(DESTDIR)/etc
++	$(INSTALL) -d $(DESTDIR)/bin
++	$(INSTALL) -d $(DESTDIR)/usr/share/man/man1
++	$(INSTALL) -d $(DESTDIR)/usr/share/man/man5
 +	$(INSTALL_DATA) etc/fb.modes.ATI $(DESTDIR)/etc/fb.modes
 +	$(INSTALL_DATA) fb.modes.5 $(DESTDIR)/usr/share/man/man5
 +	$(INSTALL_PROGRAM) fbset $(DESTDIR)/bin
