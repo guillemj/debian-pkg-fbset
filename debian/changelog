@@ -5,6 +5,7 @@ fbset (2.1-20) UNRELEASED; urgency=low
     - Add Build-Depends on 'quilt (>= 0.40)'.
     - Include quilt.make from debian/rules.
     - Remove now unused debian/patch.mk.
+    - Add a Status field in all patches, and refreshed them.
   * Add a Homepage field.
   * Update download URL in debian/copyright.
   * Add a Tag: field to the binary package, using the data from debtags.

@@ -1,7 +1,9 @@
-#DPATCHLEVEL=1
-diff -Naur fbset-2.1.orig/fb.h fbset-2.1/fb.h
---- fbset-2.1.orig/fb.h	1999-06-23 17:09:48.000000000 +0300
-+++ fbset-2.1/fb.h	2006-01-07 01:20:16.000000000 +0200
+Status: sent-upstream
+
+Index: b/fb.h
+===================================================================
+--- a/fb.h	2007-09-16 19:05:35.000000000 +0300
++++ b/fb.h	2007-09-16 19:05:54.000000000 +0300
 @@ -5,12 +5,8 @@
  
  /* Definitions of frame buffers						*/
@@ -111,7 +113,7 @@ diff -Naur fbset-2.1.orig/fb.h fbset-2.1/fb.h
  					/* (physical address) */
  	__u32 smem_len;			/* Length of frame buffer mem */
  	__u32 type;			/* see FB_TYPE_*		*/
-@@ -90,10 +147,11 @@
+@@ -90,10 +147,11 @@ struct fb_fix_screeninfo {
  	__u16 ypanstep;			/* zero if no hardware panning  */
  	__u16 ywrapstep;		/* zero if no hardware ywrap    */
  	__u32 line_length;		/* length of a line in bytes    */
@@ -125,7 +127,7 @@ diff -Naur fbset-2.1.orig/fb.h fbset-2.1/fb.h
  	__u16 reserved[3];		/* Reserved for future compatibility */
  };
  
-@@ -120,8 +178,10 @@
+@@ -120,8 +178,10 @@ struct fb_bitfield {
  #define FB_ACTIVATE_VBL	       16	/* activate values on next vbl  */
  #define FB_CHANGE_CMAP_VBL     32	/* change colormap on vbl	*/
  #define FB_ACTIVATE_ALL	       64	/* change all VCs on this fb	*/
@@ -137,7 +139,7 @@ diff -Naur fbset-2.1.orig/fb.h fbset-2.1/fb.h
  
  #define FB_SYNC_HOR_HIGH_ACT	1	/* horizontal sync high active	*/
  #define FB_SYNC_VERT_HIGH_ACT	2	/* vertical sync high active	*/
-@@ -141,6 +201,17 @@
+@@ -141,6 +201,17 @@ struct fb_bitfield {
  #define FB_VMODE_SMOOTH_XPAN	512	/* smooth xpan possible (internally used) */
  #define FB_VMODE_CONUPDATE	512	/* don't update x/yoffset	*/
  
@@ -155,7 +157,7 @@ diff -Naur fbset-2.1.orig/fb.h fbset-2.1/fb.h
  struct fb_var_screeninfo {
  	__u32 xres;			/* visible resolution		*/
  	__u32 yres;
-@@ -164,7 +235,7 @@
+@@ -164,7 +235,7 @@ struct fb_var_screeninfo {
  	__u32 height;			/* height of picture in mm    */
  	__u32 width;			/* width of picture in mm     */
  
@@ -164,7 +166,7 @@ diff -Naur fbset-2.1.orig/fb.h fbset-2.1/fb.h
  
  	/* Timing: All values in pixclocks, except pixclock (of course) */
  	__u32 pixclock;			/* pixel clock in ps (pico seconds) */
-@@ -176,7 +247,8 @@
+@@ -176,7 +247,8 @@ struct fb_var_screeninfo {
  	__u32 vsync_len;		/* length of vertical sync	*/
  	__u32 sync;			/* see FB_SYNC_*		*/
  	__u32 vmode;			/* see FB_VMODE_*		*/
@@ -174,7 +176,7 @@ diff -Naur fbset-2.1.orig/fb.h fbset-2.1/fb.h
  };
  
  struct fb_cmap {
-@@ -193,305 +265,732 @@
+@@ -193,305 +265,732 @@ struct fb_con2fbmap {
  	__u32 framebuffer;
  };
  

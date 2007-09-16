@@ -1,7 +1,10 @@
-#DPATCHLEVEL=1
---- fbset-2.1.orig/modes.l
-+++ fbset-2.1/modes.l
-@@ -99,6 +99,7 @@
+Status: sent-upstream
+
+Index: b/modes.l
+===================================================================
+--- a/modes.l	2007-09-16 19:05:33.000000000 +0300
++++ b/modes.l	2007-09-16 19:06:21.000000000 +0300
+@@ -99,6 +99,7 @@ static const char *CopyString(const char
  
  keyword	[a-zA-Z][a-zA-Z0-9]*
  number	[0-9]*
@@ -9,7 +12,7 @@
  string	\"[^\"\n]*\"
  comment	\#([^\n]*)
  space	[ \t]+
-@@ -115,6 +116,11 @@
+@@ -115,6 +116,11 @@ junk	.
  		return NUMBER;
  	    }
  
@@ -21,9 +24,11 @@
  {string}    {
  		yylval = (unsigned long)CopyString(yytext);
  		return STRING;
---- fbset-2.1.orig/modes.y
-+++ fbset-2.1/modes.y
-@@ -42,7 +42,7 @@
+Index: b/modes.y
+===================================================================
+--- a/modes.y	2007-09-16 19:05:33.000000000 +0300
++++ b/modes.y	2007-09-16 19:06:21.000000000 +0300
+@@ -42,7 +42,7 @@ static void ClearVideoMode(void)
  
  %token MODE GEOMETRY TIMINGS HSYNC VSYNC CSYNC GSYNC EXTSYNC BCAST LACED DOUBLE
         RGBA NONSTD ACCEL GRAYSCALE
@@ -32,7 +37,7 @@
  
  %%
  
-@@ -148,7 +148,7 @@
+@@ -148,7 +148,7 @@ double	  : DOUBLE BOOLEAN
  	    }
  	  ;
  

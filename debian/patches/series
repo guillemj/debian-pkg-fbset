@@ -1,10 +1,10 @@
-01_kernel_fb.h.patch -p1
-02_fb_modes.patch -p1
-03_con2fbmap.patch -p1
-04_fbset_warnings.patch -p1
-05_fbset_devfs.patch -p1
-06_fbset_usage.patch -p1
-07_new_accels.patch -p1
-08_rgba_keyword.patch -p1
-10_build.patch -p1
-11_manpages.patch -p1
+01_kernel_fb.h.patch 
+02_fb_modes.patch 
+03_con2fbmap.patch 
+04_fbset_warnings.patch 
+05_fbset_devfs.patch 
+06_fbset_usage.patch 
+07_new_accels.patch 
+08_rgba_keyword.patch 
+10_build.patch 
+11_manpages.patch 

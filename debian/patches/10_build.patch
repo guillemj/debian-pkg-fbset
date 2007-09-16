@@ -1,6 +1,10 @@
-#DPATCHLEVEL=1
---- fbset-2.1.orig/Makefile
-+++ fbset-2.1/Makefile
+Status: sent-upstream
+# Sent part of it, not the indentation fixes, nor the con2fbmap.
+
+Index: b/Makefile
+===================================================================
+--- a/Makefile	2007-09-16 19:05:33.000000000 +0300
++++ b/Makefile	2007-09-16 19:06:24.000000000 +0300
 @@ -2,40 +2,53 @@
  # Linux Frame Buffer Device Configuration
  #

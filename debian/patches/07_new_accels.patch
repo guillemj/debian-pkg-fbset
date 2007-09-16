@@ -1,8 +1,10 @@
-#DPATCHLEVEL=1
-diff -Naur fbset-2.1.orig/fbset.c fbset-2.1/fbset.c
---- fbset-2.1.orig/fbset.c	2006-01-18 01:14:26.000000000 +0200
-+++ fbset-2.1/fbset.c	2006-01-18 01:16:52.000000000 +0200
-@@ -200,6 +200,52 @@
+Status: sent-upstream
+
+Index: b/fbset.c
+===================================================================
+--- a/fbset.c	2007-09-16 19:06:11.000000000 +0300
++++ b/fbset.c	2007-09-16 19:06:19.000000000 +0300
+@@ -200,6 +200,52 @@ static struct accelentry {
      { FB_ACCEL_SUN_CGTHREE, "Sun cg3" },
      { FB_ACCEL_SUN_TCX, "Sun tcx" },
      { FB_ACCEL_MATROX_MGAG400, "Matrox G400" },

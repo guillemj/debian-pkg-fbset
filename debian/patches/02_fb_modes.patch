@@ -1,6 +1,7 @@
-#DPATCHLEVEL=1
---- fbset-2.1.orig/etc/fb.modes.ATI
-+++ fbset-2.1/etc/fb.modes.ATI
+Index: b/etc/fb.modes.ATI
+===================================================================
+--- a/etc/fb.modes.ATI	2007-09-16 19:05:35.000000000 +0300
++++ b/etc/fb.modes.ATI	2007-09-16 19:06:01.000000000 +0300
 @@ -6,6 +6,8 @@
  #       Mach64 Programmer's Guide, Appendix C
  #       (C) 1998 ATI Technologies Inc.
@@ -10,7 +11,7 @@
  
  #
  #	640x480, 60 Hz, Non-Interlaced (25.175 MHz dotclock)
-@@ -132,6 +134,36 @@
+@@ -132,6 +134,36 @@ mode "640x480-100"
      timings 22272 48 32 17 22 128 12
  endmode
   
@@ -47,7 +48,7 @@
  #
  #	800x600, 48 Hz, Interlaced (36.00 MHz dotclock)
  #	
-@@ -430,7 +462,7 @@
+@@ -430,7 +462,7 @@ endmode
  #	1024x768, 72 Hz, Non-Interlaced (75.00 MHz dotclock)
  #	
  #				Horizontal	Vertical
@@ -56,7 +57,7 @@
  #	Scan Frequency		58.230 kHz	72.245 Hz
  #	Sync Width		1.813 us	0.103 ms
  #				17 chars	6 lines
-@@ -447,7 +479,7 @@
+@@ -447,7 +479,7 @@ endmode
  
  mode "1024x768-72"
      # D: 75.00 MHz, H: 58.230 kHz, V: 72.245 Hz
@@ -65,7 +66,7 @@
      timings 13334 104 24 29 3 136 6
  endmode
   
-@@ -691,7 +723,45 @@
+@@ -691,7 +723,45 @@ mode "1152x864-80"
      hsync high
      vsync high
  endmode
@@ -112,7 +113,7 @@
  #
  #	1280x1024, 43 Hz, Interlaced (80.00 MHz dotclock)
  #	
-@@ -849,13 +919,13 @@
+@@ -849,13 +919,13 @@ endmode
  #
  
  mode "1280x1024-75"

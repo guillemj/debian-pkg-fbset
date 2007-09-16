@@ -1,8 +1,10 @@
-#DPATCHLEVEL=1
-diff -Naur fbset-2.1.orig/fbset.c fbset-2.1/fbset.c
---- fbset-2.1.orig/fbset.c	2003-11-18 12:45:24.000000000 +0100
-+++ fbset-2.1/fbset.c	2003-11-18 12:45:38.000000000 +0100
-@@ -833,7 +833,8 @@
+Status: sent-upstream
+
+Index: b/fbset.c
+===================================================================
+--- a/fbset.c	2007-09-16 19:06:09.000000000 +0300
++++ b/fbset.c	2007-09-16 19:06:11.000000000 +0300
+@@ -833,7 +833,8 @@ static int FillScanRates(struct VideoMod
  static void Usage(void)
  {
      puts(VERSION);
@@ -12,7 +14,7 @@ diff -Naur fbset-2.1.orig/fbset.c fbset-2.1/fbset.c
  	"Valid options:\n"
  	"  General options:\n"
  	"    -h, --help         : display this usage information\n"
-@@ -888,6 +889,7 @@
+@@ -888,6 +889,7 @@ static void Usage(void)
  	"    -step <value>      : step increment (in pixels or pixel lines)\n"
  	"                         (default is 8 horizontal, 2 vertical)\n",
  	ProgramName);

@@ -1,6 +1,11 @@
-#DPATCHLEVEL=1
---- fbset-2.1.orig/con2fbmap.1
-+++ fbset-2.1/con2fbmap.1
+Status: not-sent
+# This supposedly does not need to be sent upstream as there's fbutils,
+# although its development has stagnated.
+
+Index: b/con2fbmap.1
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ b/con2fbmap.1	2007-09-16 19:06:04.000000000 +0300
 @@ -0,0 +1,29 @@
 +.TH con2fbmap 1 2006-01-18 2.1 "Linux frame buffer utils"
 +.SH NAME
@@ -31,8 +36,10 @@
 +maps the identified console to said framebuffer device.
 +.TP
 +Sven LUTHER <luther@debian.org>
---- fbset-2.1.orig/con2fbmap.c
-+++ fbset-2.1/con2fbmap.c
+Index: b/con2fbmap.c
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ b/con2fbmap.c	2007-09-16 19:06:04.000000000 +0300
 @@ -0,0 +1,66 @@
 +#include <stdio.h>
 +#include <stdlib.h>

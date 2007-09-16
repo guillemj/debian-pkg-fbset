@@ -1,7 +1,10 @@
-#DPATCHLEVEL=1
---- fbset-2.1.orig/fbset.c
-+++ fbset-2.1/fbset.c
-@@ -710,7 +732,7 @@
+Status: sent-upstream
+
+Index: b/fbset.c
+===================================================================
+--- a/fbset.c	2007-09-16 19:05:34.000000000 +0300
++++ b/fbset.c	2007-09-16 19:06:06.000000000 +0300
+@@ -710,7 +710,7 @@ static void DisplayFBInfo(struct fb_fix_
  
      puts("Frame buffer device information:");
      printf("    Name        : %s\n", fix->id);
@@ -10,7 +13,7 @@
      printf("    Size        : %d\n", fix->smem_len);
      printf("    Type        : ");
      switch (fix->type) {
-@@ -780,7 +802,7 @@
+@@ -780,7 +780,7 @@ static void DisplayFBInfo(struct fb_fix_
      printf("    YWrapStep   : %d\n", fix->ywrapstep);
      printf("    LineLength  : %d\n", fix->line_length);
      if (fix->mmio_len) {
