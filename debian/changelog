@@ -14,6 +14,12 @@ fbset (2.1-20) UNRELEASED; urgency=low
     (Closes: #424250, #442561)
   * Fix bashisms in Makefile when creating directories. (Closes: #417476)
     - debian/patches/10_build.patch: Modified.
+  * Remove useless debconf note about device creation. (Closes: #390567)
+    - debian/fbset.templates: Remove.
+    - debian/fbset.config. Likewise.
+    - debian/po/: Likewise.
+    - debian/rules: Remove debconf support.
+    - debian/fbset.postinst: Likewise.
 
  -- Guillem Jover <guillem@debian.org>  Tue,  3 Oct 2006 05:33:24 +0300
 

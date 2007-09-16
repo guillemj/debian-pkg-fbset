@@ -21,9 +21,6 @@ UDEB_PACKAGE = $(PACKAGE)-udeb
 
 include /usr/share/quilt/quilt.make
 
-debian/po/templates.pot: debian/fbset.templates
-	@debconf-updatepo
-
 build: build-stamp
 build-stamp: patch debian/po/templates.pot
 	dh_testdir
@@ -79,7 +76,6 @@ binary-indep:
 binary-arch: install install-udeb
 	dh_testdir
 	dh_testroot
-	dh_installdebconf -a
 	dh_installdocs -a
 	dh_installexamples -a
 #	dh_installinit
