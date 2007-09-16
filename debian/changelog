@@ -1,4 +1,4 @@
-fbset (2.1-20) UNRELEASED; urgency=low
+fbset (2.1-20) unstable; urgency=low
 
   * Switched to quilt:
     - Add new debian/patches/series file.
@@ -24,7 +24,7 @@ fbset (2.1-20) UNRELEASED; urgency=low
   * Updated to linux kernel 2.6.22.3:
     - debian/doc/kernel-doc/: Sync.
 
- -- Guillem Jover <guillem@debian.org>  Tue,  3 Oct 2006 05:33:24 +0300
+ -- Guillem Jover <guillem@debian.org>  Sun, 16 Sep 2007 19:53:31 +0300
 
 fbset (2.1-19) unstable; urgency=low
 
