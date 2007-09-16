@@ -51,6 +51,9 @@ clean: unpatch
 	
 	$(MAKE) clean
 	
+	# FIXME: this can be removed once and if con2fbmap is merged upstream
+	rm -f con2fbmap
+	
 	dh_clean
 
 install: build

@@ -10,6 +10,8 @@ fbset (2.1-20) UNRELEASED; urgency=low
   * Add Vcs-Browser and Vcs-Svn fields.
   * Update download URL in debian/copyright.
   * Do not ignore errors from 'make clean' nor 'make install' in debian/rules.
+  * Remove con2fbmap on clean so that it does not FTBFS on a second row.
+    (Closes: #424250, #442561)
 
  -- Guillem Jover <guillem@debian.org>  Tue,  3 Oct 2006 05:33:24 +0300
 
