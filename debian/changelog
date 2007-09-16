@@ -20,6 +20,7 @@ fbset (2.1-20) UNRELEASED; urgency=low
     - debian/po/: Likewise.
     - debian/rules: Remove debconf support.
     - debian/fbset.postinst: Likewise.
+  * Only try to create the device node on '<postinst> configure'.
 
  -- Guillem Jover <guillem@debian.org>  Tue,  3 Oct 2006 05:33:24 +0300
 

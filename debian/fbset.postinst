@@ -4,15 +4,17 @@
 
 set -e
 
-# Create framebuffer devices if they don't exist,
-# and we are not using stuff like udev.
+case "$1" in
+configure)
+  # Create framebuffer devices if they don't exist,
+  # and we are not using stuff like udev.
 
-if [ ! -c /dev/fb0 ] ; then
-  if [ -e /dev/MAKEDEV ] ; then
+  if [ ! -c /dev/fb0 ] && [ -e /dev/MAKEDEV ] ; then
     cd /dev
     ./MAKEDEV fb
   fi
-fi
+  ;;
+esac
 
 #DEBHELPER#
 
