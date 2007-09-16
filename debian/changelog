@@ -9,7 +9,6 @@ fbset (2.1-20) UNRELEASED; urgency=low
   * Add a Homepage field.
   * Update download URL in debian/copyright.
   * Do not ignore errors from 'make clean' nor 'make install' in debian/rules.
-  * Add a Tag: field to the binary package, using the data from debtags.
 
  -- Guillem Jover <guillem@debian.org>  Tue,  3 Oct 2006 05:33:24 +0300
 
