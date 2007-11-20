@@ -78,15 +78,12 @@ binary-arch: install install-udeb
 	dh_testroot
 	dh_installdocs -a
 	dh_installexamples -a
-#	dh_installinit
 	dh_installman -a
-#	dh_installinfo
 	dh_installchangelogs -a
 	dh_link -a
 	dh_strip -a
 	dh_compress -a
 	dh_fixperms -a
-#	dh_makeshlibs
 	dh_installdeb -a
 	dh_shlibdeps -a
 	dh_gencontrol -a
