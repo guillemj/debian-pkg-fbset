@@ -10,8 +10,9 @@ configure)
   # and we are not using stuff like udev.
 
   if [ ! -c /dev/fb0 ] && [ -e /dev/MAKEDEV ] ; then
+    # Not being able to create the device files should not be fatal.
     cd /dev
-    ./MAKEDEV fb
+    ./MAKEDEV fb || true
   fi
   ;;
 esac

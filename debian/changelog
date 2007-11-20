@@ -1,6 +1,7 @@
 fbset (2.1-21) UNRELEASED; urgency=low
 
   * Remove commented out debhelper command calls.
+  * Make creating the device files non-fatal. (Closes: #444458)
 
  -- Guillem Jover <guillem@debian.org>  Tue, 20 Nov 2007 04:08:38 +0200
 
