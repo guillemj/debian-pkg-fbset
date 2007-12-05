@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Guillem Jover <guillem@debian.org>
 Standards-Version: 3.7.3
 Homepage: http://users.telenet.be/geertu/Linux/fbdev/
-Vcs-Browser: http://svn.debian.org/wsvn/pkg-fbset/trunk/
+Vcs-Browser: http://svn.debian.org/wsvn/pkg-fbset/
 Vcs-Svn: svn://svn.debian.org/pkg-fbset/trunk/
 Build-Depends: debhelper (>= 5), quilt (>= 0.40), flex, bison
 
