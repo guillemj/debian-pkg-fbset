@@ -2,7 +2,7 @@ Source: fbset
 Section: admin
 Priority: optional
 Maintainer: Guillem Jover <guillem@debian.org>
-Standards-Version: 3.7.2
+Standards-Version: 3.7.3
 Homepage: http://users.telenet.be/geertu/Linux/fbdev/
 Vcs-Browser: http://svn.debian.org/wsvn/pkg-fbset/trunk/
 Vcs-Svn: svn://svn.debian.org/pkg-fbset/trunk/
