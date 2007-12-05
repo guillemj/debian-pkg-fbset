@@ -17,7 +17,7 @@ Description: framebuffer device maintenance program
  parameters etc.
 
 Package: fbset-udeb
-XC-Package-Type: udeb
+Package-Type: udeb
 Section: debian-installer
 Priority: extra
 Architecture: any
