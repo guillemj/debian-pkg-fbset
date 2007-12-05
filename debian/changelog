@@ -5,6 +5,7 @@ fbset (2.1-22) UNRELEASED; urgency=low
   * Remove XC- from Package-Type field.
   * Now using Standards-Version 3.7.3 (no changes needed).
   * Remove 'trunk' from Vcs-Browser field.
+  * Remove obsolete dependency on devfsd.
 
  -- Guillem Jover <guillem@debian.org>  Wed, 05 Dec 2007 07:21:22 +0200
 
