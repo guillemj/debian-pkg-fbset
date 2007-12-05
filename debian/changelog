@@ -1,4 +1,4 @@
-fbset (2.1-22) UNRELEASED; urgency=low
+fbset (2.1-22) unstable; urgency=low
 
   * Add modes.tab.h as a Makefile target for modes.y to fix parallel FTBFS.
     - debian/patches/10_build.patch: Update.
@@ -7,7 +7,7 @@ fbset (2.1-22) UNRELEASED; urgency=low
   * Remove 'trunk' from Vcs-Browser field.
   * Remove obsolete dependency on devfsd.
 
- -- Guillem Jover <guillem@debian.org>  Wed, 05 Dec 2007 07:21:22 +0200
+ -- Guillem Jover <guillem@debian.org>  Wed, 05 Dec 2007 07:33:54 +0200
 
 fbset (2.1-21) unstable; urgency=low
 
