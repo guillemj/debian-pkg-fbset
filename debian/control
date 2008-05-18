@@ -28,5 +28,5 @@ Description: framebuffer device maintenance program
  parameters etc.
  .
  This contains the udeb, which is used for the debian-installer
- installation system. It won't work well on a normal debian system.
+ installation system. It won't work well on a normal Debian system.
 
