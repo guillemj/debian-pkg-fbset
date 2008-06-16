@@ -1,6 +1,7 @@
 fbset (2.1-23) UNRELEASED; urgency=low
 
   * Fix misspelling of Debian (from debian).
+  * Update packaging Vcs fields to the new URL.
 
  -- Guillem Jover <guillem@debian.org>  Sun, 18 May 2008 10:18:20 +0300
 
