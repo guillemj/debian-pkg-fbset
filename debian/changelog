@@ -6,6 +6,7 @@ fbset (2.1-23) UNRELEASED; urgency=low
   * Cleanup debian/copyright:
     - Change 'Upstream Author' to 'Copyright Holder'.
     - Use UTF-8 copyright symbol.
+  * Add a debian/README.source file.
 
  -- Guillem Jover <guillem@debian.org>  Sun, 18 May 2008 10:18:20 +0300
 
