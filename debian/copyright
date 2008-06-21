@@ -10,10 +10,6 @@ The upstream source was downloaded from:
 
     <http://users.telenet.be/geertu/Linux/fbdev/>
 
-The debian packages are maintained through Subversion on:
-
-    <svn://svn.debian.org/pkg-fbset/>
-
 Upstream Author:
 
     Copyright (C) 1995-1998 Geert Uytterhoeven <geert@linux-m68k.org>
