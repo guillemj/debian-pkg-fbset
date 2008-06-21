@@ -7,6 +7,7 @@ fbset (2.1-23) UNRELEASED; urgency=low
     - Change 'Upstream Author' to 'Copyright Holder'.
     - Use UTF-8 copyright symbol.
   * Add a debian/README.source file.
+  * Now using Standards-Version 3.8.0.
 
  -- Guillem Jover <guillem@debian.org>  Sun, 18 May 2008 10:18:20 +0300
 

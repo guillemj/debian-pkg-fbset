@@ -2,11 +2,11 @@ Source: fbset
 Section: admin
 Priority: optional
 Maintainer: Guillem Jover <guillem@debian.org>
-Standards-Version: 3.7.3
 Homepage: http://users.telenet.be/geertu/Linux/fbdev/
 Vcs-Browser: http://git.hadrons.org/?p=debian/pkgs/fbset.git
 Vcs-Git: git://git.hadrons.org/git/debian/pkgs/fbset.git
 Build-Depends: debhelper (>= 5), quilt (>= 0.40), flex, bison
+Standards-Version: 3.8.0
 
 Package: fbset
 Architecture: any
