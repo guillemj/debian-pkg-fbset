@@ -2,9 +2,9 @@ Status: sent-upstream
 
 Index: b/fbset.c
 ===================================================================
---- a/fbset.c	2007-09-16 19:06:11.000000000 +0300
-+++ b/fbset.c	2007-09-16 19:06:19.000000000 +0300
-@@ -200,6 +200,52 @@ static struct accelentry {
+--- a/fbset.c
++++ b/fbset.c
+@@ -200,6 +200,53 @@ static struct accelentry {
      { FB_ACCEL_SUN_CGTHREE, "Sun cg3" },
      { FB_ACCEL_SUN_TCX, "Sun tcx" },
      { FB_ACCEL_MATROX_MGAG400, "Matrox G400" },
@@ -54,6 +54,7 @@ Index: b/fbset.c
 +    { FB_ACCEL_NV_40, "nVidia Arch 40" },
 +    { FB_ACCEL_XGI_VOLARI_V, "XGI Volari V3XT, V5, V8" },
 +    { FB_ACCEL_XGI_VOLARI_Z, "XGI Volari Z7" },
++    { FB_ACCEL_OMAP1610, "TI OMAP16xx" },
  };
  
  

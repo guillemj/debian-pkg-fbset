@@ -11,6 +11,8 @@ fbset (2.1-23) UNRELEASED; urgency=low
   * Now using Standards-Version 3.8.0.
   * Update to Linux kernel 2.6.25.7:
     - debian/doc/kernel-doc/: Sync.
+    - debian/patches/01_kernel_fb.h.patch: Likewise.
+    - debian/patches/07_new_accels.patch: Add more accelerated cards.
 
  -- Guillem Jover <guillem@debian.org>  Sun, 18 May 2008 10:18:20 +0300
 
