@@ -9,6 +9,8 @@ fbset (2.1-23) UNRELEASED; urgency=low
     - Refer to GPL-2 from common-licenses instead of just GPL.
   * Add a debian/README.source file.
   * Now using Standards-Version 3.8.0.
+  * Update to Linux kernel 2.6.25.7:
+    - debian/doc/kernel-doc/: Sync.
 
  -- Guillem Jover <guillem@debian.org>  Sun, 18 May 2008 10:18:20 +0300
 
