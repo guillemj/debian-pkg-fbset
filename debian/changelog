@@ -57,7 +57,7 @@ fbset (2.1-20) unstable; urgency=low
     - debian/rules: Remove debconf support.
     - debian/fbset.postinst: Likewise.
   * Only try to create the device node on '<postinst> configure'.
-  * Updated to linux kernel 2.6.22.3:
+  * Updated to Linux kernel 2.6.22.3:
     - debian/doc/kernel-doc/: Sync.
 
  -- Guillem Jover <guillem@debian.org>  Sun, 16 Sep 2007 19:53:31 +0300
@@ -68,7 +68,7 @@ fbset (2.1-19) unstable; urgency=low
   * Fix Upstream URL in the debian/watch file.
   * Change section from base to admin, to match ftp-master override.
   * Run /dev/MAKEDEV in debian/fbset.postinst only if present. (Closes: #362794)
-  * Updated to linux kernel 2.6.17.4:
+  * Updated to Linux kernel 2.6.17.4:
     - debian/doc/kernel-doc/: Sync.
     - debian/modes/fb.modes.CyBla: Likewise.
   * Indent debian/copyright to 4 spaces.
@@ -90,7 +90,7 @@ fbset (2.1-18) unstable; urgency=low
   * Put framebuffer modes as full files:
     - debian/patches/02_fb_modes.patch: Move full files to ...
     - debian/modes/: ... here.
-  * Updated to linux kernel 2.6.15:
+  * Updated to Linux kernel 2.6.15:
     - debian/doc/kernel-doc/: Sync.
     - debian/modes/fb.modes.CyBla: New file.
     - debian/patches/01_kernel_fb.h.patch: Likewise.
@@ -130,7 +130,7 @@ fbset (2.1-16) unstable; urgency=low
   * Provide a patch target instead of pre-build.
     - debian/patch.mk: Likewise.
     - debian/rules: Fix accordingly.
-  * Updated to linux kernel 2.6.10:
+  * Updated to Linux kernel 2.6.10:
     - debian/doc/kernel-doc/: Sync.
     - debian/patches/01_kernel_fb.h.patch: Likewise.
     - debian/patches/07_new_accels.patch: Add more accelerated cards.
@@ -146,7 +146,7 @@ fbset (2.1-15) unstable; urgency=low
     - Added the location of the Subversion repo used for the packages.
     - Use "License:" instead of "Copyright:".
   * Updated to debhelper >= 4.2 and use its udeb support.
-  * Updated to linux kernel 2.6.9:
+  * Updated to Linux kernel 2.6.9:
     - debian/doc/kernel-doc/
   * Templates:
     - Italian (Closes: #279013)
@@ -158,7 +158,7 @@ fbset (2.1-14) unstable; urgency=low
 
   * Templates:
     - Danish (da.po): Initial translation by Claus Hindsgaul.
-  * Updated to linux kernel 2.6.4:
+  * Updated to Linux kernel 2.6.4:
     - debian/doc/kernel-doc/
 
  -- Guillem Jover <guillem@debian.org>  Sun, 21 Mar 2004 20:40:15 +0100
@@ -167,7 +167,7 @@ fbset (2.1-13) unstable; urgency=low
 
   * debian/changelog: Converted encoding to UTF-8.
   * debian/control: Lower case first letter from package descriptions.
-  * Updated to linux kernel 2.6.1:
+  * Updated to Linux kernel 2.6.1:
     - debian/doc/kernel-doc/
   * Templates:
     - Japanese (Closes: #227813)
@@ -179,7 +179,7 @@ fbset (2.1-12) unstable; urgency=low
 
   * Split diff into patches.
   * Use debian/patch.mk.
-  * Updated to linux kernel 2.6.0-test9:
+  * Updated to Linux kernel 2.6.0-test9:
     - debian/doc/kernel-doc/
     - debian/doc/FAQ: Added question about fbset working under 2.6.
       Added a question about driver name change.
