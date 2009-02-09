@@ -56,7 +56,7 @@ clean: unpatch
 install: build
 	dh_testdir
 	dh_testroot
-	dh_clean -k -p$(PACKAGE)
+	dh_prep -p$(PACKAGE)
 	dh_installdirs
 	
 	$(MAKE) install DESTDIR=$(CURDIR)/debian/$(PACKAGE)
@@ -64,7 +64,7 @@ install: build
 install-udeb: build-udeb
 	dh_testdir
 	dh_testroot
-	dh_clean -k -p$(UDEB_PACKAGE)
+	dh_prep -p$(UDEB_PACKAGE)
 	dh_installdirs
 	
 	$(MAKE) install DESTDIR=$(CURDIR)/debian/$(UDEB_PACKAGE)

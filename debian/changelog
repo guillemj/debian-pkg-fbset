@@ -1,6 +1,7 @@
 fbset (2.1-24) UNRELEASED; urgency=low
 
   * Switch to debhelper compatibility level 7.
+  * Use dh_prep instead of “dh_clean -k”.
 
  -- Guillem Jover <guillem@debian.org>  Mon, 09 Feb 2009 21:56:13 +0200
 
