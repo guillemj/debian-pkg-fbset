@@ -1,3 +1,9 @@
+fbset (2.1-24) UNRELEASED; urgency=low
+
+  * Switch to debhelper compatibility level 7.
+
+ -- Guillem Jover <guillem@debian.org>  Mon, 09 Feb 2009 21:56:13 +0200
+
 fbset (2.1-23) unstable; urgency=low
 
   * Fix misspelling of Debian (from debian).
