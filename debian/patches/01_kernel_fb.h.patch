@@ -1,13 +1,17 @@
 Status: sent-upstream
 
-Index: b/fb.h
-===================================================================
+---
+ fb.h | 1154 +++++++++++++++++++++++++++++++++++++++++++++++++++----------------
+ 1 file changed, 892 insertions(+), 262 deletions(-)
+
 --- a/fb.h
 +++ b/fb.h
-@@ -2,15 +2,14 @@
+@@ -1,16 +1,14 @@
+ #ifndef _LINUX_FB_H
  #define _LINUX_FB_H
  
- #include <asm/types.h>
+-#include <asm/types.h>
++#include <linux/types.h>
 +#include <linux/i2c.h>
  
 -/* Definitions of frame buffers						*/
@@ -20,12 +24,11 @@ Index: b/fb.h
 -#define FB_NUM_MINORS		256	/* 256 Minors               */
 -#define FB_MAX			(FB_NUM_MINORS / (1 << FB_MODES_SHIFT))
 -#define GET_FB_IDX(node)	(MINOR(node) >> FB_MODES_SHIFT)
-+#define FB_MAJOR		29
 +#define FB_MAX			32	/* sufficient for now */
  
  /* ioctls
     0x46 is 'F'								*/
-@@ -20,12 +19,26 @@
+@@ -20,12 +18,26 @@
  #define FBIOGETCMAP		0x4604
  #define FBIOPUTCMAP		0x4605
  #define FBIOPAN_DISPLAY		0x4606
@@ -52,7 +55,7 @@ Index: b/fb.h
  
  #define FB_TYPE_PACKED_PIXELS		0	/* Packed Pixels	*/
  #define FB_TYPE_PLANES			1	/* Non interleaved planes */
-@@ -38,6 +51,13 @@
+@@ -38,6 +50,13 @@
  #define FB_AUX_TEXT_S3_MMIO	2	/* S3 MMIO fasttext */
  #define FB_AUX_TEXT_MGA_STEP16	3	/* MGA Millenium I: text, attr, 14 reserved bytes */
  #define FB_AUX_TEXT_MGA_STEP8	4	/* other MGAs:      text, attr,  6 reserved bytes */
@@ -66,7 +69,7 @@ Index: b/fb.h
  
  #define FB_AUX_VGA_PLANES_VGA4		0	/* 16 color planes (EGA/VGA) */
  #define FB_AUX_VGA_PLANES_CFB4		1	/* CFB4 in planes (VGA) */
-@@ -73,14 +93,62 @@
+@@ -73,14 +92,68 @@
  #define FB_ACCEL_MATROX_MGAG100	20	/* Matrox G100 (Productiva G100) */
  #define FB_ACCEL_MATROX_MGAG200	21	/* Matrox G200 (Myst, Mill, ...) */
  #define FB_ACCEL_SUN_CG14	22	/* Sun cgfourteen		 */
@@ -101,6 +104,11 @@ Index: b/fb.h
 +#define FB_ACCEL_XGI_VOLARI_V	47	/* XGI Volari V3XT, V5, V8      */
 +#define FB_ACCEL_XGI_VOLARI_Z	48	/* XGI Volari Z7                */
 +#define FB_ACCEL_OMAP1610	49	/* TI OMAP16xx                  */
++#define FB_ACCEL_TRIDENT_TGUI	50	/* Trident TGUI			*/
++#define FB_ACCEL_TRIDENT_3DIMAGE 51	/* Trident 3DImage		*/
++#define FB_ACCEL_TRIDENT_BLADE3D 52	/* Trident Blade3D		*/
++#define FB_ACCEL_TRIDENT_BLADEXP 53	/* Trident BladeXP		*/
++#define FB_ACCEL_CIRRUS_ALPINE   53	/* Cirrus Logic 543x/544x/5480	*/
 +#define FB_ACCEL_NEOMAGIC_NM2070 90	/* NeoMagic NM2070              */
 +#define FB_ACCEL_NEOMAGIC_NM2090 91	/* NeoMagic NM2090              */
 +#define FB_ACCEL_NEOMAGIC_NM2093 92	/* NeoMagic NM2093              */
@@ -110,6 +118,7 @@ Index: b/fb.h
 +#define FB_ACCEL_NEOMAGIC_NM2230 96	/* NeoMagic NM2230              */
 +#define FB_ACCEL_NEOMAGIC_NM2360 97	/* NeoMagic NM2360              */
 +#define FB_ACCEL_NEOMAGIC_NM2380 98	/* NeoMagic NM2380              */
++#define FB_ACCEL_PXA3XX		 99	/* PXA3xx			*/
 +
 +#define FB_ACCEL_SAVAGE4        0x80	/* S3 Savage4                   */
 +#define FB_ACCEL_SAVAGE3D       0x81	/* S3 Savage3D                  */
@@ -134,7 +143,7 @@ Index: b/fb.h
  					/* (physical address) */
  	__u32 smem_len;			/* Length of frame buffer mem */
  	__u32 type;			/* see FB_TYPE_*		*/
-@@ -90,10 +158,11 @@ struct fb_fix_screeninfo {
+@@ -90,18 +163,23 @@ struct fb_fix_screeninfo {
  	__u16 ypanstep;			/* zero if no hardware panning  */
  	__u16 ywrapstep;		/* zero if no hardware ywrap    */
  	__u32 line_length;		/* length of a line in bytes    */
@@ -148,7 +157,21 @@ Index: b/fb.h
  	__u16 reserved[3];		/* Reserved for future compatibility */
  };
  
-@@ -111,6 +180,7 @@ struct fb_bitfield {
+ /* Interpretation of offset for color fields: All offsets are from the right,
+  * inside a "pixel" value, which is exactly 'bits_per_pixel' wide (means: you
+  * can use the offset as right argument to <<). A pixel afterwards is a bit
+- * stream and is written to video memory as that unmodified. This implies
+- * big-endian byte order if bits_per_pixel is greater than 8.
++ * stream and is written to video memory as that unmodified.
++ *
++ * For pseudocolor: offset and length should be the same for all color
++ * components. Offset specifies the position of the least significant bit
++ * of the pallette index in a pixel value. Length indicates the number
++ * of available palette entries (i.e. # of entries = 1 << length).
+  */
+ struct fb_bitfield {
+ 	__u32 offset;			/* beginning of bitfield	*/
+@@ -111,6 +189,7 @@ struct fb_bitfield {
  };
  
  #define FB_NONSTD_HAM		1	/* Hold-And-Modify (HAM)        */
@@ -156,7 +179,7 @@ Index: b/fb.h
  
  #define FB_ACTIVATE_NOW		0	/* set values immediately (or vbl)*/
  #define FB_ACTIVATE_NXTOPEN	1	/* activate on next open	*/
-@@ -120,8 +190,10 @@ struct fb_bitfield {
+@@ -120,8 +199,10 @@ struct fb_bitfield {
  #define FB_ACTIVATE_VBL	       16	/* activate values on next vbl  */
  #define FB_CHANGE_CMAP_VBL     32	/* change colormap on vbl	*/
  #define FB_ACTIVATE_ALL	       64	/* change all VCs on this fb	*/
@@ -168,7 +191,7 @@ Index: b/fb.h
  
  #define FB_SYNC_HOR_HIGH_ACT	1	/* horizontal sync high active	*/
  #define FB_SYNC_VERT_HIGH_ACT	2	/* vertical sync high active	*/
-@@ -135,12 +207,24 @@ struct fb_bitfield {
+@@ -135,12 +216,24 @@ struct fb_bitfield {
  #define FB_VMODE_NONINTERLACED  0	/* non interlaced */
  #define FB_VMODE_INTERLACED	1	/* interlaced	*/
  #define FB_VMODE_DOUBLE		2	/* double scan */
@@ -193,7 +216,7 @@ Index: b/fb.h
  struct fb_var_screeninfo {
  	__u32 xres;			/* visible resolution		*/
  	__u32 yres;
-@@ -164,7 +248,7 @@ struct fb_var_screeninfo {
+@@ -164,7 +257,7 @@ struct fb_var_screeninfo {
  	__u32 height;			/* height of picture in mm    */
  	__u32 width;			/* width of picture in mm     */
  
@@ -202,7 +225,7 @@ Index: b/fb.h
  
  	/* Timing: All values in pixclocks, except pixclock (of course) */
  	__u32 pixclock;			/* pixel clock in ps (pico seconds) */
-@@ -176,7 +260,8 @@ struct fb_var_screeninfo {
+@@ -176,7 +269,8 @@ struct fb_var_screeninfo {
  	__u32 vsync_len;		/* length of vertical sync	*/
  	__u32 sync;			/* see FB_SYNC_*		*/
  	__u32 vmode;			/* see FB_VMODE_*		*/
@@ -212,7 +235,7 @@ Index: b/fb.h
  };
  
  struct fb_cmap {
-@@ -193,305 +278,799 @@ struct fb_con2fbmap {
+@@ -193,305 +287,841 @@ struct fb_con2fbmap {
  	__u32 framebuffer;
  };
  
@@ -275,8 +298,8 @@ Index: b/fb.h
 +	__u32 height;
 +	__u32 sx;
 +	__u32 sy;
- };
- 
++};
++
 +struct fb_fillrect {
 +	__u32 dx;	/* screen-relative */
 +	__u32 dy;
@@ -321,8 +344,8 @@ Index: b/fb.h
 +	const char *mask;	/* cursor mask bits */
 +	struct fbcurpos hot;	/* cursor hot spot */
 +	struct fb_image	image;	/* Cursor image */
-+};
-+
+ };
+ 
 +#ifdef CONFIG_FB_BACKLIGHT
 +/* Settings for the generic backlight code */
 +#define FB_BACKLIGHT_LEVELS	128
@@ -444,8 +467,8 @@ Index: b/fb.h
 +	__u8  revision;			/* ...and revision */
 +	__u8  max_x;			/* Maximum horizontal size (cm) */
 +	__u8  max_y;			/* Maximum vertical size (cm) */
- };
- 
++};
++
 +struct fb_cmap_user {
 +	__u32 start;			/* First entry	*/
 +	__u32 len;			/* Number of entries */
@@ -453,6 +476,18 @@ Index: b/fb.h
 +	__u16 __user *green;
 +	__u16 __user *blue;
 +	__u16 __user *transp;		/* transparency, can be NULL */
+ };
+ 
++struct fb_image_user {
++	__u32 dx;			/* Where to place image */
++	__u32 dy;
++	__u32 width;			/* Size of image */
++	__u32 height;
++	__u32 fg_color;			/* Only used when a mono bitmap */
++	__u32 bg_color;
++	__u8  depth;			/* Depth of the image */
++	const char __user *data;	/* Pointer to image data */
++	struct fb_cmap_user cmap;	/* color map info */
 +};
  
 -   /*
@@ -484,19 +519,6 @@ Index: b/fb.h
 -    struct fb_var_cursorinfo *vcrsr;
 -    struct fb_cursorstate crsrstate;
 -#endif
-+struct fb_image_user {
-+	__u32 dx;			/* Where to place image */
-+	__u32 dy;
-+	__u32 width;			/* Size of image */
-+	__u32 height;
-+	__u32 fg_color;			/* Only used when a mono bitmap */
-+	__u32 bg_color;
-+	__u8  depth;			/* Depth of the image */
-+	const char __user *data;	/* Pointer to image data */
-+	struct fb_cmap_user cmap;	/* color map info */
-+};
- 
--    /* Filled in by the low-level console driver */
 +struct fb_cursor_user {
 +	__u16 set;			/* what to set */
 +	__u16 enable;			/* cursor on/off */
@@ -505,6 +527,11 @@ Index: b/fb.h
 +	struct fbcurpos hot;		/* cursor hot spot */
 +	struct fb_image_user image;	/* Cursor image */
 +};
+ 
+-    /* Filled in by the low-level console driver */
++/*
++ * Register/unregister for framebuffer events
++ */
  
 -    struct vc_data *conp;           /* pointer to console data */
 -    struct fb_info *fb_info;        /* frame buffer for this console */
@@ -525,10 +552,6 @@ Index: b/fb.h
 -    short yscroll;                  /* Hardware scrolling */
 -    unsigned char fgshift, bgshift;
 -    unsigned short charmask;	    /* 0xff or 0x1ff */
-+/*
-+ * Register/unregister for framebuffer events
-+ */
-+
 +/*	The resolution of the passed in fb_info about to change */ 
 +#define FB_EVENT_MODE_CHANGE		0x01
 +/*	The display on this fb_info is beeing suspended, no access to the
@@ -647,7 +670,14 @@ Index: b/fb.h
 -     *  mandatory but used by the `generic' frame buffer operations.
 -     *  Read drivers/video/skeletonfb.c for more information.
 -     */
--
++/*
++ * Frame buffer operations
++ *
++ * LOCKING NOTE: those functions must _ALL_ be called with the console
++ * semaphore held, this is the only suitable locking mechanism we have
++ * in 2.6. Some may be called at interrupt time at this point though.
++ */
+ 
 -struct fbgen_hwswitch {
 -    void (*detect)(void);
 -    int (*encode_fix)(struct fb_fix_screeninfo *fix, const void *par,
@@ -676,15 +706,6 @@ Index: b/fb.h
 -    /* Yes, this starts looking like C++ */
 -    u_int parsize;
 -    struct fbgen_hwswitch *fbhw;
-+/*
-+ * Frame buffer operations
-+ *
-+ * LOCKING NOTE: those functions must _ALL_ be called with the console
-+ * semaphore held, this is the only suitable locking mechanism we have
-+ * in 2.6. Some may be called at interrupt time at this point though.
-+ */
- 
--   /* From here on everything is device dependent */
 +struct fb_ops {
 +	/* open/release and usage marking */
 +	struct module *owner;
@@ -746,15 +767,13 @@ Index: b/fb.h
 +	/* perform fb specific mmap */
 +	int (*fb_mmap)(struct fb_info *info, struct vm_area_struct *vma);
 +
-+	/* save current hardware state */
-+	void (*fb_save_state)(struct fb_info *info);
-+
-+	/* restore saved state */
-+	void (*fb_restore_state)(struct fb_info *info);
-+
 +	/* get capability given var */
 +	void (*fb_get_caps)(struct fb_info *info, struct fb_blit_caps *caps,
 +			    struct fb_var_screeninfo *var);
+ 
+-   /* From here on everything is device dependent */
++	/* teardown any resources to do with this framebuffer */
++	void (*fb_destroy)(struct fb_info *info);
  };
  
 -    /*
@@ -895,6 +914,8 @@ Index: b/fb.h
 +#define FBINFO_MISC_USEREVENT          0x10000 /* event request
 +						  from userspace */
 +#define FBINFO_MISC_TILEBLITTING       0x20000 /* use tile blitting */
++#define FBINFO_MISC_FIRMWARE           0x40000 /* a replaceable firmware
++						  inited framebuffer */
 +
 +/* A driver may set this flag to indicate that it does want a set_par to be
 + * called every time when fbcon_switch is executed. The advantage is that with
@@ -914,9 +935,22 @@ Index: b/fb.h
 -extern int fbmon_valid_timings(u_int pixclock, u_int htotal, u_int vtotal,
 -			       const struct fb_info *fb_info);
 -extern int fbmon_dpms(const struct fb_info *fb_info);
++/*
++ * Host and GPU endianness differ.
++ */
++#define FBINFO_FOREIGN_ENDIAN	0x100000
++/*
++ * Big endian math. This is the same flags as above, but with different
++ * meaning, it is set by the fb subsystem depending FOREIGN_ENDIAN flag
++ * and host endianness. Drivers should not use this flag.
++ */
++#define FBINFO_BE_MATH  0x100000
+ 
 +struct fb_info {
 +	int node;
 +	int flags;
++	struct mutex lock;		/* Lock for open/release/ioctl funcs */
++	struct mutex mm_lock;		/* Lock for fb_mmap and smem_* fields */
 +	struct fb_var_screeninfo var;	/* Current var */
 +	struct fb_fix_screeninfo fix;	/* Current fix */
 +	struct fb_monspecs monspecs;	/* Current Monitor specs */
@@ -942,6 +976,9 @@ Index: b/fb.h
 +	struct fb_deferred_io *fbdefio;
 +#endif
  
+-extern int num_registered_fb;
+-extern struct fb_info *registered_fb[FB_MAX];
+-extern char con2fb_map[MAX_NR_CONSOLES];
 +	struct fb_ops *fbops;
 +	struct device *device;		/* This is the parent */
 +	struct device *dev;		/* This is this fb device */
@@ -957,12 +994,14 @@ Index: b/fb.h
 +	u32 state;			/* Hardware state i.e suspend */
 +	void *fbcon_par;                /* fbcon use-only private area */
 +	/* From here on everything is device dependent */
-+	void *par;	
++	void *par;
++	/* we need the PCI or similiar aperture base/size not
++	   smem_start/size as smem_start may just be an object
++	   allocated inside the aperture so may not actually overlap */
++	resource_size_t aperture_base;
++	resource_size_t aperture_size;
 +};
- 
--extern int num_registered_fb;
--extern struct fb_info *registered_fb[FB_MAX];
--extern char con2fb_map[MAX_NR_CONSOLES];
++
 +#ifdef MODULE
 +#define FBINFO_DEFAULT	FBINFO_MODULE
 +#else
@@ -1021,7 +1060,7 @@ Index: b/fb.h
 +#define fb_writeq sbus_writeq
 +#define fb_memset sbus_memset_io
 +
-+#elif defined(__i386__) || defined(__alpha__) || defined(__x86_64__) || defined(__hppa__) || (defined(__sh__) && !defined(__SH5__)) || defined(__powerpc__) || defined(__avr32__)
++#elif defined(__i386__) || defined(__alpha__) || defined(__x86_64__) || defined(__hppa__) || defined(__sh__) || defined(__powerpc__) || defined(__avr32__) || defined(__bfin__)
 +
 +#define fb_readb __raw_readb
 +#define fb_readw __raw_readw
@@ -1050,24 +1089,16 @@ Index: b/fb.h
  
  #endif
  
-+#if defined (__BIG_ENDIAN)
-+#define FB_LEFT_POS(bpp)          (32 - bpp)
-+#define FB_SHIFT_HIGH(val, bits)  ((val) >> (bits))
-+#define FB_SHIFT_LOW(val, bits)   ((val) << (bits))
-+#else
-+#define FB_LEFT_POS(bpp)          (0)
-+#define FB_SHIFT_HIGH(val, bits)  ((val) << (bits))
-+#define FB_SHIFT_LOW(val, bits)   ((val) >> (bits))
-+#endif
- 
--#if 1 /* Preliminary */
++#define FB_LEFT_POS(p, bpp)          (fb_be_math(p) ? (32 - (bpp)) : 0)
++#define FB_SHIFT_HIGH(p, val, bits)  (fb_be_math(p) ? (val) >> (bits) : \
++						      (val) << (bits))
++#define FB_SHIFT_LOW(p, val, bits)   (fb_be_math(p) ? (val) << (bits) : \
++						      (val) >> (bits))
++
 +    /*
 +     *  `Generic' versions of the frame buffer device operations
 +     */
- 
--   /*
--    *    Hardware Cursor
--    */
++
 +extern int fb_set_var(struct fb_info *info, struct fb_var_screeninfo *var); 
 +extern int fb_pan_display(struct fb_info *info, struct fb_var_screeninfo *var); 
 +extern int fb_blank(struct fb_info *info, int blank);
@@ -1084,7 +1115,8 @@ Index: b/fb.h
 +			   size_t count, loff_t *ppos);
 +extern ssize_t fb_sys_write(struct fb_info *info, const char __user *buf,
 +			    size_t count, loff_t *ppos);
-+
+ 
+-#if 1 /* Preliminary */
 +/* drivers/video/fbmem.c */
 +extern int register_framebuffer(struct fb_info *fb_info);
 +extern int unregister_framebuffer(struct fb_info *fb_info);
@@ -1100,15 +1132,25 @@ Index: b/fb.h
 +extern int fb_get_options(char *name, char **option);
 +extern int fb_new_modelist(struct fb_info *info);
  
+-   /*
+-    *    Hardware Cursor
+-    */
++extern struct fb_info *registered_fb[FB_MAX];
++extern int num_registered_fb;
++extern struct class *fb_class;
+ 
 -#define FBIOGET_FCURSORINFO     0x4607
 -#define FBIOGET_VCURSORINFO     0x4608
 -#define FBIOPUT_VCURSORINFO     0x4609
 -#define FBIOGET_CURSORSTATE     0x460A
 -#define FBIOPUT_CURSORSTATE     0x460B
-+extern struct fb_info *registered_fb[FB_MAX];
-+extern int num_registered_fb;
-+extern struct class *fb_class;
++extern int lock_fb_info(struct fb_info *info);
  
++static inline void unlock_fb_info(struct fb_info *info)
++{
++	mutex_unlock(&info->lock);
++}
++
 +static inline void __fb_pad_aligned_buffer(u8 *dst, u32 d_pitch,
 +					   u8 *src, u32 s_pitch, u32 height)
 +{
@@ -1126,9 +1168,31 @@ Index: b/fb.h
 +
 +/* drivers/video/fb_defio.c */
 +extern void fb_deferred_io_init(struct fb_info *info);
++extern void fb_deferred_io_open(struct fb_info *info,
++				struct inode *inode,
++				struct file *file);
 +extern void fb_deferred_io_cleanup(struct fb_info *info);
 +extern int fb_deferred_io_fsync(struct file *file, struct dentry *dentry,
 +				int datasync);
++
++static inline bool fb_be_math(struct fb_info *info)
++{
++#ifdef CONFIG_FB_FOREIGN_ENDIAN
++#if defined(CONFIG_FB_BOTH_ENDIAN)
++	return info->flags & FBINFO_BE_MATH;
++#elif defined(CONFIG_FB_BIG_ENDIAN)
++	return true;
++#elif defined(CONFIG_FB_LITTLE_ENDIAN)
++	return false;
++#endif /* CONFIG_FB_BOTH_ENDIAN */
++#else
++#ifdef __BIG_ENDIAN
++	return true;
++#else
++	return false;
++#endif /* __BIG_ENDIAN */
++#endif /* CONFIG_FB_FOREIGN_ENDIAN */
++}
 +
 +/* drivers/video/fbsysfs.c */
 +extern struct fb_info *framebuffer_alloc(size_t size, struct device *dev);
@@ -1196,13 +1260,7 @@ Index: b/fb.h
 +				     struct list_head *head);
 +extern const struct fb_videomode *fb_find_best_display(const struct fb_monspecs *specs,
 +						       struct list_head *head);
- 
--struct fb_var_cursorinfo {
--	__u16 width;
--	__u16 height;
--	__u16 xspot;
--	__u16 yspot;
--	__u8 data[1];			/* field with [height][width]        */
++
 +/* drivers/video/fbcmap.c */
 +extern int fb_alloc_cmap(struct fb_cmap *cmap, int len, int transp);
 +extern void fb_dealloc_cmap(struct fb_cmap *cmap);
@@ -1212,7 +1270,13 @@ Index: b/fb.h
 +extern int fb_set_user_cmap(struct fb_cmap_user *cmap, struct fb_info *fb_info);
 +extern const struct fb_cmap *fb_default_cmap(int len);
 +extern void fb_invert_cmaps(void);
-+
+ 
+-struct fb_var_cursorinfo {
+-	__u16 width;
+-	__u16 height;
+-	__u16 xspot;
+-	__u16 yspot;
+-	__u8 data[1];			/* field with [height][width]        */
 +struct fb_videomode {
 +	const char *name;	/* optional */
 +	u32 refresh;		/* optional */

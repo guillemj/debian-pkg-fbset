@@ -1,10 +1,12 @@
 Status: sent-upstream
 
-Index: b/fbset.c
-===================================================================
+---
+ fbset.c |   53 +++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 53 insertions(+)
+
 --- a/fbset.c
 +++ b/fbset.c
-@@ -200,6 +200,53 @@ static struct accelentry {
+@@ -200,6 +200,59 @@ static struct accelentry {
      { FB_ACCEL_SUN_CGTHREE, "Sun cg3" },
      { FB_ACCEL_SUN_TCX, "Sun tcx" },
      { FB_ACCEL_MATROX_MGAG400, "Matrox G400" },
@@ -33,6 +35,7 @@ Index: b/fbset.c
 +    { FB_ACCEL_NEOMAGIC_NM2230, "NeoMagic NM2230" },
 +    { FB_ACCEL_NEOMAGIC_NM2360, "NeoMagic NM2360" },
 +    { FB_ACCEL_NEOMAGIC_NM2380, "NeoMagic NM2380" },
++    { FB_ACCEL_PXA3XX, "PXA3xx" },
 +    { FB_ACCEL_SAVAGE4, "S3 Savage4" },
 +    { FB_ACCEL_SAVAGE3D, "S3 Savage3D" },
 +    { FB_ACCEL_SAVAGE3D_MV, "S3 Savage3D-MV" },
@@ -55,6 +58,11 @@ Index: b/fbset.c
 +    { FB_ACCEL_XGI_VOLARI_V, "XGI Volari V3XT, V5, V8" },
 +    { FB_ACCEL_XGI_VOLARI_Z, "XGI Volari Z7" },
 +    { FB_ACCEL_OMAP1610, "TI OMAP16xx" },
++    { FB_ACCEL_TRIDENT_TGUI, "Trident TGUI" },
++    { FB_ACCEL_TRIDENT_3DIMAGE, "Trident 3DImage" },
++    { FB_ACCEL_TRIDENT_BLADE3D, "Trident Blade3D" },
++    { FB_ACCEL_TRIDENT_BLADEXP, "Trident BladeXP" },
++    { FB_ACCEL_CIRRUS_ALPINE, "Cirrus Logic 543x/544x/5480" },
  };
  
  
