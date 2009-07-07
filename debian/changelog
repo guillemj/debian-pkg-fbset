@@ -4,6 +4,7 @@ fbset (2.1-24) UNRELEASED; urgency=low
   * Use dh_prep instead of “dh_clean -k”.
   * Use $(filter ...) instead of $(findstring ...) to extract space separated
     options from DEB_BUILD_OPTIONS in debian/rules.
+  * Now using Standards-Version 3.8.3 (no changes needed).
 
  -- Guillem Jover <guillem@debian.org>  Mon, 09 Feb 2009 21:56:13 +0200
 
