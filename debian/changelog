@@ -5,6 +5,8 @@ fbset (2.1-24) UNRELEASED; urgency=low
   * Use $(filter ...) instead of $(findstring ...) to extract space separated
     options from DEB_BUILD_OPTIONS in debian/rules.
   * Now using Standards-Version 3.8.3 (no changes needed).
+  * Update to Linux kernel 2.6.32-rc7:
+    - debian/doc/kernel-doc/: Sync.
 
  -- Guillem Jover <guillem@debian.org>  Mon, 09 Feb 2009 21:56:13 +0200
 
