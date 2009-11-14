@@ -1,4 +1,4 @@
-fbset (2.1-24) UNRELEASED; urgency=low
+fbset (2.1-24) unstable; urgency=low
 
   * Switch to debhelper compatibility level 7.
   * Use dh_prep instead of “dh_clean -k”.
@@ -18,7 +18,7 @@ fbset (2.1-24) UNRELEASED; urgency=low
     - Remove patch and unpatch targets from debian/rules.
     - Remove now unneeded debian/README.source.
 
- -- Guillem Jover <guillem@debian.org>  Mon, 09 Feb 2009 21:56:13 +0200
+ -- Guillem Jover <guillem@debian.org>  Sat, 14 Nov 2009 03:23:30 +0100
 
 fbset (2.1-23) unstable; urgency=low
 
