@@ -12,6 +12,11 @@ fbset (2.1-24) UNRELEASED; urgency=low
     - debian/modes/fb.modes.viafb: New modes file.
   * Remove ‘+’ line prefixes in ATI modes files from the time .diff.gz
     changes got converted to standalone files.
+  * Switch to source format “3.0 (quilt)”:
+    - Remove quilt from Build-Depends.
+    - Remove quilt.make include from debian/rules.
+    - Remove patch and unpatch targets from debian/rules.
+    - Remove now unneeded debian/README.source.
 
  -- Guillem Jover <guillem@debian.org>  Mon, 09 Feb 2009 21:56:13 +0200
 

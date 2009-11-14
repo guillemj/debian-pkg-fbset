@@ -19,10 +19,8 @@ endif
 PACKAGE = fbset
 UDEB_PACKAGE = $(PACKAGE)-udeb
 
-include /usr/share/quilt/quilt.make
-
 build: build-stamp
-build-stamp: patch
+build-stamp:
 	dh_testdir
 	
 	rm -f build-stamp*
@@ -32,7 +30,7 @@ build-stamp: patch
 	touch $@
 
 build-udeb: build-stamp-udeb
-build-stamp-udeb: patch
+build-stamp-udeb:
 	dh_testdir
 	
 	rm -f build-stamp*
@@ -41,7 +39,7 @@ build-stamp-udeb: patch
 	
 	touch $@
 
-clean: unpatch
+clean:
 	dh_testdir
 	dh_testroot
 	rm -f build-stamp*
