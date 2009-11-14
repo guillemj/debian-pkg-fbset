@@ -10,6 +10,8 @@ fbset (2.1-24) UNRELEASED; urgency=low
     - debian/patches/01_kernel_fb.h.patch: Likewise.
     - debian/patches/07_new_accels.patch: Add more accelerated cards.
     - debian/modes/fb.modes.viafb: New modes file.
+  * Remove ‘+’ line prefixes in ATI modes files from the time .diff.gz
+    changes got converted to standalone files.
 
  -- Guillem Jover <guillem@debian.org>  Mon, 09 Feb 2009 21:56:13 +0200
 
