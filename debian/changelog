@@ -9,6 +9,7 @@ fbset (2.1-24) UNRELEASED; urgency=low
     - debian/doc/kernel-doc/: Sync.
     - debian/patches/01_kernel_fb.h.patch: Likewise.
     - debian/patches/07_new_accels.patch: Add more accelerated cards.
+    - debian/modes/fb.modes.viafb: New modes file.
 
  -- Guillem Jover <guillem@debian.org>  Mon, 09 Feb 2009 21:56:13 +0200
 
