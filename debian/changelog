@@ -1,3 +1,12 @@
+fbset (2.1-25) UNRELEASED; urgency=low
+
+  * Fix some missinformation in fbset(8).
+    - Use an actual mode (“640x480-60”) instead of “vga” in the example.
+    - Point to the correct path for the compressed FAQ.
+    Thanks to Pavel Machek <pavel@ucw.cz>. Closes: #577449
+
+ -- Guillem Jover <guillem@debian.org>  Mon, 12 Apr 2010 01:37:54 +0200
+
 fbset (2.1-24) unstable; urgency=low
 
   * Switch to debhelper compatibility level 7.
