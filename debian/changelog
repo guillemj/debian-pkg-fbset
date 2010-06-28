@@ -6,6 +6,7 @@ fbset (2.1-25) UNRELEASED; urgency=low
     Thanks to Pavel Machek <pavel@ucw.cz>. Closes: #577449
   * Invert alternative dependency order for “makedev | udev” so that udev
     which has a higher priority goes first. Closes: #546865
+  * Change binary package Architecture field values from any to linux-any.
 
  -- Guillem Jover <guillem@debian.org>  Mon, 12 Apr 2010 01:37:54 +0200
 

@@ -9,7 +9,7 @@ Build-Depends: debhelper (>= 7), flex, bison
 Standards-Version: 3.8.3
 
 Package: fbset
-Architecture: any
+Architecture: linux-any
 Depends: ${shlibs:Depends}, ${misc:Depends}, udev | makedev (>= 2.3.1-24)
 Description: framebuffer device maintenance program
  Program to modify settings for the framebuffer devices (/dev/fb[0-9]*
@@ -20,7 +20,7 @@ Package: fbset-udeb
 Package-Type: udeb
 Section: debian-installer
 Priority: extra
-Architecture: any
+Architecture: linux-any
 Depends: ${shlibs:Depends}
 Description: framebuffer device maintenance program
  Program to modify settings for the framebuffer devices (/dev/fb[0-9]*
