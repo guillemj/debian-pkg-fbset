@@ -5,15 +5,15 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
-CFLAGS = -Wall -g
-CFLAGS_UDEB := -Wall -g
+CPPFLAGS := $(shell dpkg-buildflags --get CPPFLAGS)
+CFLAGS := -Wall $(shell dpkg-buildflags --get CFLAGS)
+CFLAGS_UDEB := -Wall
+LDFLAGS := $(shell dpkg-buildflags --get LDFLAGS)
 DIR_FLAGS = srcdir=.. VPATH=..
 
 ifneq (,$(filter noopt,$(DEB_BUILD_OPTIONS)))
-	CFLAGS += -O0
 	CFLAGS_UDEB += -O0
 else
-	CFLAGS += -O2
 	CFLAGS_UDEB += -Os -fomit-frame-pointer
 endif
 
@@ -27,13 +27,13 @@ build-arch:
 	
 	mkdir -p build-udeb
 	ln -f Makefile build-udeb/Makefile
-	$(MAKE) -C build-udeb $(DIR_FLAGS) CPPFLAGS="-I.." \
-	  CFLAGS="$(CFLAGS_UDEB)"
+	$(MAKE) -C build-udeb $(DIR_FLAGS) CPPFLAGS="-I.. $(CPPFLAGS)" \
+	  CFLAGS="$(CFLAGS_UDEB)" LDFLAGS="$(LDFLAGS)"
 	
 	mkdir -p build-tree
 	ln -f Makefile build-tree/Makefile
-	$(MAKE) -C build-tree $(DIR_FLAGS) CPPFLAGS="-I.." \
-	  CFLAGS="$(CFLAGS)"
+	$(MAKE) -C build-tree $(DIR_FLAGS) CPPFLAGS="-I.. $(CPPFLAGS)" \
+	  CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)"
 
 build: build-indep build-arch
 

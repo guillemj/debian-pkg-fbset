@@ -22,6 +22,7 @@ fbset (2.1-25) UNRELEASED; urgency=low
   * Add ${misc:Depends} substvar to fbset-udeb Depends field.
   * Remove long obsolete devfs support patch.
   * Rename UDEB_CFLAGS to CFLAGS_UDEB and UDEB_PACKAGE to PACKAGE_UDEB.
+  * Use dpkg-buildflags to set CPPFLAGS, CFLAGS and LDFLAGS.
 
  -- Guillem Jover <guillem@debian.org>  Mon, 12 Apr 2010 01:37:54 +0200
 
