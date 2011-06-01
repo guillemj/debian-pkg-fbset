@@ -7,6 +7,7 @@
 
 CFLAGS = -Wall -g
 UDEB_CFLAGS = -Wall -g
+DIR_FLAGS = srcdir=.. VPATH=..
 
 ifneq (,$(filter noopt,$(DEB_BUILD_OPTIONS)))
 	CFLAGS += -O0
@@ -19,59 +20,54 @@ endif
 PACKAGE = fbset
 UDEB_PACKAGE = $(PACKAGE)-udeb
 
-build: build-stamp
-build-stamp:
-	dh_testdir
-	
-	rm -f build-stamp*
-	$(MAKE) clean
-	$(MAKE) CFLAGS="$(CFLAGS)"
-	
-	touch $@
+build-indep:
 
-build-udeb: build-stamp-udeb
-build-stamp-udeb:
+build-arch:
 	dh_testdir
 	
-	rm -f build-stamp*
-	$(MAKE) clean
-	$(MAKE) CFLAGS="$(UDEB_CFLAGS)"
+	mkdir -p build-udeb
+	ln -f Makefile build-udeb/Makefile
+	$(MAKE) -C build-udeb $(DIR_FLAGS) CPPFLAGS="-I.." \
+	  CFLAGS="$(UDEB_CFLAGS)"
 	
-	touch $@
+	mkdir -p build-tree
+	ln -f Makefile build-tree/Makefile
+	$(MAKE) -C build-tree $(DIR_FLAGS) CPPFLAGS="-I.." \
+	  CFLAGS="$(CFLAGS)"
+
+build: build-indep build-arch
 
 clean:
 	dh_testdir
 	dh_testroot
-	rm -f build-stamp*
 	
-	$(MAKE) clean
+	rm -rf build-udeb
+	rm -rf build-tree
 	
 	# FIXME: this can be removed once and if con2fbmap is merged upstream
 	rm -f con2fbmap
 	
 	dh_clean
 
-install: build
+install-arch: build-arch
 	dh_testdir
 	dh_testroot
-	dh_prep -p$(PACKAGE)
+	dh_prep -a
 	dh_installdirs
 	
-	$(MAKE) install DESTDIR=$(CURDIR)/debian/$(PACKAGE)
-
-install-udeb: build-udeb
-	dh_testdir
-	dh_testroot
-	dh_prep -p$(UDEB_PACKAGE)
-	dh_installdirs
-	
-	$(MAKE) install DESTDIR=$(CURDIR)/debian/$(UDEB_PACKAGE)
+	$(MAKE) -C build-udeb install \
+	  $(DIR_FLAGS) DESTDIR=$(CURDIR)/debian/$(UDEB_PACKAGE)
 	rm -rf $(CURDIR)/debian/$(UDEB_PACKAGE)/usr
+	
+	$(MAKE) -C build-tree install \
+	  $(DIR_FLAGS) DESTDIR=$(CURDIR)/debian/$(PACKAGE)
+
+.PHONY: build-indep build-arch build install-arch clean
 
 binary-indep:
 # Nothing to do.
 
-binary-arch: install install-udeb
+binary-arch: install-arch
 	dh_testdir
 	dh_testroot
 	dh_installdocs -a
@@ -90,5 +86,4 @@ binary-arch: install install-udeb
 
 binary: binary-indep binary-arch
 
-.PHONY: build build-udeb clean binary-indep binary-arch binary install
-
+.PHONY: binary-indep binary-arch binary

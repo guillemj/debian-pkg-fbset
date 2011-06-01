@@ -12,6 +12,12 @@ fbset (2.1-25) UNRELEASED; urgency=low
     - debian/patches/01_kernel_fb.h.patch: Likewise.
     - debian/patches/07_new_accels.patch: Add more accelerated cards.
   * Fix upstream Makefile to support out of tree builds.
+  * Rework debian/rules targets:
+    - Create an empty build-indep target.
+    - Use out of tree builds.
+    - Merge build and build-udeb into a new build-arch target, and
+      install and install-udeb into install-arch target, as they are
+      not parallelizable anyway.
 
  -- Guillem Jover <guillem@debian.org>  Mon, 12 Apr 2010 01:37:54 +0200
 
