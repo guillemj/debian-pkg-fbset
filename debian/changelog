@@ -9,6 +9,8 @@ fbset (2.1-25) UNRELEASED; urgency=low
   * Change binary package Architecture field values from any to linux-any.
   * Update to Linux kernel 3.0.0-rc1:
     - debian/doc/kernel-doc/: Sync.
+    - debian/patches/01_kernel_fb.h.patch: Likewise.
+    - debian/patches/07_new_accels.patch: Add more accelerated cards.
 
  -- Guillem Jover <guillem@debian.org>  Mon, 12 Apr 2010 01:37:54 +0200
 

@@ -1,12 +1,12 @@
 Status: sent-upstream
 
 ---
- fbset.c |   53 +++++++++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 53 insertions(+)
+ fbset.c |   54 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 54 insertions(+)
 
 --- a/fbset.c
 +++ b/fbset.c
-@@ -200,6 +200,59 @@ static struct accelentry {
+@@ -200,6 +200,60 @@ static struct accelentry {
      { FB_ACCEL_SUN_CGTHREE, "Sun cg3" },
      { FB_ACCEL_SUN_TCX, "Sun tcx" },
      { FB_ACCEL_MATROX_MGAG400, "Matrox G400" },
@@ -51,6 +51,7 @@ Status: sent-upstream
 +    { FB_ACCEL_SUPERSAVAGE, "S3 Supersavage" },
 +    { FB_ACCEL_PROSAVAGE_DDR, "S3 ProSavage DDR" },
 +    { FB_ACCEL_PROSAVAGE_DDRK, "S3 ProSavage DDR-K" },
++    { FB_ACCEL_PUV3_UNIGFX, "PKUnity-v3 Unigfx" },
 +    { FB_ACCEL_NV_10, "nVidia Arch 10" },
 +    { FB_ACCEL_NV_20, "nVidia Arch 20" },
 +    { FB_ACCEL_NV_30, "nVidia Arch 30" },

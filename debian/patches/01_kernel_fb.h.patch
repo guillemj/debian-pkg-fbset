@@ -1,25 +1,26 @@
 Status: sent-upstream
 
 ---
- fb.h | 1154 +++++++++++++++++++++++++++++++++++++++++++++++++++----------------
- 1 file changed, 892 insertions(+), 262 deletions(-)
+ fb.h | 1203 ++++++++++++++++++++++++++++++++++++++++++++++++++++---------------
+ 1 file changed, 940 insertions(+), 263 deletions(-)
 
 --- a/fb.h
 +++ b/fb.h
-@@ -1,16 +1,14 @@
+@@ -1,16 +1,15 @@
  #ifndef _LINUX_FB_H
  #define _LINUX_FB_H
  
 -#include <asm/types.h>
 +#include <linux/types.h>
 +#include <linux/i2c.h>
++#ifdef __KERNEL__
++#include <linux/kgdb.h>
++#endif /* __KERNEL__ */
  
--/* Definitions of frame buffers						*/
-+struct dentry;
+ /* Definitions of frame buffers						*/
  
 -#define FB_MAJOR	29
-+/* Definitions of frame buffers						*/
- 
+-
 -#define FB_MODES_SHIFT		5	/* 32 modes per framebuffer */
 -#define FB_NUM_MINORS		256	/* 256 Minors               */
 -#define FB_MAX			(FB_NUM_MINORS / (1 << FB_MODES_SHIFT))
@@ -28,7 +29,7 @@ Status: sent-upstream
  
  /* ioctls
     0x46 is 'F'								*/
-@@ -20,12 +18,26 @@
+@@ -20,12 +19,26 @@
  #define FBIOGETCMAP		0x4604
  #define FBIOPUTCMAP		0x4605
  #define FBIOPAN_DISPLAY		0x4606
@@ -51,11 +52,11 @@ Status: sent-upstream
 +#define FBIOGET_HWCINFO         0x4616
 +#define FBIOPUT_MODEINFO        0x4617
 +#define FBIOGET_DISPINFO        0x4618
-+
++#define FBIO_WAITFORVSYNC	_IOW('F', 0x20, __u32)
  
  #define FB_TYPE_PACKED_PIXELS		0	/* Packed Pixels	*/
  #define FB_TYPE_PLANES			1	/* Non interleaved planes */
-@@ -38,6 +50,13 @@
+@@ -38,6 +51,13 @@
  #define FB_AUX_TEXT_S3_MMIO	2	/* S3 MMIO fasttext */
  #define FB_AUX_TEXT_MGA_STEP16	3	/* MGA Millenium I: text, attr, 14 reserved bytes */
  #define FB_AUX_TEXT_MGA_STEP8	4	/* other MGAs:      text, attr,  6 reserved bytes */
@@ -69,7 +70,7 @@ Status: sent-upstream
  
  #define FB_AUX_VGA_PLANES_VGA4		0	/* 16 color planes (EGA/VGA) */
  #define FB_AUX_VGA_PLANES_CFB4		1	/* CFB4 in planes (VGA) */
-@@ -73,14 +92,68 @@
+@@ -73,14 +93,70 @@
  #define FB_ACCEL_MATROX_MGAG100	20	/* Matrox G100 (Productiva G100) */
  #define FB_ACCEL_MATROX_MGAG200	21	/* Matrox G200 (Myst, Mill, ...) */
  #define FB_ACCEL_SUN_CG14	22	/* Sun cgfourteen		 */
@@ -135,6 +136,8 @@ Status: sent-upstream
 +#define FB_ACCEL_SUPERSAVAGE    0x8c    /* S3 Supersavage               */
 +#define FB_ACCEL_PROSAVAGE_DDR  0x8d	/* S3 ProSavage DDR             */
 +#define FB_ACCEL_PROSAVAGE_DDRK 0x8e	/* S3 ProSavage DDR-K           */
++
++#define FB_ACCEL_PUV3_UNIGFX	0xa0	/* PKUnity-v3 Unigfx		*/
  
  struct fb_fix_screeninfo {
  	char id[16];			/* identification string eg "TT Builtin" */
@@ -143,7 +146,7 @@ Status: sent-upstream
  					/* (physical address) */
  	__u32 smem_len;			/* Length of frame buffer mem */
  	__u32 type;			/* see FB_TYPE_*		*/
-@@ -90,18 +163,23 @@ struct fb_fix_screeninfo {
+@@ -90,18 +166,23 @@ struct fb_fix_screeninfo {
  	__u16 ypanstep;			/* zero if no hardware panning  */
  	__u16 ywrapstep;		/* zero if no hardware ywrap    */
  	__u32 line_length;		/* length of a line in bytes    */
@@ -171,7 +174,7 @@ Status: sent-upstream
   */
  struct fb_bitfield {
  	__u32 offset;			/* beginning of bitfield	*/
-@@ -111,6 +189,7 @@ struct fb_bitfield {
+@@ -111,6 +192,7 @@ struct fb_bitfield {
  };
  
  #define FB_NONSTD_HAM		1	/* Hold-And-Modify (HAM)        */
@@ -179,7 +182,7 @@ Status: sent-upstream
  
  #define FB_ACTIVATE_NOW		0	/* set values immediately (or vbl)*/
  #define FB_ACTIVATE_NXTOPEN	1	/* activate on next open	*/
-@@ -120,8 +199,10 @@ struct fb_bitfield {
+@@ -120,8 +202,10 @@ struct fb_bitfield {
  #define FB_ACTIVATE_VBL	       16	/* activate values on next vbl  */
  #define FB_CHANGE_CMAP_VBL     32	/* change colormap on vbl	*/
  #define FB_ACTIVATE_ALL	       64	/* change all VCs on this fb	*/
@@ -191,7 +194,7 @@ Status: sent-upstream
  
  #define FB_SYNC_HOR_HIGH_ACT	1	/* horizontal sync high active	*/
  #define FB_SYNC_VERT_HIGH_ACT	2	/* vertical sync high active	*/
-@@ -135,12 +216,24 @@ struct fb_bitfield {
+@@ -135,12 +219,24 @@ struct fb_bitfield {
  #define FB_VMODE_NONINTERLACED  0	/* non interlaced */
  #define FB_VMODE_INTERLACED	1	/* interlaced	*/
  #define FB_VMODE_DOUBLE		2	/* double scan */
@@ -216,7 +219,7 @@ Status: sent-upstream
  struct fb_var_screeninfo {
  	__u32 xres;			/* visible resolution		*/
  	__u32 yres;
-@@ -164,7 +257,7 @@ struct fb_var_screeninfo {
+@@ -164,7 +260,7 @@ struct fb_var_screeninfo {
  	__u32 height;			/* height of picture in mm    */
  	__u32 width;			/* width of picture in mm     */
  
@@ -225,7 +228,7 @@ Status: sent-upstream
  
  	/* Timing: All values in pixclocks, except pixclock (of course) */
  	__u32 pixclock;			/* pixel clock in ps (pico seconds) */
-@@ -176,7 +269,8 @@ struct fb_var_screeninfo {
+@@ -176,7 +272,8 @@ struct fb_var_screeninfo {
  	__u32 vsync_len;		/* length of vertical sync	*/
  	__u32 sync;			/* see FB_SYNC_*		*/
  	__u32 vmode;			/* see FB_VMODE_*		*/
@@ -235,7 +238,7 @@ Status: sent-upstream
  };
  
  struct fb_cmap {
-@@ -193,305 +287,841 @@ struct fb_con2fbmap {
+@@ -193,305 +290,885 @@ struct fb_con2fbmap {
  	__u32 framebuffer;
  };
  
@@ -361,6 +364,7 @@ Status: sent-upstream
 +#include <linux/notifier.h>
 +#include <linux/list.h>
 +#include <linux/backlight.h>
++#include <linux/slab.h>
 +#include <asm/io.h>
  
 -
@@ -572,19 +576,21 @@ Status: sent-upstream
 +#define FB_EVENT_GET_CONSOLE_MAP        0x07
 +/*      CONSOLE-SPECIFIC: set console to framebuffer mapping */
 +#define FB_EVENT_SET_CONSOLE_MAP        0x08
-+/*      A hardware display blank change occured */
++/*      A hardware display blank change occurred */
 +#define FB_EVENT_BLANK                  0x09
 +/*      Private modelist is to be replaced */
 +#define FB_EVENT_NEW_MODELIST           0x0A
 +/*	The resolution of the passed in fb_info about to change and
 +        all vc's should be changed         */
 +#define FB_EVENT_MODE_CHANGE_ALL	0x0B
-+/*	A software display blank change occured */
++/*	A software display blank change occurred */
 +#define FB_EVENT_CONBLANK               0x0C
 +/*      Get drawing requirements        */
 +#define FB_EVENT_GET_REQ                0x0D
 +/*      Unbind from the console if possible */
 +#define FB_EVENT_FB_UNBIND              0x0E
++/*      CONSOLE-SPECIFIC: remap all consoles to new fb - for vga switcheroo */
++#define FB_EVENT_REMAP_ALL_CONSOLE      0x0F
 +
 +struct fb_event {
 +	struct fb_info *info;
@@ -670,14 +676,7 @@ Status: sent-upstream
 -     *  mandatory but used by the `generic' frame buffer operations.
 -     *  Read drivers/video/skeletonfb.c for more information.
 -     */
-+/*
-+ * Frame buffer operations
-+ *
-+ * LOCKING NOTE: those functions must _ALL_ be called with the console
-+ * semaphore held, this is the only suitable locking mechanism we have
-+ * in 2.6. Some may be called at interrupt time at this point though.
-+ */
- 
+-
 -struct fbgen_hwswitch {
 -    void (*detect)(void);
 -    int (*encode_fix)(struct fb_fix_screeninfo *fix, const void *par,
@@ -706,6 +705,21 @@ Status: sent-upstream
 -    /* Yes, this starts looking like C++ */
 -    u_int parsize;
 -    struct fbgen_hwswitch *fbhw;
++/*
++ * Frame buffer operations
++ *
++ * LOCKING NOTE: those functions must _ALL_ be called with the console
++ * semaphore held, this is the only suitable locking mechanism we have
++ * in 2.6. Some may be called at interrupt time at this point though.
++ *
++ * The exception to this is the debug related hooks.  Putting the fb
++ * into a debug state (e.g. flipping to the kernel console) and restoring
++ * it must be done in a lock-free manner, so low level drivers should
++ * keep track of the initial console (if applicable) and may need to
++ * perform direct, unlocked hardware writes in these hooks.
++ */
+ 
+-   /* From here on everything is device dependent */
 +struct fb_ops {
 +	/* open/release and usage marking */
 +	struct module *owner;
@@ -770,10 +784,13 @@ Status: sent-upstream
 +	/* get capability given var */
 +	void (*fb_get_caps)(struct fb_info *info, struct fb_blit_caps *caps,
 +			    struct fb_var_screeninfo *var);
- 
--   /* From here on everything is device dependent */
++
 +	/* teardown any resources to do with this framebuffer */
 +	void (*fb_destroy)(struct fb_info *info);
++
++	/* called at KDB enter and leave time to prepare the console */
++	int (*fb_debug_enter)(struct fb_info *info);
++	int (*fb_debug_leave)(struct fb_info *info);
  };
  
 -    /*
@@ -893,6 +910,7 @@ Status: sent-upstream
 +	 *  takes over; acceleration engine should be in a quiescent state */
 +
 +/* hints */
++#define FBINFO_VIRTFB		0x0004 /* FB is System RAM, not device. */
 +#define FBINFO_PARTIAL_PAN_OK	0x0040 /* otw use pan only for double-buffering */
 +#define FBINFO_READS_FAST	0x0080 /* soft-copy faster than rendering */
 +
@@ -914,13 +932,11 @@ Status: sent-upstream
 +#define FBINFO_MISC_USEREVENT          0x10000 /* event request
 +						  from userspace */
 +#define FBINFO_MISC_TILEBLITTING       0x20000 /* use tile blitting */
-+#define FBINFO_MISC_FIRMWARE           0x40000 /* a replaceable firmware
-+						  inited framebuffer */
 +
 +/* A driver may set this flag to indicate that it does want a set_par to be
 + * called every time when fbcon_switch is executed. The advantage is that with
 + * this flag set you can really be sure that set_par is always called before
-+ * any of the functions dependant on the correct hardware state or altering
++ * any of the functions dependent on the correct hardware state or altering
 + * that state, even if you are using some broken X releases. The disadvantage
 + * is that it introduces unwanted delays to every console switch if set_par
 + * is slow. It is a good idea to try this flag in the drivers initialization
@@ -935,6 +951,8 @@ Status: sent-upstream
 -extern int fbmon_valid_timings(u_int pixclock, u_int htotal, u_int vtotal,
 -			       const struct fb_info *fb_info);
 -extern int fbmon_dpms(const struct fb_info *fb_info);
++/* where the fb is a firmware driver, and can be replaced with a proper one */
++#define FBINFO_MISC_FIRMWARE        0x80000
 +/*
 + * Host and GPU endianness differ.
 + */
@@ -946,7 +964,15 @@ Status: sent-upstream
 + */
 +#define FBINFO_BE_MATH  0x100000
  
++/* report to the VT layer that this fb driver can accept forced console
++   output like oopses */
++#define FBINFO_CAN_FORCE_OUTPUT     0x200000
+ 
+-extern int num_registered_fb;
+-extern struct fb_info *registered_fb[FB_MAX];
+-extern char con2fb_map[MAX_NR_CONSOLES];
 +struct fb_info {
++	atomic_t count;
 +	int node;
 +	int flags;
 +	struct mutex lock;		/* Lock for open/release/ioctl funcs */
@@ -976,9 +1002,8 @@ Status: sent-upstream
 +	struct fb_deferred_io *fbdefio;
 +#endif
  
--extern int num_registered_fb;
--extern struct fb_info *registered_fb[FB_MAX];
--extern char con2fb_map[MAX_NR_CONSOLES];
+-/* drivers/video/fbcon.c */
+-extern struct display fb_display[MAX_NR_CONSOLES];
 +	struct fb_ops *fbops;
 +	struct device *device;		/* This is the parent */
 +	struct device *dev;		/* This is this fb device */
@@ -995,32 +1020,17 @@ Status: sent-upstream
 +	void *fbcon_par;                /* fbcon use-only private area */
 +	/* From here on everything is device dependent */
 +	void *par;
-+	/* we need the PCI or similiar aperture base/size not
++	/* we need the PCI or similar aperture base/size not
 +	   smem_start/size as smem_start may just be an object
 +	   allocated inside the aperture so may not actually overlap */
-+	resource_size_t aperture_base;
-+	resource_size_t aperture_size;
++	struct apertures_struct {
++		unsigned int count;
++		struct aperture {
++			resource_size_t base;
++			resource_size_t size;
++		} ranges[0];
++	} *apertures;
 +};
-+
-+#ifdef MODULE
-+#define FBINFO_DEFAULT	FBINFO_MODULE
-+#else
-+#define FBINFO_DEFAULT	0
-+#endif
- 
--/* drivers/video/fbcon.c */
--extern struct display fb_display[MAX_NR_CONSOLES];
-+// This will go away
-+#define FBINFO_FLAG_MODULE	FBINFO_MODULE
-+#define FBINFO_FLAG_DEFAULT	FBINFO_DEFAULT
-+
-+/* This will go away
-+ * fbset currently hacks in FB_ACCELF_TEXT into var.accel_flags
-+ * when it wants to turn the acceleration engine on.  This is
-+ * really a separate operation, and should be modified via sysfs.
-+ *  But for now, we leave it broken with the following define
-+ */
-+#define STUPID_ACCELF_TEXT_SHIT
  
 -/* drivers/video/fbcmap.c */
 -extern int fb_alloc_cmap(struct fb_cmap *cmap, int len, int transp);
@@ -1036,19 +1046,47 @@ Status: sent-upstream
 -		       struct fb_info *fb_info);
 -extern struct fb_cmap *fb_default_cmap(int len);
 -extern void fb_invert_cmaps(void);
-+// This will go away
-+#if defined(__sparc__)
++static inline struct apertures_struct *alloc_apertures(unsigned int max_num) {
++	struct apertures_struct *a = kzalloc(sizeof(struct apertures_struct)
++			+ max_num * sizeof(struct aperture), GFP_KERNEL);
++	if (!a)
++		return NULL;
++	a->count = max_num;
++	return a;
++}
  
 -/* VESA Blanking Levels */
 -#define VESA_NO_BLANKING	0
 -#define VESA_VSYNC_SUSPEND	1
 -#define VESA_HSYNC_SUSPEND	2
 -#define VESA_POWERDOWN		3
++#ifdef MODULE
++#define FBINFO_DEFAULT	FBINFO_MODULE
++#else
++#define FBINFO_DEFAULT	0
++#endif
+ 
+-#endif /* __KERNEL__ */
++// This will go away
++#define FBINFO_FLAG_MODULE	FBINFO_MODULE
++#define FBINFO_FLAG_DEFAULT	FBINFO_DEFAULT
++
++/* This will go away
++ * fbset currently hacks in FB_ACCELF_TEXT into var.accel_flags
++ * when it wants to turn the acceleration engine on.  This is
++ * really a separate operation, and should be modified via sysfs.
++ *  But for now, we leave it broken with the following define
++ */
++#define STUPID_ACCELF_TEXT_SHIT
++
++// This will go away
++#if defined(__sparc__)
+ 
+-#if 1
 +/* We map all of our framebuffers such that big-endian accesses
 + * are what we want, so the following is sufficient.
 + */
- 
--#endif /* __KERNEL__ */
++
 +// This will go away
 +#define fb_readb sbus_readb
 +#define fb_readw sbus_readw
@@ -1059,6 +1097,8 @@ Status: sent-upstream
 +#define fb_writel sbus_writel
 +#define fb_writeq sbus_writeq
 +#define fb_memset sbus_memset_io
++#define fb_memcpy_fromfb sbus_memcpy_fromio
++#define fb_memcpy_tofb sbus_memcpy_toio
 +
 +#elif defined(__i386__) || defined(__alpha__) || defined(__x86_64__) || defined(__hppa__) || defined(__sh__) || defined(__powerpc__) || defined(__avr32__) || defined(__bfin__)
 +
@@ -1071,8 +1111,9 @@ Status: sent-upstream
 +#define fb_writel __raw_writel
 +#define fb_writeq __raw_writeq
 +#define fb_memset memset_io
- 
--#if 1
++#define fb_memcpy_fromfb memcpy_fromio
++#define fb_memcpy_tofb memcpy_toio
++
 +#else
  
 -#define FBCMD_GET_CURRENTPAR	0xDEAD0005
@@ -1086,6 +1127,8 @@ Status: sent-upstream
 +#define fb_writel(b,addr) (*(volatile u32 *) (addr) = (b))
 +#define fb_writeq(b,addr) (*(volatile u64 *) (addr) = (b))
 +#define fb_memset memset
++#define fb_memcpy_fromfb memcpy
++#define fb_memcpy_tofb memcpy
  
  #endif
  
@@ -1120,6 +1163,8 @@ Status: sent-upstream
 +/* drivers/video/fbmem.c */
 +extern int register_framebuffer(struct fb_info *fb_info);
 +extern int unregister_framebuffer(struct fb_info *fb_info);
++extern void remove_conflicting_framebuffers(struct apertures_struct *a,
++				const char *name, bool primary);
 +extern int fb_prepare_logo(struct fb_info *fb_info, int rotate);
 +extern int fb_show_logo(struct fb_info *fb_info, int rotate);
 +extern char* fb_get_buffer_offset(struct fb_info *info, struct fb_pixmap *buf, u32 size);
@@ -1172,8 +1217,7 @@ Status: sent-upstream
 +				struct inode *inode,
 +				struct file *file);
 +extern void fb_deferred_io_cleanup(struct fb_info *info);
-+extern int fb_deferred_io_fsync(struct file *file, struct dentry *dentry,
-+				int datasync);
++extern int fb_deferred_io_fsync(struct file *file, int datasync);
 +
 +static inline bool fb_be_math(struct fb_info *info)
 +{
@@ -1233,6 +1277,8 @@ Status: sent-upstream
 +extern const unsigned char *fb_firmware_edid(struct device *device);
 +extern void fb_edid_to_monspecs(unsigned char *edid,
 +				struct fb_monspecs *specs);
++extern void fb_edid_add_monspecs(unsigned char *edid,
++				 struct fb_monspecs *specs);
 +extern void fb_destroy_modedb(struct fb_videomode *modedb);
 +extern int fb_find_mode_cvt(struct fb_videomode *mode, int margins, int rb);
 +extern unsigned char *fb_ddc_read(struct i2c_adapter *adapter);
@@ -1263,6 +1309,7 @@ Status: sent-upstream
 +
 +/* drivers/video/fbcmap.c */
 +extern int fb_alloc_cmap(struct fb_cmap *cmap, int len, int transp);
++extern int fb_alloc_cmap_gfp(struct fb_cmap *cmap, int len, int transp, gfp_t flags);
 +extern void fb_dealloc_cmap(struct fb_cmap *cmap);
 +extern int fb_copy_cmap(const struct fb_cmap *from, struct fb_cmap *to);
 +extern int fb_cmap_to_user(const struct fb_cmap *from, struct fb_cmap_user *to);
@@ -1300,6 +1347,7 @@ Status: sent-upstream
 -	__u16 mode;
 +extern const char *fb_mode_option;
 +extern const struct fb_videomode vesa_modes[];
++extern const struct fb_videomode cea_modes[64];
 +
 +struct fb_modelist {
 +	struct list_head list;
