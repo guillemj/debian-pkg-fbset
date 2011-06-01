@@ -6,19 +6,19 @@
 #export DH_VERBOSE=1
 
 CFLAGS = -Wall -g
-UDEB_CFLAGS = -Wall -g
+CFLAGS_UDEB := -Wall -g
 DIR_FLAGS = srcdir=.. VPATH=..
 
 ifneq (,$(filter noopt,$(DEB_BUILD_OPTIONS)))
 	CFLAGS += -O0
-	UDEB_CFLAGS += -O0
+	CFLAGS_UDEB += -O0
 else
 	CFLAGS += -O2
-	UDEB_CFLAGS += -Os -fomit-frame-pointer
+	CFLAGS_UDEB += -Os -fomit-frame-pointer
 endif
 
 PACKAGE = fbset
-UDEB_PACKAGE = $(PACKAGE)-udeb
+PACKAGE_UDEB = $(PACKAGE)-udeb
 
 build-indep:
 
@@ -28,7 +28,7 @@ build-arch:
 	mkdir -p build-udeb
 	ln -f Makefile build-udeb/Makefile
 	$(MAKE) -C build-udeb $(DIR_FLAGS) CPPFLAGS="-I.." \
-	  CFLAGS="$(UDEB_CFLAGS)"
+	  CFLAGS="$(CFLAGS_UDEB)"
 	
 	mkdir -p build-tree
 	ln -f Makefile build-tree/Makefile
@@ -56,8 +56,8 @@ install-arch: build-arch
 	dh_installdirs
 	
 	$(MAKE) -C build-udeb install \
-	  $(DIR_FLAGS) DESTDIR=$(CURDIR)/debian/$(UDEB_PACKAGE)
-	rm -rf $(CURDIR)/debian/$(UDEB_PACKAGE)/usr
+	  $(DIR_FLAGS) DESTDIR=$(CURDIR)/debian/$(PACKAGE_UDEB)
+	rm -rf $(CURDIR)/debian/$(PACKAGE_UDEB)/usr
 	
 	$(MAKE) -C build-tree install \
 	  $(DIR_FLAGS) DESTDIR=$(CURDIR)/debian/$(PACKAGE)
