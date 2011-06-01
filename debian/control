@@ -29,4 +29,3 @@ Description: framebuffer device maintenance program
  .
  This contains the udeb, which is used for the debian-installer
  installation system. It won't work well on a normal Debian system.
-
