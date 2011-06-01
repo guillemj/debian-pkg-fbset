@@ -5,7 +5,7 @@ Index: b/Makefile
 ===================================================================
 --- a/Makefile	1999-01-17 21:15:46.000000000 +0200
 +++ b/Makefile	2007-12-05 07:19:20.000000000 +0200
-@@ -2,40 +2,56 @@
+@@ -2,40 +2,58 @@
  # Linux Frame Buffer Device Configuration
  #
  
@@ -43,6 +43,8 @@ Index: b/Makefile
 -		if [ ! -c /dev/fb5 ]; then mknod /dev/fb5 c 29 160; fi
 -		if [ ! -c /dev/fb6 ]; then mknod /dev/fb6 c 29 192; fi
 -		if [ ! -c /dev/fb7 ]; then mknod /dev/fb7 c 29 224; fi
++srcdir = .
++
 +CC = gcc
 +CFLAGS = -Wall -O2
 +BISON = bison -d
@@ -61,10 +63,10 @@ Index: b/Makefile
 +lex.yy.o: lex.yy.c fbset.h modes.tab.h
 +
 +lex.yy.c: modes.l
-+	$(FLEX) modes.l
++	$(FLEX) $<
 +
 +modes.tab.c modes.tab.h: modes.y
-+	$(BISON) modes.y
++	$(BISON) $<
 +
 +con2fbmap: con2fbmap.o
 +con2fbmap.o: con2fbmap.c
@@ -74,14 +76,14 @@ Index: b/Makefile
 +	$(INSTALL) -d $(DESTDIR)/bin
 +	$(INSTALL) -d $(DESTDIR)/usr/share/man/man1
 +	$(INSTALL) -d $(DESTDIR)/usr/share/man/man5
-+	$(INSTALL_DATA) etc/fb.modes.ATI $(DESTDIR)/etc/fb.modes
-+	$(INSTALL_DATA) fb.modes.5 $(DESTDIR)/usr/share/man/man5
++	$(INSTALL_DATA) $(srcdir)/etc/fb.modes.ATI $(DESTDIR)/etc/fb.modes
++	$(INSTALL_DATA) $(srcdir)/fb.modes.5 $(DESTDIR)/usr/share/man/man5
 +	$(INSTALL_PROGRAM) fbset $(DESTDIR)/bin
-+	$(INSTALL_DATA) fbset.8 $(DESTDIR)/usr/share/man/man1/fbset.1
-+	$(INSTALL_PROGRAM) modeline2fb $(DESTDIR)/bin
-+	$(INSTALL_DATA) modeline2fb.1 $(DESTDIR)/usr/share/man/man1
++	$(INSTALL_DATA) $(srcdir)/fbset.8 $(DESTDIR)/usr/share/man/man1/fbset.1
++	$(INSTALL_PROGRAM) $(srcdir)/modeline2fb $(DESTDIR)/bin
++	$(INSTALL_DATA) $(srcdir)/modeline2fb.1 $(DESTDIR)/usr/share/man/man1
 +	$(INSTALL_PROGRAM) con2fbmap $(DESTDIR)/bin
-+	$(INSTALL_DATA) con2fbmap.1 $(DESTDIR)/usr/share/man/man1
++	$(INSTALL_DATA) $(srcdir)/con2fbmap.1 $(DESTDIR)/usr/share/man/man1
 +
 +install-devices:
 +	if [ ! -c /dev/fb0 ]; then mknod $(DESTDIR)/dev/fb0 c 29 0; fi

@@ -11,6 +11,7 @@ fbset (2.1-25) UNRELEASED; urgency=low
     - debian/doc/kernel-doc/: Sync.
     - debian/patches/01_kernel_fb.h.patch: Likewise.
     - debian/patches/07_new_accels.patch: Add more accelerated cards.
+  * Fix upstream Makefile to support out of tree builds.
 
  -- Guillem Jover <guillem@debian.org>  Mon, 12 Apr 2010 01:37:54 +0200
 
