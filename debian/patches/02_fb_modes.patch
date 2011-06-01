@@ -1,7 +1,9 @@
-Index: b/etc/fb.modes.ATI
-===================================================================
---- a/etc/fb.modes.ATI	2007-09-16 19:05:35.000000000 +0300
-+++ b/etc/fb.modes.ATI	2007-09-16 19:06:01.000000000 +0300
+---
+ etc/fb.modes.ATI |   84 ++++++++++++++++++++++++++++++++++++++++++++++++++-----
+ 1 file changed, 77 insertions(+), 7 deletions(-)
+
+--- a/etc/fb.modes.ATI
++++ b/etc/fb.modes.ATI
 @@ -6,6 +6,8 @@
  #       Mach64 Programmer's Guide, Appendix C
  #       (C) 1998 ATI Technologies Inc.

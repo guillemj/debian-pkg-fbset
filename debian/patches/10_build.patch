@@ -1,10 +1,12 @@
 Status: sent-upstream
 # Sent part of it, not the indentation fixes, nor the con2fbmap.
 
-Index: b/Makefile
-===================================================================
---- a/Makefile	1999-01-17 21:15:46.000000000 +0200
-+++ b/Makefile	2007-12-05 07:19:20.000000000 +0200
+---
+ Makefile |   88 +++++++++++++++++++++++++++++++++++++--------------------------
+ 1 file changed, 53 insertions(+), 35 deletions(-)
+
+--- a/Makefile
++++ b/Makefile
 @@ -2,40 +2,58 @@
  # Linux Frame Buffer Device Configuration
  #

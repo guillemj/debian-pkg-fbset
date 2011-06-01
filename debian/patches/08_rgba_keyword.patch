@@ -1,9 +1,12 @@
 Status: sent-upstream
 
-Index: b/modes.l
-===================================================================
---- a/modes.l	2007-09-16 19:05:33.000000000 +0300
-+++ b/modes.l	2007-09-16 19:06:21.000000000 +0300
+---
+ modes.l |    6 ++++++
+ modes.y |    4 ++--
+ 2 files changed, 8 insertions(+), 2 deletions(-)
+
+--- a/modes.l
++++ b/modes.l
 @@ -99,6 +99,7 @@ static const char *CopyString(const char
  
  keyword	[a-zA-Z][a-zA-Z0-9]*
@@ -24,10 +27,8 @@ Index: b/modes.l
  {string}    {
  		yylval = (unsigned long)CopyString(yytext);
  		return STRING;
-Index: b/modes.y
-===================================================================
---- a/modes.y	2007-09-16 19:05:33.000000000 +0300
-+++ b/modes.y	2007-09-16 19:06:21.000000000 +0300
+--- a/modes.y
++++ b/modes.y
 @@ -42,7 +42,7 @@ static void ClearVideoMode(void)
  
  %token MODE GEOMETRY TIMINGS HSYNC VSYNC CSYNC GSYNC EXTSYNC BCAST LACED DOUBLE

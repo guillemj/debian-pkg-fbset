@@ -1,9 +1,11 @@
 Status: sent-upstream
 
-Index: b/fbset.c
-===================================================================
---- a/fbset.c	2007-09-16 19:06:09.000000000 +0300
-+++ b/fbset.c	2007-09-16 19:06:11.000000000 +0300
+---
+ fbset.c |    4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+--- a/fbset.c
++++ b/fbset.c
 @@ -832,7 +832,8 @@ static int FillScanRates(struct VideoMod
  static void Usage(void)
  {
