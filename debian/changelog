@@ -1,4 +1,4 @@
-fbset (2.1-25) UNRELEASED; urgency=low
+fbset (2.1-25) unstable; urgency=low
 
   * Fix some missinformation in fbset(8).
     - Use an actual mode (“640x480-60”) instead of “vga” in the example.
@@ -24,7 +24,7 @@ fbset (2.1-25) UNRELEASED; urgency=low
   * Rename UDEB_CFLAGS to CFLAGS_UDEB and UDEB_PACKAGE to PACKAGE_UDEB.
   * Use dpkg-buildflags to set CPPFLAGS, CFLAGS and LDFLAGS.
 
- -- Guillem Jover <guillem@debian.org>  Mon, 12 Apr 2010 01:37:54 +0200
+ -- Guillem Jover <guillem@debian.org>  Wed, 01 Jun 2011 06:27:30 +0200
 
 fbset (2.1-24) unstable; urgency=low
 
