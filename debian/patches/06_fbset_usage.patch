@@ -4,7 +4,7 @@ Index: b/fbset.c
 ===================================================================
 --- a/fbset.c	2007-09-16 19:06:09.000000000 +0300
 +++ b/fbset.c	2007-09-16 19:06:11.000000000 +0300
-@@ -833,7 +833,8 @@ static int FillScanRates(struct VideoMod
+@@ -832,7 +832,8 @@ static int FillScanRates(struct VideoMod
  static void Usage(void)
  {
      puts(VERSION);
@@ -14,7 +14,7 @@ Index: b/fbset.c
  	"Valid options:\n"
  	"  General options:\n"
  	"    -h, --help         : display this usage information\n"
-@@ -888,6 +889,7 @@ static void Usage(void)
+@@ -887,6 +888,7 @@ static void Usage(void)
  	"    -step <value>      : step increment (in pixels or pixel lines)\n"
  	"                         (default is 8 horizontal, 2 vertical)\n",
  	ProgramName);

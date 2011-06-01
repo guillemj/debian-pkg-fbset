@@ -6,7 +6,7 @@ Status: sent-upstream
 
 --- a/fbset.c
 +++ b/fbset.c
-@@ -200,6 +200,60 @@ static struct accelentry {
+@@ -199,6 +199,60 @@ static struct accelentry {
      { FB_ACCEL_SUN_CGTHREE, "Sun cg3" },
      { FB_ACCEL_SUN_TCX, "Sun tcx" },
      { FB_ACCEL_MATROX_MGAG400, "Matrox G400" },
