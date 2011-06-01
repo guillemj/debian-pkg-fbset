@@ -19,6 +19,7 @@ fbset (2.1-25) UNRELEASED; urgency=low
       install and install-udeb into install-arch target, as they are
       not parallelizable anyway.
   * Now using Standards-Version 3.9.2 (no changes needed).
+  * Add ${misc:Depends} substvar to fbset-udeb Depends field.
 
  -- Guillem Jover <guillem@debian.org>  Mon, 12 Apr 2010 01:37:54 +0200
 
