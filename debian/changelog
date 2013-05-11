@@ -1,6 +1,7 @@
 fbset (2.1-26) UNRELEASED; urgency=low
 
   * Now using Standards-Version 3.9.4 (no changes needed).
+  * Remove package creation information from debian/copyright.
 
  -- Guillem Jover <guillem@debian.org>  Fri, 10 May 2013 01:49:12 +0200
 

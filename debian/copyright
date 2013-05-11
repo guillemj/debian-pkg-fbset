@@ -1,11 +1,3 @@
-This package was debianized by Frank Neumann
-(Frank.Neumann@informatik.uni-oldenburg.de) on Wed, 16 Apr 1997.
-
-On Fri, 11 Dec 1998 Hartmut Koptein <koptein@debian.org> took over
-maintenance of fbset.
-
-Currently maintained by Guillem Jover <guillem@debian.org>.
-
 The upstream source was downloaded from:
 
     <http://users.telenet.be/geertu/Linux/fbdev/>
