@@ -7,3 +7,4 @@
 08_rgba_keyword.patch
 10_build.patch
 11_manpages.patch
+add-support-for-custom-sync-flags.patch

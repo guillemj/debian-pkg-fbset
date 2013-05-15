@@ -4,6 +4,9 @@ fbset (2.1-27) UNRELEASED; urgency=low
   * Add a fb.modes.openmoko db file to the examples directory, usable with
     «fbse -db». Thanks to Timo Juhani Lindfors <timo.lindfors@iki.fi>.
     Closes: #594591
+  * Add support for custom sync flags, by preserving unknown sync bits, a
+    new -sync db mode option and a new --sync program option to set these.
+    Thanks David Kozub <zub@linux.fjfi.cvut.cz>. Closes: #678325
 
  -- Guillem Jover <guillem@debian.org>  Wed, 15 May 2013 20:19:47 +0200
 
