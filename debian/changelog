@@ -1,6 +1,9 @@
 fbset (2.1-27) UNRELEASED; urgency=low
 
   * Remove long obsolete and unsupported devfs references from man page.
+  * Add a fb.modes.openmoko db file to the examples directory, usable with
+    «fbse -db». Thanks to Timo Juhani Lindfors <timo.lindfors@iki.fi>.
+    Closes: #594591
 
  -- Guillem Jover <guillem@debian.org>  Wed, 15 May 2013 20:19:47 +0200
 
