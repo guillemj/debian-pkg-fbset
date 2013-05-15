@@ -96,15 +96,6 @@ Status: sent-upstream
  .B fbset
  is a system utility to show or change the settings of the frame buffer
  device. The frame buffer device provides a simple and unique interface to
-@@ -15,6 +13,8 @@ access different kinds of graphic displa
- .PP
- Frame buffer devices are accessed via special device nodes located in the
- /dev directory. The naming scheme for these nodes is always
-+.IR \fBfb/ < n >
-+or
- .IR \fBfb < n >,
- where
- .I n
 @@ -36,10 +36,8 @@ General options:
  .BR \-\-help ",\ " \-h
  display an usage information
@@ -118,7 +109,7 @@ Status: sent-upstream
  .TP
  .BR \-\-show ",\ " \-s
  display the video mode settings. This is default if no further option or
-@@ -66,14 +64,18 @@ display the timing information as it's n
+@@ -66,14 +64,16 @@ display the timing information as it's n
  Frame buffer device nodes:
  .RS
  .TP
@@ -130,8 +121,6 @@ Status: sent-upstream
  gives the frame buffer device node. If no device via
  .B \-fb
  is given, 
-+.I /dev/fb/0
-+or
  .I /dev/fb0
  is used
 -.TP
