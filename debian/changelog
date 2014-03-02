@@ -1,10 +1,10 @@
-fbset (2.1-28) UNRELEASED; urgency=medium
+fbset (2.1-28) unstable; urgency=low
 
   * Orphan package, set maintainer to Debian QA Group.
   * Switch to debhelper compatibility level 9.
   * Now using Standards-Version 3.9.5 (no changes needed).
 
- -- Guillem Jover <guillem@debian.org>  Sun, 02 Mar 2014 20:40:08 +0100
+ -- Guillem Jover <guillem@debian.org>  Sun, 02 Mar 2014 20:54:35 +0100
 
 fbset (2.1-27) unstable; urgency=low
 
