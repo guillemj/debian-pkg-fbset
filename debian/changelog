@@ -1,5 +1,6 @@
 fbset (2.1-28) UNRELEASED; urgency=medium
 
+  * Orphan package, set maintainer to Debian QA Group.
   * Switch to debhelper compatibility level 9.
   * Now using Standards-Version 3.9.5 (no changes needed).
 

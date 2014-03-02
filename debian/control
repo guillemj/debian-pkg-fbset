@@ -1,7 +1,7 @@
 Source: fbset
 Section: admin
 Priority: optional
-Maintainer: Guillem Jover <guillem@debian.org>
+Maintainer: Debian QA Group <packages@qa.debian.org>
 Homepage: http://users.telenet.be/geertu/Linux/fbdev/
 Vcs-Browser: http://git.hadrons.org/?p=debian/pkgs/fbset.git
 Vcs-Git: git://git.hadrons.org/git/debian/pkgs/fbset.git
