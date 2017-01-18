@@ -4,6 +4,7 @@ fbset (2.1-29) UNRELEASED; urgency=medium
     - debian/doc/kernel-doc/: Sync.
     - debian/patches/01_kernel_fb.h.patch: Likewise.
     - debian/modes/fb.modes.viafb: Likewise.
+  * Now using Standards-Version 3.9.8 (no changes needed).
 
  -- Guillem Jover <guillem@debian.org>  Thu, 19 Jan 2017 00:01:59 +0100
 
