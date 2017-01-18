@@ -3,6 +3,7 @@ fbset (2.1-29) UNRELEASED; urgency=medium
   * Update to Linux kernel 4.10-rc4:
     - debian/doc/kernel-doc/: Sync.
     - debian/patches/01_kernel_fb.h.patch: Likewise.
+    - debian/modes/fb.modes.viafb: Likewise.
 
  -- Guillem Jover <guillem@debian.org>  Thu, 19 Jan 2017 00:01:59 +0100
 
