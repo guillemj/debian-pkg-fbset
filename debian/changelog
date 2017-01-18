@@ -1,3 +1,10 @@
+fbset (2.1-29) UNRELEASED; urgency=medium
+
+  * Update to Linux kernel 4.10-rc4:
+    - debian/doc/kernel-doc/: Sync.
+
+ -- Guillem Jover <guillem@debian.org>  Thu, 19 Jan 2017 00:01:59 +0100
+
 fbset (2.1-28) unstable; urgency=low
 
   * Orphan package, set maintainer to Debian QA Group.
