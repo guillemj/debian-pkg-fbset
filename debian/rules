@@ -4,10 +4,11 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
-CPPFLAGS := $(shell dpkg-buildflags --get CPPFLAGS)
-CFLAGS := -Wall $(shell dpkg-buildflags --get CFLAGS)
+DEB_CFLAGS_MAINT_PREPEND = -Wall
+
+include /usr/share/dpkg/default.mk
+
 CFLAGS_UDEB := -Wall
-LDFLAGS := $(shell dpkg-buildflags --get LDFLAGS)
 DIR_FLAGS = srcdir=.. VPATH=..
 
 ifneq (,$(filter noopt,$(DEB_BUILD_OPTIONS)))
