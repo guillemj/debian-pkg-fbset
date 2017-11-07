@@ -1,3 +1,9 @@
+fbset (2.1-30) UNRELEASED; urgency=medium
+
+  * Line-wrap and sort dependency fields.
+
+ -- Guillem Jover <guillem@debian.org>  Wed, 08 Nov 2017 00:03:54 +0100
+
 fbset (2.1-29) unstable; urgency=medium
 
   * QA upload.
