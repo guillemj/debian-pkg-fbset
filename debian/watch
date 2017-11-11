@@ -1,2 +1,2 @@
-version=3
+version=4
 http://users.telenet.be/geertu/Linux/fbdev/ fbset-(.*)\.tar\.gz debian uupdate
