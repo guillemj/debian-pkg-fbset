@@ -2,6 +2,7 @@ fbset (2.1-30) UNRELEASED; urgency=medium
 
   * Line-wrap and sort dependency fields.
   * Now using Standards-Version 4.1.1 (no changes needed).
+  * Switch debhelper compatibility level to 10.
 
  -- Guillem Jover <guillem@debian.org>  Wed, 08 Nov 2017 00:03:54 +0100
 
