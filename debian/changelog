@@ -1,4 +1,4 @@
-fbset (2.1-30) UNRELEASED; urgency=medium
+fbset (2.1-30) unstable; urgency=medium
 
   * Line-wrap and sort dependency fields.
   * Now using Standards-Version 4.1.1 (no changes needed).
@@ -6,7 +6,7 @@ fbset (2.1-30) UNRELEASED; urgency=medium
   * Switch debian/watch format version to 4.
   * Set Rules-Requires-Root to no.
 
- -- Guillem Jover <guillem@debian.org>  Wed, 08 Nov 2017 00:03:54 +0100
+ -- Guillem Jover <guillem@debian.org>  Sun, 12 Nov 2017 00:29:03 +0100
 
 fbset (2.1-29) unstable; urgency=medium
 
